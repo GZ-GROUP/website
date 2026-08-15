@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../lib/generated/prisma"
@@ -10,4 +5,92 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+// ── Enums ──────────────────────────────────────────────
+
+enum Role {
+  READER
+  WRITER
+  ADMIN
+}
+
+enum Occupation {
+  STUDENT
+  PROFESSOR
+  COMPANY
+  RESEARCHER
+  DEVELOPER
+  OTHER
+}
+
+enum AuthProvider {
+  GITHUB
+  LINKEDIN
+}
+
+// ── Modelos ────────────────────────────────────────────
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  username     String   @unique
+  passwordHash String?  // null si el usuario solo entró por OAuth
+  role         Role     @default(READER)
+
+  profile       Profile?
+  accounts      Account[]
+  verifications Verification[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Profile {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  displayName String?
+  avatarUrl   String?
+  bio         String?  @db.VarChar(280)
+  description String?
+  occupation  Occupation?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("profiles")
+}
+
+// Vinculación de una cuenta externa (login/registro vía OAuth)
+model Account {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  provider          AuthProvider
+  providerAccountId String
+
+  createdAt DateTime @default(now())
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+// Hecho de "este proveedor confirma la identidad pública de este usuario"
+// Separado de Account aunque hoy se originen del mismo flujo OAuth.
+model Verification {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  provider   AuthProvider
+  verifiedAt DateTime @default(now())
+
+  @@unique([userId, provider])
+  @@map("verifications")
 }

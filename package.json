@@ -2,6 +2,7 @@
   "name": "gz-group",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,9 +11,11 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
+    "@prisma/adapter-pg": "^7.9.1",
     "@prisma/client": "^7.9.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv": "^17.4.2",
     "lucide-react": "^1.31.0",
     "next": "16.3.0",
     "react": "19.2.8",
