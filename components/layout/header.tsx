@@ -9,11 +9,11 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Button } from "@/components/ui/button";
 import { GZLogo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
 import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { MobileNav } from "@/components/layout/mobile-nav";
+import { UserMenu } from "@/components/layout/user-menu";
 import { SHOWCASE_CATEGORIES, categoryHref } from "@/components/layout/nav-config";
 
 const NAV_LINK =
@@ -87,12 +87,7 @@ export function Header() {
 
         <div className="hidden items-center gap-2 lg:flex">
           <LocaleSwitcher />
-          <Button variant="ghost" nativeButton={false} render={<Link href="/login" />}>
-            {t("login")}
-          </Button>
-          <Button nativeButton={false} render={<Link href="/register" />}>
-            {t("register")}
-          </Button>
+          <UserMenu />
         </div>
 
         <MobileNav />

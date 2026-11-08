@@ -19,7 +19,12 @@
     "openMenu": "Abrir menú",
     "menuTitle": "Menú",
     "allProjects": "Ver todos los proyectos",
-    "closeMenu": "Cerrar menú"
+    "closeMenu": "Cerrar menú",
+    "account": "Mi cuenta",
+    "profile": "Mi perfil",
+    "admin": "Administración",
+    "signOut": "Cerrar sesión",
+    "userMenu": "Menú de tu cuenta"
   },
   "Categories": {
     "software": {
@@ -96,5 +101,189 @@
     "title": "Esta página no existe",
     "body": "Puede que el enlace esté mal escrito o que la página todavía no se haya publicado.",
     "home": "Volver al inicio"
+  },
+  "Email": {
+    "greeting": "Hola {name},",
+    "reset": {
+      "subject": "Restablece tu contraseña de GZ Group",
+      "body": "Recibimos una solicitud para cambiar la contraseña de tu cuenta. El enlace funciona durante una hora.",
+      "cta": "Crear una nueva contraseña",
+      "footnote": "Si no fuiste tú, ignora este correo: tu contraseña no cambiará."
+    },
+    "verify": {
+      "subject": "Confirma tu email en GZ Group",
+      "body": "Confirma que este email es tuyo para completar tu cuenta.",
+      "cta": "Confirmar email",
+      "footnote": "Si no creaste una cuenta en GZ Group, ignora este correo."
+    }
+  },
+  "Auth": {
+    "common": {
+      "email": "Email",
+      "password": "Contraseña",
+      "or": "o",
+      "github": "Continuar con GitHub",
+      "submitting": "Un momento…"
+    },
+    "login": {
+      "metaTitle": "Iniciar sesión",
+      "title": "Inicia sesión",
+      "identifier": "Email o nombre de usuario",
+      "submit": "Ingresar",
+      "forgot": "¿Olvidaste tu contraseña?",
+      "noAccount": "¿No tienes cuenta?",
+      "registerLink": "Crea una"
+    },
+    "register": {
+      "metaTitle": "Crear cuenta",
+      "title": "Crea tu cuenta",
+      "lead": "Con una cuenta puedes comentar, reaccionar y seguir lo que publica la comunidad.",
+      "name": "Nombre",
+      "username": "Nombre de usuario",
+      "usernameHint": "De 3 a 30 caracteres: minúsculas, números, _ y punto.",
+      "passwordHint": "Mínimo 10 caracteres.",
+      "submit": "Crear cuenta",
+      "haveAccount": "¿Ya tienes cuenta?",
+      "loginLink": "Inicia sesión"
+    },
+    "forgot": {
+      "metaTitle": "Recuperar contraseña",
+      "title": "Recupera tu contraseña",
+      "lead": "Escribe el email de tu cuenta y te enviaremos un enlace para crear una nueva.",
+      "submit": "Enviar enlace",
+      "sent": "Si hay una cuenta con ese email, te enviamos un enlace. Revisa tu bandeja de entrada.",
+      "back": "Volver a iniciar sesión"
+    },
+    "reset": {
+      "metaTitle": "Nueva contraseña",
+      "title": "Crea una nueva contraseña",
+      "newPassword": "Nueva contraseña",
+      "confirm": "Repite la contraseña",
+      "submit": "Guardar contraseña",
+      "done": "Tu contraseña cambió. Ya puedes iniciar sesión.",
+      "invalid": "Este enlace no es válido o ya expiró.",
+      "requestNew": "Pedir un enlace nuevo",
+      "loginLink": "Iniciar sesión"
+    }
+  },
+  "AuthErrors": {
+    "INVALID_EMAIL_OR_PASSWORD": "El email o la contraseña no son correctos.",
+    "INVALID_USERNAME_OR_PASSWORD": "El nombre de usuario o la contraseña no son correctos.",
+    "USER_ALREADY_EXISTS": "Ya existe una cuenta con ese email.",
+    "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL": "Ya existe una cuenta con ese email.",
+    "USERNAME_IS_ALREADY_TAKEN": "Ese nombre de usuario ya está en uso.",
+    "INVALID_USERNAME": "Ese nombre de usuario no es válido.",
+    "USERNAME_TOO_SHORT": "El nombre de usuario es demasiado corto.",
+    "USERNAME_TOO_LONG": "El nombre de usuario es demasiado largo.",
+    "INVALID_EMAIL": "Ese email no es válido.",
+    "PASSWORD_TOO_SHORT": "La contraseña debe tener al menos 10 caracteres.",
+    "PASSWORD_TOO_LONG": "La contraseña es demasiado larga.",
+    "INVALID_PASSWORD": "La contraseña actual no es correcta.",
+    "INVALID_TOKEN": "Este enlace no es válido o ya expiró.",
+    "PASSWORDS_DO_NOT_MATCH": "Las contraseñas no coinciden.",
+    "email_not_allowed": "No es posible crear una cuenta con ese email.",
+    "TOO_MANY_REQUESTS": "Demasiados intentos. Espera un minuto y vuelve a intentarlo.",
+    "SOCIAL_ACCOUNT_ALREADY_LINKED": "Esa cuenta de GitHub ya está vinculada a otro usuario.",
+    "FAILED_TO_UNLINK_LAST_ACCOUNT": "No puedes desvincular tu único método de acceso.",
+    "UNKNOWN": "Algo salió mal. Intenta de nuevo.",
+    "FIELD_REQUIRED": "Este campo es obligatorio.",
+    "FIELD_TOO_LONG": "Este texto es demasiado largo."
+  },
+  "Account": {
+    "metaTitle": "Mi cuenta",
+    "title": "Mi cuenta",
+    "viewProfile": "Ver mi perfil público",
+    "profile": {
+      "title": "Perfil",
+      "description": "Descripción",
+      "name": "Nombre",
+      "username": "Nombre de usuario",
+      "usernameHint": "Tu perfil queda en /u/{username}.",
+      "bio": "Bio",
+      "bioHint": "Una línea sobre ti. Máximo 280 caracteres.",
+      "descriptionHint": "Opcional. Máximo 2000 caracteres.",
+      "occupation": "Ocupación",
+      "occupationNone": "Prefiero no decirlo",
+      "save": "Guardar cambios",
+      "saved": "Cambios guardados.",
+      "lead": "Así te ven los demás en tu perfil público y en tus comentarios."
+    },
+    "email": {
+      "title": "Email",
+      "description": "Tu email no se muestra públicamente.",
+      "verified": "Verificado",
+      "unverified": "Sin verificar",
+      "resend": "Enviar email de verificación",
+      "resent": "Te enviamos un email de verificación."
+    },
+    "linked": {
+      "title": "Cuentas vinculadas",
+      "description": "Vincular GitHub muestra el sello «GitHub ✓» en tu perfil y en tus artículos.",
+      "github": "GitHub",
+      "connected": "Vinculada",
+      "notConnected": "Sin vincular",
+      "connect": "Vincular",
+      "disconnect": "Desvincular",
+      "unavailable": "La vinculación con GitHub todavía no está configurada en este servidor."
+    },
+    "security": {
+      "title": "Seguridad",
+      "description": "Cambia tu contraseña o cierra tu sesión en este dispositivo.",
+      "changePassword": "Cambiar contraseña",
+      "signOut": "Cerrar sesión"
+    }
+  },
+  "Password": {
+    "metaTitle": "Cambiar contraseña",
+    "title": "Cambiar contraseña",
+    "required": "Por seguridad, cambia la contraseña inicial antes de continuar.",
+    "current": "Contraseña actual",
+    "next": "Nueva contraseña",
+    "confirm": "Repite la nueva contraseña",
+    "hint": "Mínimo 10 caracteres. Se cerrarán tus otras sesiones.",
+    "submit": "Cambiar contraseña",
+    "back": "Volver a mi cuenta"
+  },
+  "Occupation": {
+    "STUDENT": "Estudiante",
+    "PROFESSOR": "Profesor/a",
+    "COMPANY": "Empresa",
+    "RESEARCHER": "Investigador/a",
+    "DEVELOPER": "Desarrollador/a",
+    "OTHER": "Otra"
+  },
+  "Profile": {
+    "metaTitle": "{name} (@{username})",
+    "memberSince": "En GZ Group desde {date}",
+    "noBio": "Todavía no escribió una bio.",
+    "writer": "Autor",
+    "articles": "Artículos",
+    "articlesEmpty": "Sus artículos aparecerán aquí cuando publique."
+  },
+  "Admin": {
+    "metaTitle": "Administración",
+    "title": "Usuarios",
+    "total": "{count, plural, =0 {Sin usuarios} one {# usuario} other {# usuarios}}",
+    "empty": "Todavía no hay usuarios registrados.",
+    "columns": {
+      "user": "Usuario",
+      "email": "Email",
+      "role": "Rol",
+      "verified": "Email",
+      "joined": "Alta",
+      "actions": "Acción"
+    },
+    "roles": {
+      "reader": "Lector",
+      "writer": "Autor",
+      "admin": "Admin"
+    },
+    "master": "Admin maestro",
+    "verified": "Verificado",
+    "unverified": "Sin verificar",
+    "makeWriter": "Hacer autor",
+    "removeWriter": "Quitar autor",
+    "roleUpdated": "Rol actualizado.",
+    "forbidden": "No tienes permiso para hacer ese cambio."
   }
 }

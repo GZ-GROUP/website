@@ -120,7 +120,8 @@
   --tracking-display: -0.03em;
 
   /* ── Containers: the only page widths allowed ───────── */
-  --container-reading: 42rem; /* article body, forms */
+  --container-form: 28rem; /* auth and single-column forms */
+  --container-reading: 42rem; /* article body, long forms */
   --container-content: 72rem; /* landing, blog, profiles */
   --container-wide: 80rem; /* header/footer, dashboards */
 

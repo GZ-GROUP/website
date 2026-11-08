@@ -19,7 +19,12 @@
     "openMenu": "Open menu",
     "menuTitle": "Menu",
     "allProjects": "See all projects",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "account": "My account",
+    "profile": "My profile",
+    "admin": "Admin",
+    "signOut": "Sign out",
+    "userMenu": "Your account menu"
   },
   "Categories": {
     "software": {
@@ -96,5 +101,189 @@
     "title": "This page doesn't exist",
     "body": "The link may be mistyped, or the page hasn't been published yet.",
     "home": "Back to home"
+  },
+  "Email": {
+    "greeting": "Hi {name},",
+    "reset": {
+      "subject": "Reset your GZ Group password",
+      "body": "We received a request to change your account password. The link works for one hour.",
+      "cta": "Create a new password",
+      "footnote": "If this wasn't you, ignore this email: your password will not change."
+    },
+    "verify": {
+      "subject": "Confirm your email on GZ Group",
+      "body": "Confirm that this email is yours to finish setting up your account.",
+      "cta": "Confirm email",
+      "footnote": "If you didn't create a GZ Group account, ignore this email."
+    }
+  },
+  "Auth": {
+    "common": {
+      "email": "Email",
+      "password": "Password",
+      "or": "or",
+      "github": "Continue with GitHub",
+      "submitting": "One moment…"
+    },
+    "login": {
+      "metaTitle": "Sign in",
+      "title": "Sign in",
+      "identifier": "Email or username",
+      "submit": "Sign in",
+      "forgot": "Forgot your password?",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Create one"
+    },
+    "register": {
+      "metaTitle": "Create account",
+      "title": "Create your account",
+      "lead": "With an account you can comment, react and follow what the community publishes.",
+      "name": "Name",
+      "username": "Username",
+      "usernameHint": "3 to 30 characters: lowercase letters, numbers, _ and dot.",
+      "passwordHint": "At least 10 characters.",
+      "submit": "Create account",
+      "haveAccount": "Already have an account?",
+      "loginLink": "Sign in"
+    },
+    "forgot": {
+      "metaTitle": "Recover password",
+      "title": "Recover your password",
+      "lead": "Enter your account email and we'll send you a link to create a new one.",
+      "submit": "Send link",
+      "sent": "If an account exists for that email, we sent a link. Check your inbox.",
+      "back": "Back to sign in"
+    },
+    "reset": {
+      "metaTitle": "New password",
+      "title": "Create a new password",
+      "newPassword": "New password",
+      "confirm": "Repeat the password",
+      "submit": "Save password",
+      "done": "Your password changed. You can sign in now.",
+      "invalid": "This link is invalid or has expired.",
+      "requestNew": "Request a new link",
+      "loginLink": "Sign in"
+    }
+  },
+  "AuthErrors": {
+    "INVALID_EMAIL_OR_PASSWORD": "The email or password is incorrect.",
+    "INVALID_USERNAME_OR_PASSWORD": "The username or password is incorrect.",
+    "USER_ALREADY_EXISTS": "An account with that email already exists.",
+    "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL": "An account with that email already exists.",
+    "USERNAME_IS_ALREADY_TAKEN": "That username is already taken.",
+    "INVALID_USERNAME": "That username isn't valid.",
+    "USERNAME_TOO_SHORT": "That username is too short.",
+    "USERNAME_TOO_LONG": "That username is too long.",
+    "INVALID_EMAIL": "That email isn't valid.",
+    "PASSWORD_TOO_SHORT": "The password must be at least 10 characters.",
+    "PASSWORD_TOO_LONG": "The password is too long.",
+    "INVALID_PASSWORD": "The current password is incorrect.",
+    "INVALID_TOKEN": "This link is invalid or has expired.",
+    "PASSWORDS_DO_NOT_MATCH": "The passwords don't match.",
+    "email_not_allowed": "An account can't be created with that email.",
+    "TOO_MANY_REQUESTS": "Too many attempts. Wait a minute and try again.",
+    "SOCIAL_ACCOUNT_ALREADY_LINKED": "That GitHub account is already linked to another user.",
+    "FAILED_TO_UNLINK_LAST_ACCOUNT": "You can't unlink your only sign-in method.",
+    "UNKNOWN": "Something went wrong. Please try again.",
+    "FIELD_REQUIRED": "This field is required.",
+    "FIELD_TOO_LONG": "This text is too long."
+  },
+  "Account": {
+    "metaTitle": "My account",
+    "title": "My account",
+    "viewProfile": "View my public profile",
+    "profile": {
+      "title": "Profile",
+      "description": "Description",
+      "name": "Name",
+      "username": "Username",
+      "usernameHint": "Your profile lives at /u/{username}.",
+      "bio": "Bio",
+      "bioHint": "One line about you. Up to 280 characters.",
+      "descriptionHint": "Optional. Up to 2000 characters.",
+      "occupation": "Occupation",
+      "occupationNone": "Prefer not to say",
+      "save": "Save changes",
+      "saved": "Changes saved.",
+      "lead": "This is how others see you on your public profile and in your comments."
+    },
+    "email": {
+      "title": "Email",
+      "description": "Your email is never shown publicly.",
+      "verified": "Verified",
+      "unverified": "Not verified",
+      "resend": "Send verification email",
+      "resent": "We sent you a verification email."
+    },
+    "linked": {
+      "title": "Linked accounts",
+      "description": "Linking GitHub shows a “GitHub ✓” badge on your profile and your articles.",
+      "github": "GitHub",
+      "connected": "Linked",
+      "notConnected": "Not linked",
+      "connect": "Link",
+      "disconnect": "Unlink",
+      "unavailable": "GitHub linking isn't configured on this server yet."
+    },
+    "security": {
+      "title": "Security",
+      "description": "Change your password or sign out on this device.",
+      "changePassword": "Change password",
+      "signOut": "Sign out"
+    }
+  },
+  "Password": {
+    "metaTitle": "Change password",
+    "title": "Change password",
+    "required": "For security, change the initial password before you continue.",
+    "current": "Current password",
+    "next": "New password",
+    "confirm": "Repeat the new password",
+    "hint": "At least 10 characters. Your other sessions will be signed out.",
+    "submit": "Change password",
+    "back": "Back to my account"
+  },
+  "Occupation": {
+    "STUDENT": "Student",
+    "PROFESSOR": "Professor",
+    "COMPANY": "Company",
+    "RESEARCHER": "Researcher",
+    "DEVELOPER": "Developer",
+    "OTHER": "Other"
+  },
+  "Profile": {
+    "metaTitle": "{name} (@{username})",
+    "memberSince": "On GZ Group since {date}",
+    "noBio": "No bio yet.",
+    "writer": "Author",
+    "articles": "Articles",
+    "articlesEmpty": "Their articles will appear here once they publish."
+  },
+  "Admin": {
+    "metaTitle": "Admin",
+    "title": "Users",
+    "total": "{count, plural, =0 {No users} one {# user} other {# users}}",
+    "empty": "No one has signed up yet.",
+    "columns": {
+      "user": "User",
+      "email": "Email",
+      "role": "Role",
+      "verified": "Email",
+      "joined": "Joined",
+      "actions": "Action"
+    },
+    "roles": {
+      "reader": "Reader",
+      "writer": "Author",
+      "admin": "Admin"
+    },
+    "master": "Master admin",
+    "verified": "Verified",
+    "unverified": "Not verified",
+    "makeWriter": "Make author",
+    "removeWriter": "Remove author",
+    "roleUpdated": "Role updated.",
+    "forbidden": "You don't have permission to make that change."
   }
 }

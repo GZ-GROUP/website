@@ -1,8 +1,9 @@
 import { cn } from "@/lib/utils";
 
 // The only page widths in the app (tokens in app/globals.css).
-// reading: article body, forms · content: landing, blog, profiles · wide: header/footer, dashboards
+// form: auth forms · reading: article body, long forms · content: landing, blog, profiles · wide: header/footer, dashboards
 const SIZES = {
+  form: "max-w-form",
   reading: "max-w-reading",
   content: "max-w-content",
   wide: "max-w-wide",

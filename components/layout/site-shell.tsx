@@ -21,7 +21,7 @@ export function SiteShell({ children, mainClassName }: SiteShellProps) {
         {t("skipToContent")}
       </a>
       <Header />
-      <main id="main" className={cn("flex-1", mainClassName)}>
+      <main id="main" className={cn("min-w-0 flex-1", mainClassName)}>
         {children}
       </main>
       <Footer />
