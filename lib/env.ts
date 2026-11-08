@@ -25,6 +25,16 @@ const schema = z.object({
   ADMIN_EMAIL: z.preprocess((v) => (v === "" ? undefined : v), z.email().default("admin@gzgroup.dev")),
   ADMIN_INITIAL_PASSWORD: optional,
 
+  // Object storage (S3-compatible; RustFS locally — ADR 0008)
+  S3_ENDPOINT: optional,
+  S3_REGION: z.preprocess((v) => (v === "" ? undefined : v), z.string().default("us-east-1")),
+  S3_ACCESS_KEY_ID: optional,
+  S3_SECRET_ACCESS_KEY: optional,
+  S3_BUCKET: z.preprocess((v) => (v === "" ? undefined : v), z.string().default("gz-media")),
+  S3_FORCE_PATH_STYLE: z
+    .preprocess((v) => (v === "" ? undefined : v), z.enum(["true", "false"]).default("true"))
+    .transform((v) => v === "true"),
+
   // OAuth (optional: a provider is enabled only when both values exist)
   GITHUB_CLIENT_ID: optional,
   GITHUB_CLIENT_SECRET: optional,
