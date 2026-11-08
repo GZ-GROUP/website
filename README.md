@@ -2,7 +2,7 @@
 
 Editorial platform for GZ Group, a student software development community: a place to publish, discover and discuss members' software projects, research and experiments, with verified authorship.
 
-> **Status:** Phase 3 (authentication) done. The bilingual landing page, accounts (sign-up, sign-in, password reset, GitHub linking), profiles and role management exist. Articles, projects and comments are **not built yet**; see the [roadmap](docs/roadmap.md).
+> **Status:** Phase 4 (editorial) done. The bilingual landing page, accounts, profiles, role management, the writers' studio (rich-text editor, images, co-authors, publishing) and the public blog and projects pages exist. Comments and reactions are **not built yet**; see the [roadmap](docs/roadmap.md).
 
 ## Stack
 
@@ -14,6 +14,8 @@ Editorial platform for GZ Group, a student software development community: a pla
 | Data | Prisma 7 + PostgreSQL 17 (driver adapter `@prisma/adapter-pg`) |
 | Auth | Better Auth 1.7: email/username + password, GitHub OAuth, RBAC (ADR 0002) |
 | Email | nodemailer over the self-hosted SMTP server (ADR 0006) |
+| Editor | TipTap 3, stored as JSON, rendered on the server with the static renderer (ADR 0007) |
+| Media | S3-compatible storage (RustFS locally), images re-encoded with sharp (ADR 0008) |
 | Quality | ESLint, `tsc`, Vitest, Playwright, GitHub Actions, Dependabot |
 | Runtime | Docker (standalone Next.js image), deployed on Dokploy |
 
@@ -23,7 +25,7 @@ Architecture: a modular monolith. Route handlers and server actions stay thin; d
 
 - Node.js 24 LTS or newer
 - npm 11
-- Docker (for the local PostgreSQL)
+- Docker (for the local PostgreSQL and RustFS)
 
 ## Getting started
 
@@ -32,7 +34,7 @@ git clone https://github.com/GZ-GROUP/<repo>.git
 cd <repo>
 npm install
 cp .env.example .env          # local-only values; never commit .env
-docker compose up -d          # PostgreSQL 17 on localhost:5432
+docker compose up -d          # PostgreSQL 17 (:5432) and RustFS object storage (:9000, console :9001)
 npm run db:generate           # Prisma client → lib/generated/prisma
 npm run db:migrate            # apply migrations to the dev database
 npm run dev                   # http://localhost:3000 (Spanish) · /en (English)
@@ -54,6 +56,7 @@ See [`.env.example`](.env.example) for the full list with comments. Summary:
 | `ADMIN_EMAIL`, `ADMIN_INITIAL_PASSWORD` | `.env` | fixed test values in `playwright.config.ts` | Dokploy env (secret); remove the password after the first sign-in |
 | `SMTP_*`, `EMAIL_FROM` | optional (console fallback) | not used (file mailbox) | Dokploy env (required) |
 | `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` | `.env` (optional) | — | Dokploy env |
+| `S3_ENDPOINT`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, `S3_BUCKET`, `S3_REGION`, `S3_FORCE_PATH_STYLE` | `.env` (matches docker-compose) | RustFS service in `ci.yml` | Dokploy env (secret) |
 
 Secrets never enter Git or the Docker image.
 
@@ -90,8 +93,12 @@ app/
     (auth)/              login, register, forgot/reset password
     account/             account settings, change password (private)
     u/[username]/        public profile
-    admin/               user roles (admin only; 404 for everyone else)
+    admin/               users and article moderation (admin only; 404 for everyone else)
+    blog/ projects/      public listings and article pages
+    studio/              writers' area: articles list, editor, preview (404 for non-writers)
   api/auth/[...all]/     Better Auth handler
+  api/uploads/           image upload (writers only)
+  media/[...key]/        serves uploaded images from the private bucket
   globals.css            design tokens: the single source of truth
 components/
   ui/                    shadcn primitives (Base UI)
@@ -102,14 +109,27 @@ i18n/                    next-intl routing, request config, navigation
 messages/                es.json (reference) and en.json
 lib/
   auth/                  Better Auth config, RBAC, session guards, admin bootstrap
+  articles/              editorial permissions, queries, mutations, filters, slugs
+  editor/                TipTap schema, content validation, server renderer
+  storage/               S3 client and image processing
   email/                 SMTP transport and localized templates
   validation/            zod schemas shared by forms and server actions
 prisma/                  schema and migrations
 docs/                    ADRs, roadmap, design system
 tests/                   Vitest (unit) · tests/e2e: Playwright
-instrumentation.ts       server-start hook (master admin bootstrap)
+instrumentation.ts       server-start hook (master admin bootstrap, media bucket)
 proxy.ts                 locale negotiation (Next 16 "proxy", formerly middleware)
 ```
+
+## Editorial workflow
+
+- **Studio:** Writers (and Admins) write in `/studio`, which answers 404 to everyone else.
+  - Articles move DRAFT → PUBLISHED → ARCHIVED. Publishing is immediate, with no approval step.
+  - The slug is fixed at first publication.
+  - Only never-published drafts can be deleted. Admins can archive or restore any article from `/admin/articles`.
+- **Authorship:** the author can add up to 5 co-authors, who must be Writers. Co-authors edit content; only the author publishes.
+- **Projects:** a project is an article in a showcase category (Software, Research, Experiments). The 6 categories are seeded by a migration. Tags are free, up to 5 per article.
+- **Images:** uploaded from the editor, re-encoded to WebP and served from `/media/…` ([ADR 0008](docs/adr/0008-media-storage-rustfs.md)).
 
 ## Authentication
 
@@ -129,7 +149,7 @@ proxy.ts                 locale negotiation (Next 16 "proxy", formerly middlewar
 
 ## CI/CD
 
-GitHub Actions ([`ci.yml`](.github/workflows/ci.yml)) on every pull request and push to `main`: dependency audit → Prisma generate → lint → typecheck → migrations on a throwaway Postgres → unit tests → build, then in parallel the Playwright e2e suite and the Docker image build. Deployment to Dokploy is planned for Phase 2; see [ADR 0004](docs/adr/0004-deployment-dokploy.md).
+GitHub Actions ([`ci.yml`](.github/workflows/ci.yml)) on every pull request and push to `main`: dependency audit → Prisma generate → lint → typecheck → migrations on a throwaway Postgres → unit tests → build, then in parallel the Playwright e2e suite and the Docker image build. Deployment to Dokploy is postponed until every feature phase is finished; see [ADR 0004](docs/adr/0004-deployment-dokploy.md).
 
 ## Contributing
 

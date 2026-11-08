@@ -10,9 +10,9 @@ Modular monolith, Next.js 16 + Prisma 7 + PostgreSQL 17, Docker (dev DB + produc
 
 Design tokens and semantic layer (per-mode, contrast-checked), Poppins 400/700, layout shell, bilingual routing (es default, en), landing page with honest empty states, real logo.
 
-## Phase 2 — First deploy on Dokploy [MVP] (next)
+## Phase 2 — First deploy on Dokploy [MVP] (postponed)
 
-Planned ahead of auth; auth ended up landing first by decision on 2026-11-08. Reasons it stays important: deploying is cheap on Dokploy, surfaces Docker/env problems early, and OAuth callbacks need real URLs.
+Postponed by decision on 2026-11-08: no deployment until every feature phase is done. Reasons it stays important: deploying is cheap on Dokploy, surfaces Docker/env problems early, and OAuth callbacks need real URLs.
 
 - Dokploy application from the Dockerfile (or a GHCR image built in CI)
 - Dokploy-managed PostgreSQL + scheduled backups to S3-compatible storage
@@ -38,9 +38,18 @@ Better Auth (ADR 0002):
 
 Deferred: LinkedIn (app pending), Content-Security-Policy (Phase 6), 2FA for the master admin [POST-MVP].
 
-## Phase 4 — Editorial [MVP]
+## Phase 4 — Editorial [MVP] ✅
 
-Articles (projects = showcase categories), authors and co-authors, categories, tags, drafts, publishing (`DRAFT` / `PUBLISHED` / `ARCHIVED`), editor, `/blog`, `/projects`, article pages. Replace `lib/content/featured.ts` with Prisma queries.
+- **Articles:** a project is an article in a showcase category. The 6 categories are seeded; tags are free, up to 5.
+- **Authorship:** author plus up to 5 co-authors (Writers only). Co-authors edit; only the author publishes.
+- **Workflow:** DRAFT → PUBLISHED → ARCHIVED, published directly with no approval step. The slug is fixed at first publication. Admin moderation lives in `/admin/articles`.
+- **Studio:** `/studio`, with a TipTap 3 editor (ADR 0007), preview, and image uploads to S3/RustFS (ADR 0008).
+- **Public pages:**
+  - `/blog` and `/projects` with search, category and tag filters, sort and pagination.
+  - Article pages with a verified byline and server-side code highlighting.
+  - Live data on the landing (ISR) and on author profiles.
+
+Deferred: autosave [POST-MVP], full-text search (tsvector) [POST-MVP], orphaned-upload cleanup [POST-MVP], editorial review states (Phase 7).
 
 ## Phase 5 — Community [MVP → POST-MVP]
 

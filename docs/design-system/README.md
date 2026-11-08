@@ -72,9 +72,22 @@ Square corners everywhere (shadcn "Sera" preset): controls, cards, media. Avatar
 
 ## Components
 
-- **Primitives** (`components/ui`): Button, Badge, Avatar, Sheet, NavigationMenu, Accordion. These are Base UI, not Radix, so use `render={<Link …/>}` with `nativeButton={false}`; there is no `asChild`.
+- **Primitives** (`components/ui`): Button, Badge, Avatar, Sheet, NavigationMenu, Accordion, Input, Label, Textarea, NativeSelect, DropdownMenu and Alert. These are Base UI, not Radix: there is no `asChild`.
+- **Links that look like buttons:** use `ButtonLink` (internal, locale-aware) or `ButtonAnchor` (external), from `components/ui/button-link`. Never `<Button render={<Link/>} nativeButton={false}>`: Base UI gives that element `role="button"`, so screen readers would announce navigation as a button.
 - **Product components:**
   - `GZLogo`
-  - `Container`, `SiteShell`, `LocaleSwitcher`
-  - `VerifiedBadge`, `EmptyState`, `ArticleCard`
+  - `Container` (`form`, `reading`, `content` and `wide` widths), `SiteShell`, `LocaleSwitcher`
+  - `VerifiedBadge`, `EmptyState`
+  - `ArticleCard`, `ArticleGrid`, `Byline` and `ArticleView`. `ArticleView` is the reading layout shared by the public page and the preview.
+  - `StatusPill`: one status mark per row. Published uses the brand hue; the other states stay quiet.
+  - Editor: `ArticleEditor`, `EditorToolbar`, `TagInput`, `CoverField` and `CoAuthorPicker`.
   - Landing sections in `components/marketing`
+
+## Article typography
+
+`.article-prose` (in `globals.css`) is the single reading style. It is used by the public article page, the studio preview and the editor canvas, so writers see exactly what readers get.
+
+- **Measure:** `Container size="reading"` (42rem).
+- **Text:** body at `--leading-prose` (1.8). Section headings are `text-2xl`, subheadings `text-xl`.
+- **Code:** monospace (`--font-mono`) at `--text-code` (0.875rem). Syntax colours come from `--code-keyword`, `--code-string`, `--code-comment` and `--code-number`, with contrast measured against `--card` in both modes.
+- **Italics:** real Poppins italics are loaded (400/700), never synthesized.
