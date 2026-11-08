@@ -29,13 +29,13 @@ enum AuthProvider {
   LINKEDIN
 }
 
-// ── Modelos ────────────────────────────────────────────
+// ── Models ─────────────────────────────────────────────
 
 model User {
   id           String   @id @default(cuid())
   email        String   @unique
   username     String   @unique
-  passwordHash String?  // null si el usuario solo entró por OAuth
+  passwordHash String?  // null when the user only signed up through OAuth
   role         Role     @default(READER)
 
   profile       Profile?
@@ -65,7 +65,7 @@ model Profile {
   @@map("profiles")
 }
 
-// Vinculación de una cuenta externa (login/registro vía OAuth)
+// A linked external account (OAuth sign-in / sign-up)
 model Account {
   id     String @id @default(cuid())
   userId String
@@ -81,8 +81,8 @@ model Account {
   @@map("accounts")
 }
 
-// Hecho de "este proveedor confirma la identidad pública de este usuario"
-// Separado de Account aunque hoy se originen del mismo flujo OAuth.
+// Fact: "this provider confirms this user's public identity".
+// Kept separate from Account even though both come from the same OAuth flow today.
 model Verification {
   id     String @id @default(cuid())
   userId String

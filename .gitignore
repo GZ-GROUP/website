@@ -50,3 +50,5 @@ ignore
 
 # OS (Windows, por si algún integrante no usa Mac)
 Thumbs.db
+# design tooling output
+/.taste-skill/

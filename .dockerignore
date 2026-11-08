@@ -1,0 +1,21 @@
+# Secrets — never in the build context
+.env*
+!.env.example
+
+# Rebuilt inside the image
+node_modules
+.next
+lib/generated
+
+# Not needed to build
+.git
+.github
+.agents
+.claude
+.windsurf
+docs
+tests
+coverage
+*.md
+Dockerfile
+docker-compose.yml
