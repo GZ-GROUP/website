@@ -2,8 +2,24 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/*
+ * GZ Group design tokens — the single source of truth.
+ *
+ *   Component → semantic token (bg-primary, text-muted-foreground…)
+ *             → CSS variable (--primary)
+ *             → official ramp step (--primary-500)
+ *             → hex value (defined once, below)
+ *
+ * Layer 1: official ramps (text / background / primary / secondary / accent, 50–950).
+ *          `.dark` swaps every ramp for its official inverted version.
+ * Layer 2: semantic slots, defined PER MODE. The ramps are mirror images, so the
+ *          500 steps are identical in both modes; a slot like "text on primary"
+ *          therefore needs a different step in each mode to keep its contrast.
+ *          Every pairing below was measured against WCAG AA (see docs/design-system).
+ */
 
 @theme inline {
+  /* ── Official ramps ─────────────────────────────────── */
   --color-text-50: var(--text-50);
   --color-text-100: var(--text-100);
   --color-text-200: var(--text-200);
@@ -64,33 +80,55 @@
   --color-accent-900: var(--accent-900);
   --color-accent-950: var(--accent-950);
 
-  /* Slots semánticos que consumen Button, Sheet, Badge, footer-3, etc. */
+  /* ── Semantic slots (consumed by shadcn primitives and GZ components) ── */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-ink: var(--primary-ink);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-ink: var(--accent-ink);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
-  --font-sans: var(--font-poppins);
-  --text-sm: 0.750rem;
+  /* Brand mark colours (components/brand/logo.tsx). Fixed: the logo does not invert. */
+  --color-logo-mark: var(--logo-mark);
+  --color-logo-arrow: var(--logo-arrow);
+
+  /* ── Typography: Poppins 400/700, official scale ────── */
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --text-sm: 0.75rem;
   --text-base: 1rem;
   --text-xl: 1.333rem;
   --text-2xl: 1.777rem;
   --text-3xl: 2.369rem;
   --text-4xl: 3.158rem;
-  --text-5xl: 4.210rem;
-    --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
+  --text-5xl: 4.21rem;
+  --leading-display: 1.05;
+  --tracking-display: -0.03em;
+
+  /* ── Containers: the only page widths allowed ───────── */
+  --container-reading: 42rem; /* article body, forms */
+  --container-content: 72rem; /* landing, blog, profiles */
+  --container-wide: 80rem; /* header/footer, dashboards */
+
+  /* ── Motion ─────────────────────────────────────────── */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+/* ── Layer 1: official ramps — light ──────────────────── */
 :root {
   --text-50: #eaf8fb;   --text-100: #d4f0f7;  --text-200: #a9e2ef;
   --text-300: #7ed3e7;  --text-400: #54c5de;  --text-500: #29b6d6;
@@ -117,23 +155,12 @@
   --accent-600: #ab8d21; --accent-700: #816a18; --accent-800: #564710;
   --accent-900: #2b2308; --accent-950: #151204;
 
-  --background: var(--background-50);
-  --foreground: var(--text-900);
-  --primary: var(--primary-500);
-  --primary-foreground: var(--text-50);
-  --secondary: var(--secondary-100);
-  --secondary-foreground: var(--secondary-900);
-  --muted: var(--background-100);
-  --muted-foreground: var(--text-600);
-  --accent: var(--accent-100);
-  --accent-foreground: var(--accent-900);
-  --border: var(--background-200);
-  --card: var(--background-50);
-  --card-foreground: var(--text-900);
-    --popover: var(--card);
-  --popover-foreground: var(--card-foreground);
+  /* Brand mark (from public/brand/gz-logo.svg) */
+  --logo-mark: #38bdf8;
+  --logo-arrow: #2563eb;
 }
 
+/* ── Layer 1: official ramps — dark (official inversion) ── */
 .dark {
   --text-50: #041215;   --text-100: #08242b;  --text-200: #104956;
   --text-300: #186d81;  --text-400: #2192ab;  --text-500: #29b6d6;
@@ -159,11 +186,135 @@
   --accent-300: #816a18; --accent-400: #ab8d21; --accent-500: #d6b129;
   --accent-600: #dec054; --accent-700: #e7d07e; --accent-800: #efe0a9;
   --accent-900: #f7efd4; --accent-950: #fbf7ea;
-
-  /* Los slots semánticos NO se redefinen aquí: ya apuntan a --text-900, --background-50, etc.,
-     y esos nombres ahora resuelven a los valores oscuros de arriba. Es la misma fórmula,
-     con otra rampa detrás. */
 }
-body {
-  @apply bg-background text-foreground;
+
+/* ── Layer 2: semantic slots — light ──────────────────── */
+:root {
+  color-scheme: light;
+
+  --background: var(--background-50);
+  --foreground: var(--text-900);            /* 14.9:1 */
+  --card: var(--background-100);
+  --card-foreground: var(--text-900);
+  --popover: var(--card);
+  --popover-foreground: var(--card-foreground);
+
+  --primary: var(--primary-500);            /* fills: buttons, active states */
+  --primary-foreground: var(--text-950);    /* 10.2:1 on primary */
+  --primary-ink: var(--primary-800);        /* primary as text/links: 8.0:1 */
+  --secondary: var(--secondary-100);
+  --secondary-foreground: var(--secondary-900);
+  --muted: var(--background-100);
+  --muted-foreground: var(--text-700);      /* 5.5:1 */
+  --accent: var(--accent-100);
+  --accent-foreground: var(--accent-900);
+  --accent-ink: var(--accent-700);          /* accent as text: 4.8:1 */
+
+  /* Functional status colour — not part of the brand ramps. */
+  --destructive: #b42318;                   /* 6.0:1 */
+  --destructive-foreground: var(--text-50);
+
+  --border: var(--background-200);          /* decorative separation */
+  --input: var(--background-600);           /* form control edge: 3.2:1 */
+  --ring: var(--primary-700);               /* focus ring: 4.5:1 */
+}
+
+/* ── Layer 2: semantic slots — dark (default) ─────────── */
+.dark {
+  color-scheme: dark;
+
+  --background: var(--background-50);
+  --foreground: var(--text-900);            /* 15.9:1 */
+  --card: var(--background-100);
+  --card-foreground: var(--text-900);
+  --popover: var(--card);
+  --popover-foreground: var(--card-foreground);
+
+  --primary: var(--primary-500);
+  --primary-foreground: var(--text-50);     /* 10.2:1 on primary */
+  --primary-ink: var(--primary-500);        /* 10.2:1 */
+  --secondary: var(--secondary-100);
+  --secondary-foreground: var(--secondary-900);
+  --muted: var(--background-100);
+  --muted-foreground: var(--text-600);      /* 9.4:1 */
+  --accent: var(--accent-100);
+  --accent-foreground: var(--accent-900);
+  --accent-ink: var(--accent-500);          /* 9.2:1 */
+
+  --destructive: #ff7a6e;                   /* 7.5:1 */
+  --destructive-foreground: var(--text-50);
+
+  --border: var(--background-200);
+  --input: var(--background-300);           /* 3.3:1 */
+  --ring: var(--primary-500);               /* 10.2:1 */
+}
+
+/* ── Motion: scroll-linked entrance ─────────────────────
+ * Progressive enhancement: only browsers with scroll-driven animations run it,
+ * content is fully visible everywhere else, and reduced-motion skips it. */
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+}
+
+@utility reveal {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: reveal-rise var(--ease-out-strong) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+
+/* ── Motion: hero logo trail ────────────────────────────
+ * One-time entrance (components/brand/logo.tsx). The stroke is dashed with
+ * pathLength=1, so offset 1 = hidden and 0 = fully drawn. Without animation
+ * support, or with reduced motion, the trail is simply fully visible. */
+@keyframes trail-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@utility animate-trail-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: trail-draw 900ms var(--ease-out-strong) both;
+}
+
+/* ── Base: the browser surfaces carry the design too ─── */
+@layer base {
+  body {
+    @apply bg-background font-sans text-foreground;
+  }
+
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  html {
+    caret-color: var(--primary-ink);
+    scrollbar-color: var(--background-300) var(--background);
+  }
+
+  /* One visible focus style for everything keyboard-reachable. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }

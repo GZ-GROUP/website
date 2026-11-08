@@ -1,10 +1,24 @@
 import { Hero } from "@/components/marketing/hero";
+import { WhatWePublish } from "@/components/marketing/what-we-publish";
+import { LatestWork } from "@/components/marketing/latest-work";
+import { FeaturedMembers } from "@/components/marketing/featured-members";
+import { CallToAction } from "@/components/marketing/cta";
+import { getFeaturedArticles, getFeaturedMembers, getFeaturedProjects } from "@/lib/content/featured";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [projects, articles, members] = await Promise.all([
+    getFeaturedProjects(),
+    getFeaturedArticles(),
+    getFeaturedMembers(),
+  ]);
+
   return (
     <>
       <Hero />
-      {/* FeaturedProjects, FeaturedArticles, FeaturedMembers, CTA — siguiente turno */}
+      <WhatWePublish />
+      <LatestWork projects={projects} articles={articles} />
+      <FeaturedMembers members={members} />
+      <CallToAction />
     </>
   );
 }

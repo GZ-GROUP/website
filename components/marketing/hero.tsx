@@ -1,72 +1,48 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
+import { GZLogo } from "@/components/brand/logo";
+import { Container } from "@/components/layout/container";
+
+// Entrance: content is visible by default; @starting-style (Tailwind `starting:`)
+// only adds the rise on first paint, and reduced-motion collapses it (globals.css).
+const RISE =
+  "transition-[opacity,translate] duration-500 ease-out-strong starting:translate-y-4 starting:opacity-0";
 
 export function Hero() {
+  const t = useTranslations("Hero");
+
   return (
-    <section className="relative min-h-screen overflow-hidden bg-background text-foreground">
-      <div
-        className="absolute inset-x-[-18%] bottom-[-34%] h-[78%] rounded-[100%] blur-3xl"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, color-mix(in oklab, var(--color-primary-500) 58%, transparent) 0%, color-mix(in oklab, var(--color-secondary-500) 34%, transparent) 34%, color-mix(in oklab, var(--color-secondary-600) 20%, transparent) 58%, transparent 78%)",
-        }}
-      />
-      <div
-        className="absolute inset-x-0 bottom-0 h-[68%]"
-        style={{
-          background:
-            "linear-gradient(to top, color-mix(in oklab, var(--color-secondary-600) 42%, transparent), color-mix(in oklab, var(--color-primary-500) 20%, transparent) 42%, transparent 78%)",
-        }}
-      />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 55%, color-mix(in oklab, var(--background) 18%, transparent) 0%, transparent 34%, color-mix(in oklab, var(--background) 90%, transparent) 78%)",
-        }}
-      />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(to bottom, var(--background) 0%, color-mix(in oklab, var(--background) 68%, transparent) 38%, color-mix(in oklab, var(--background) 12%, transparent) 100%)",
-        }}
-      />
-
-      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-6 py-24 text-center">
-        <div className="rounded-full border border-border bg-background/50 px-4 py-1.5 text-sm font-medium text-muted-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_12px_40px_rgba(0,0,0,0.08)] backdrop-blur-md">
-          Comunidad tecnológica estudiantil
+    <section aria-labelledby="hero-title" className="overflow-hidden">
+      <Container
+        size="wide"
+        className="grid items-center gap-12 py-16 md:py-24 lg:min-h-[36rem] lg:grid-cols-[1.4fr_1fr] lg:py-32"
+      >
+        <div className="max-w-2xl">
+          <h1
+            id="hero-title"
+            className={`text-3xl font-bold leading-display tracking-display text-balance sm:text-4xl lg:text-5xl ${RISE}`}
+          >
+            {t("title")}
+          </h1>
+          <p className={`mt-6 max-w-xl text-base leading-7 text-muted-foreground md:text-xl md:leading-8 delay-75 ${RISE}`}>
+            {t("lead")}
+          </p>
+          <div className={`mt-10 flex flex-col gap-3 sm:flex-row delay-150 ${RISE}`}>
+            <Button size="lg" nativeButton={false} render={<Link href="/projects" />}>
+              {t("primaryCta")}
+            </Button>
+            <Button size="lg" variant="outline" nativeButton={false} render={<Link href="/blog" />}>
+              {t("secondaryCta")}
+            </Button>
+          </div>
         </div>
 
-        <h1 className="mt-8 max-w-5xl text-balance text-5xl font-medium leading-[0.96] tracking-normal md:text-6xl lg:text-7xl">
-          Donde los proyectos de la comunidad GZ Group toman visibilidad
-        </h1>
-
-        <p className="mt-6 max-w-2xl text-pretty text-base leading-7 text-muted-foreground md:text-lg">
-          Publica, descubre y discute proyectos universitarios, investigaciones y
-          experimentos de software creados por estudiantes apasionados por el desarrollo.
-        </p>
-
-        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
-          <Button
-            size="lg"
-            nativeButton={false}
-            render={<Link href="/blog" />}
-            className="h-11 w-44 rounded-lg shadow-[0_1px_0_rgba(255,255,255,0.24)_inset,0_18px_60px_rgba(0,0,0,0.12)]"
-          >
-            Explorar el blog
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            nativeButton={false}
-            render={<Link href="/registro" />}
-            className="h-11 w-44 rounded-lg bg-background/45 backdrop-blur"
-          >
-            Unirme a GZ Group
-          </Button>
+        {/* The brand mark is the hero image: the trail draws itself, then the ship flies in. */}
+        <div className="order-first flex justify-start lg:order-none lg:justify-end">
+          <GZLogo animated className="h-20 sm:h-28 lg:h-[28rem]" />
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

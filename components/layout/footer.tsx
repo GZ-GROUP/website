@@ -1,101 +1,89 @@
-import Link from "next/link";
-import { GitBranch, Globe, X } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { ArrowUpRight } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { GZLogo } from "@/components/brand/logo";
+import { Container } from "@/components/layout/container";
+import { PRIMARY_NAV } from "@/components/layout/nav-config";
+import { site } from "@/lib/site";
 
-const SOCIAL_LINKS = [
-  { icon: <GitBranch className="size-4" />, href: "https://github.com" },
-  { icon: <Globe className="size-4" />, href: "https://linkedin.com" },
-  { icon: <X className="size-4" />, href: "https://twitter.com" },
-] as const;
-
-const LINK_GROUPS = [
-  {
-    title: "Explorar",
-    links: [
-      { label: "Blog", href: "/blog" },
-      { label: "Proyectos", href: "/proyectos" },
-      { label: "Equipo", href: "/equipo" },
-    ],
-  },
-  {
-    title: "Comunidad",
-    links: [
-      { label: "Unirme", href: "/registro" },
-      { label: "Iniciar sesión", href: "/login" },
-      { label: "GitHub", href: "https://github.com" },
-    ],
-  },
-] as const;
-
-const LEGAL_LINKS = [
-  { label: "Privacidad", href: "/privacidad" },
-  { label: "Términos", href: "/terminos" },
-] as const;
+const FOOTER_LINK = "text-base text-muted-foreground transition-colors duration-150 hover:text-foreground";
 
 export function Footer() {
+  const t = useTranslations("Footer");
+  const th = useTranslations("Header");
+  const year = new Date().getFullYear();
+
   return (
-    <footer className=" bg-background/95">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-10 md:px-8">
-        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-          <div className="max-w-md">
+    <footer className="bg-card text-card-foreground">
+      <Container size="wide" className="py-16 md:py-20">
+        <div className="grid gap-12 sm:grid-cols-3 lg:grid-cols-[2fr_1fr_1fr_1fr]">
+          <div className="max-w-sm sm:col-span-3 lg:col-span-1">
             <div className="flex items-center gap-3">
-              <GZLogo className="text-2xl" />
-              <span className="text-lg font-semibold tracking-tight">GZ Group</span>
+              <GZLogo className="h-10" />
+              <span className="text-xl font-bold">GZ Group</span>
             </div>
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">
-              Comunidad estudiantil de desarrollo de software: publicamos, descubrimos y
-              discutimos proyectos, investigaciones y experimentos tecnológicos.
-            </p>
+            <p className="mt-6 text-base leading-7 text-muted-foreground">{t("tagline")}</p>
           </div>
 
-          <div className="flex flex-wrap gap-10">
-            {LINK_GROUPS.map((group) => (
-              <div key={group.title}>
-                <h3 className="text-sm font-semibold uppercase tracking-[0.12em] text-foreground">
-                  {group.title}
-                </h3>
-                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                  {group.links.map((link) => (
-                    <li key={link.label}>
-                      <Link href={link.href} className="transition-colors hover:text-foreground">
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-4 border-t pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3">
-            {SOCIAL_LINKS.map((social) => (
-              <a
-                key={social.href}
-                href={social.href}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-muted"
-                aria-label={social.href}
-              >
-                {social.icon}
-              </a>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4">
-            <p>© {new Date().getFullYear()} GZ Group. Todos los derechos reservados.</p>
-            <div className="flex items-center gap-4">
-              {LEGAL_LINKS.map((link) => (
-                <Link key={link.label} href={link.href} className="hover:text-foreground">
-                  {link.label}
-                </Link>
+          <nav aria-label={t("explore")}>
+            <h2 className="text-base font-bold">{t("explore")}</h2>
+            <ul className="mt-4 space-y-3">
+              {PRIMARY_NAV.map((item) => (
+                <li key={item.key}>
+                  <Link href={item.href} className={FOOTER_LINK}>
+                    {th(item.key)}
+                  </Link>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </nav>
+
+          <nav aria-label={t("community")}>
+            <h2 className="text-base font-bold">{t("community")}</h2>
+            <ul className="mt-4 space-y-3">
+              <li>
+                <Link href="/register" className={FOOTER_LINK}>
+                  {th("register")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/login" className={FOOTER_LINK}>
+                  {th("login")}
+                </Link>
+              </li>
+              <li>
+                <a
+                  href={site.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${FOOTER_LINK} inline-flex items-center gap-1`}
+                >
+                  GitHub
+                  <ArrowUpRight className="size-4" aria-hidden />
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <nav aria-label={t("legal")}>
+            <h2 className="text-base font-bold">{t("legal")}</h2>
+            <ul className="mt-4 space-y-3">
+              <li>
+                <Link href="/privacy" className={FOOTER_LINK}>
+                  {t("privacy")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className={FOOTER_LINK}>
+                  {t("terms")}
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
-      </div>
+
+        <p className="mt-16 text-sm text-muted-foreground">{t("copyright", { year })}</p>
+      </Container>
     </footer>
   );
 }
