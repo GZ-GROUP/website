@@ -56,6 +56,9 @@ model User {
   sessions              Session[]
   accounts              Account[]
   identityVerifications IdentityVerification[]
+  articles              Article[]              @relation("ArticleAuthor")
+  coAuthorships         ArticleCoAuthor[]
+  media                 Media[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -155,4 +158,123 @@ model IdentityVerification {
 
   @@unique([userId, provider])
   @@map("identity_verifications")
+}
+
+// ── Editorial ──────────────────────────────────────────
+
+enum ArticleStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+/// SHOWCASE categories are "projects"; EDITORIAL ones are blog articles.
+enum CategoryKind {
+  SHOWCASE
+  EDITORIAL
+}
+
+/// Language the article is written in. Content is never machine-translated.
+enum ContentLanguage {
+  ES
+  EN
+}
+
+/// Fixed set seeded by the editorial migration. Names come from messages/*.json by slug.
+model Category {
+  id       String       @id @default(cuid())
+  slug     String       @unique
+  kind     CategoryKind
+  position Int
+
+  articles Article[]
+
+  @@map("categories")
+}
+
+model Tag {
+  id   String @id @default(cuid())
+  slug String @unique
+  name String @db.VarChar(40)
+
+  articles ArticleTag[]
+
+  @@map("tags")
+}
+
+model Article {
+  id             String          @id @default(cuid())
+  /// Generated from the title; frozen once the article is first published.
+  slug           String          @unique
+  title          String          @db.VarChar(160)
+  excerpt        String          @default("") @db.VarChar(300)
+  /// TipTap (ProseMirror) JSON document, validated server-side (lib/editor/content.ts).
+  content        Json
+  /// Plain text extracted from `content`, for search and reading time.
+  contentText    String          @default("")
+  language       ContentLanguage @default(ES)
+  status         ArticleStatus   @default(DRAFT)
+  coverImageKey  String?
+  coverAlt       String?         @db.VarChar(200)
+  repositoryUrl  String?         @db.VarChar(500)
+  externalUrl    String?         @db.VarChar(500)
+  readingMinutes Int             @default(1)
+  publishedAt    DateTime?
+
+  // Restrict: articles are never deleted as a side effect of deleting a user or category.
+  authorId   String
+  author     User     @relation("ArticleAuthor", fields: [authorId], references: [id], onDelete: Restrict)
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+
+  coAuthors ArticleCoAuthor[]
+  tags      ArticleTag[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status, publishedAt])
+  @@index([categoryId, status, publishedAt])
+  @@index([authorId])
+  @@map("articles")
+}
+
+/// Ordered co-authors (N:M). Co-authors can edit; only the author publishes.
+model ArticleCoAuthor {
+  articleId String
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  position  Int     @default(0)
+
+  @@id([articleId, userId])
+  @@index([userId])
+  @@map("article_co_authors")
+}
+
+model ArticleTag {
+  articleId String
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  tagId     String
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([articleId, tagId])
+  @@index([tagId])
+  @@map("article_tags")
+}
+
+/// Uploaded files in object storage (ADR 0008). Keys are immutable.
+model Media {
+  id         String   @id @default(cuid())
+  key        String   @unique
+  mimeType   String
+  width      Int
+  height     Int
+  bytes      Int
+  uploaderId String
+  uploader   User     @relation(fields: [uploaderId], references: [id], onDelete: Restrict)
+  createdAt  DateTime @default(now())
+
+  @@index([uploaderId])
+  @@map("media")
 }
