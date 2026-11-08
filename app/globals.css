@@ -87,6 +87,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+  --color-popover-hover: var(--popover-hover);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-ink: var(--primary-ink);
@@ -202,6 +203,11 @@
   --card-foreground: var(--text-900);
   --popover: var(--card);
   --popover-foreground: var(--card-foreground);
+  /* Highlighted row inside menus and popovers (hover, keyboard, pressed).
+     --popover equals --card, so it needs its own step; muted text keeps 4.5:1 on it. */
+  --popover-hover: color-mix(in oklab, var(--card), var(--background-200) 60%);
+  /* Press feedback (ripple) on menu items and nav links. */
+  --ripple: color-mix(in oklab, var(--primary) 45%, transparent);
 
   --primary: var(--primary-500);            /* fills: buttons, active states */
   --primary-foreground: var(--text-950);    /* 10.2:1 on primary */
@@ -239,6 +245,8 @@
   --card-foreground: var(--text-900);
   --popover: var(--card);
   --popover-foreground: var(--card-foreground);
+  --popover-hover: color-mix(in oklab, var(--card), var(--background-200) 60%); /* muted 6.0:1 */
+  --ripple: color-mix(in oklab, var(--primary) 45%, transparent);
 
   --primary: var(--primary-500);
   --primary-foreground: var(--text-50);     /* 10.2:1 on primary */
@@ -281,6 +289,32 @@
       animation-timeline: view();
       animation-range: entry 0% entry 40%;
     }
+  }
+}
+
+/* ── Hero backdrop: trails of the logo's ship ──────────
+ * Streaks in the logo colours, flying the same way as the arrow. They live
+ * only where there is no text (right column on desktop, the logo band on
+ * phones), so text contrast is never affected. One entrance, then still. */
+@keyframes hero-streak {
+  from {
+    opacity: 0;
+    translate: -14% 0;
+  }
+}
+
+.hero-streak {
+  animation: hero-streak 1100ms var(--ease-out-strong) both;
+}
+
+.hero-backdrop {
+  /* Phones and tablets: a band behind the mark that fades out before the headline. */
+  mask-image: linear-gradient(to bottom, #000 35%, transparent 100%);
+}
+@media (min-width: 64rem) {
+  .hero-backdrop {
+    /* Desktop: the right column only, fading in from the text side. */
+    mask-image: linear-gradient(to right, transparent 0%, #000 45%);
   }
 }
 

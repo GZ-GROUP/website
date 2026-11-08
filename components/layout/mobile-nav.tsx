@@ -11,9 +11,10 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/s
 import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { PRIMARY_NAV } from "@/components/layout/nav-config";
 import { authClient } from "@/lib/auth/client";
+import { ripple } from "@/lib/ui/ripple";
 
 const MENU_LINK =
-  "block py-3 text-xl font-bold text-foreground transition-colors duration-150 hover:text-primary-ink";
+  "relative -mx-3 block overflow-hidden px-3 py-3 text-xl font-bold text-foreground transition-colors duration-150 hover:bg-popover-hover hover:text-primary-ink";
 
 export function MobileNav() {
   const t = useTranslations("Header");
@@ -39,7 +40,7 @@ export function MobileNav() {
             <ul className="flex flex-col">
               {PRIMARY_NAV.map((item) => (
                 <li key={item.key}>
-                  <Link href={item.href} onClick={close} className={MENU_LINK}>
+                  <Link href={item.href} onClick={close} onPointerDown={ripple} className={MENU_LINK}>
                     {t(item.key)}
                   </Link>
                 </li>

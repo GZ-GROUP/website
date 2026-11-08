@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { authClient } from "@/lib/auth/client";
+import { ripple } from "@/lib/ui/ripple";
 
 // Client-side so public pages stay static: the session is read in the browser.
 // Showing "Admin" here is cosmetic; /admin authorizes on the server.
@@ -46,16 +47,27 @@ export function UserMenu() {
 
   return (
     <DropdownMenu>
+      {/* The accessible name starts with the visible name (WCAG 2.5.3 Label in Name). */}
       <DropdownMenuTrigger
-        render={<Button variant="ghost" className="h-10 gap-2 px-2 normal-case tracking-normal" />}
-        aria-label={t("userMenu")}
+        render={
+          <Button
+            variant="ghost"
+            className="group/user-menu relative h-10 gap-2 overflow-hidden px-2 normal-case tracking-normal"
+            onPointerDown={ripple}
+          />
+        }
       >
-        <Avatar size="sm">
+        <Avatar size="sm" aria-hidden>
           {user.image && <AvatarImage src={user.image} alt="" />}
           <AvatarFallback>{user.name.charAt(0).toUpperCase()}</AvatarFallback>
         </Avatar>
         <span className="max-w-40 truncate text-base font-bold">{user.name}</span>
-        <ChevronDown className="size-4 text-muted-foreground" aria-hidden />
+        <span className="sr-only">, {t("userMenu")}</span>
+        {/* Same motion as the Projects chevron in the nav: 300ms rotation while open. */}
+        <ChevronDown
+          className="size-4 text-muted-foreground transition duration-300 group-data-popup-open/user-menu:rotate-180"
+          aria-hidden
+        />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuItem render={<Link href="/account" />}>{t("account")}</DropdownMenuItem>

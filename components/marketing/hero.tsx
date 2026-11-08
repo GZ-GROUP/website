@@ -2,6 +2,7 @@ import { ButtonLink } from "@/components/ui/button-link";
 import { useTranslations } from "next-intl";
 import { GZLogo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
+import { HeroBackdrop } from "@/components/marketing/hero-backdrop";
 
 // Entrance: content is visible by default; @starting-style (Tailwind `starting:`)
 // only adds the rise on first paint, and reduced-motion collapses it (globals.css).
@@ -12,10 +13,11 @@ export function Hero() {
   const t = useTranslations("Hero");
 
   return (
-    <section aria-labelledby="hero-title" className="overflow-hidden">
+    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
+      <HeroBackdrop />
       <Container
         size="wide"
-        className="grid items-center gap-12 py-16 md:py-24 lg:min-h-[36rem] lg:grid-cols-[1.4fr_1fr] lg:py-32"
+        className="relative grid items-center gap-12 py-16 md:py-24 lg:min-h-[36rem] lg:grid-cols-[1.4fr_1fr] lg:py-32"
       >
         <div className="max-w-2xl">
           <h1
