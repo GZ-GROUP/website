@@ -13,7 +13,7 @@ We need email/username + password sign-up, sessions, password reset, GitHub and 
 | --- | --- | --- |
 | **Better Auth** | Email/password, username, OAuth, account linking, DB sessions, rate limiting and role helpers built in; official Prisma adapter; actively developed | Younger library; follow its release notes |
 | Auth.js v5 | Well known | Maintained by the Better Auth team since Sept 2025, which recommends Better Auth for new projects; credentials + database sessions are awkward; password reset is DIY |
-| Custom sessions/JWT | Full control | We would own hashing, rotation, CSRF, reset and OAuth flows: the highest security risk for a student team |
+| Custom sessions/JWT | Full control | We would own hashing, rotation, CSRF, reset and OAuth flows: the highest security risk for a small team |
 
 ## Decision
 

@@ -1,6 +1,6 @@
 # GZ Group
 
-Editorial platform for GZ Group, a student software development community: a place to publish, discover and discuss members' software projects, research and experiments, with verified authorship.
+Editorial platform for GZ Group, a community of emerging software developers: a place to publish, discover and discuss members' software projects, research and experiments, with verified authorship.
 
 > **Status:** Phase 4 (editorial) done. The bilingual landing page, accounts, profiles, role management, the writers' studio (rich-text editor, images, co-authors, publishing) and the public blog and projects pages exist. Comments and reactions are **not built yet**; see the [roadmap](docs/roadmap.md).
 

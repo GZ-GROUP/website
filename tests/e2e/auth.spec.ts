@@ -5,7 +5,7 @@ test.describe("reader account", () => {
   test("register → edit profile → public profile → sign out → sign in with username", async ({ page }) => {
     const user = newUser();
     await register(page, user);
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Mi cuenta");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Ajustes");
 
     // Edit the profile (server action with server-side validation).
     await page.getByLabel("Ocupación").selectOption("STUDENT");

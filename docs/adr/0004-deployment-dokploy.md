@@ -6,7 +6,7 @@
 
 ## Context
 
-The original plan targeted Azure Kubernetes Service. For a student team with one application and one database, Kubernetes adds cost and operational work without a matching benefit. Dokploy is a self-hosted PaaS (Docker + Traefik) that runs on a single VPS.
+The original plan targeted Azure Kubernetes Service. For a small team with one application and one database, Kubernetes adds cost and operational work without a matching benefit. Dokploy is a self-hosted PaaS (Docker + Traefik) that runs on a single VPS.
 
 ## Decision
 

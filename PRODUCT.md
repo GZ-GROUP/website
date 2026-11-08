@@ -8,13 +8,13 @@ web
 
 ## Users
 
-- **Primary (today): readers who explore.** Students, professors and developers who arrive to discover software projects, research and experiments made by GZ Group members, and read the explanations behind them.
+- **Primary (today): readers who explore.** Developers, students, professors and companies who arrive to discover software projects, research and experiments made by GZ Group members, and read the explanations behind them.
 - **Secondary: readers who sign up.** Public sign-up only ever creates a Reader (informally "reviewer"): they comment on and react to projects and articles, and manage their profile. Later, companies or recruiters evaluating the group's work.
 - **Authors are never recruited publicly.** Nobody signs up as an author. The master admin promotes an existing Reader to Writer from the backend; this flow must not be mentioned or hinted at anywhere public.
 
 ## Product Purpose
 
-GZ Group is a student software development group. The platform is its editorial home: a place to publish, discover and discuss members' projects, research and experiments, with clear authorship. Long term, GZ Group intends to become a software development company, so the platform must be able to grow from a community site into a professional one.
+GZ Group is a community of emerging software developers. The platform is its editorial home: a place to publish, discover and discuss members' projects, research and experiments, with clear authorship. Long term, GZ Group intends to become a software development company, so the platform must be able to grow from a community site into a professional one.
 
 ## Positioning
 

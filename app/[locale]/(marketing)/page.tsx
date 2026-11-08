@@ -5,8 +5,10 @@ import { FeaturedMembers } from "@/components/marketing/featured-members";
 import { CallToAction } from "@/components/marketing/cta";
 import { getFeaturedArticles, getFeaturedMembers, getFeaturedProjects } from "@/lib/content/featured";
 
-// Static, refreshed every 5 minutes and on every publish (revalidatePath).
-export const revalidate = 300;
+// Static, refreshed every minute and on every publish (revalidatePath). The build
+// runs without a database, so the first minute after a deploy may show the
+// empty state until the first regeneration.
+export const revalidate = 60;
 
 export default async function HomePage() {
   const [projects, articles, members] = await Promise.all([

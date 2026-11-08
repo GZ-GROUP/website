@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "GZ Group — Software built by students",
-    "description": "A student community that publishes software projects, research and experiments, explained by the people who built them."
+    "title": "GZ Group — Software built by emerging talent",
+    "description": "A developer community that publishes software projects, research and experiments, explained by the people who built them."
   },
   "Common": {
     "brand": "GZ Group",
@@ -20,7 +20,7 @@
     "menuTitle": "Menu",
     "allProjects": "See all projects",
     "closeMenu": "Close menu",
-    "account": "My account",
+    "account": "Settings",
     "profile": "My profile",
     "admin": "Admin",
     "signOut": "Sign out",
@@ -60,8 +60,8 @@
     "en": "English"
   },
   "Hero": {
-    "title": "Software built by students",
-    "lead": "GZ Group is a student community that publishes its software projects, research and experiments, explained by the people who built them.",
+    "title": "Software built by emerging talent",
+    "lead": "GZ Group is a developer community that publishes its software projects, research and experiments, explained by the people who built them.",
     "primaryCta": "Explore projects",
     "secondaryCta": "Read the blog"
   },
@@ -102,7 +102,7 @@
     "verifiedWith": "Identity verified with {provider}"
   },
   "Footer": {
-    "tagline": "A student software development community. We publish what we build and explain how we built it.",
+    "tagline": "A software developer community. We publish what we build and explain how we built it.",
     "explore": "Explore",
     "community": "Community",
     "legal": "Legal",
@@ -203,8 +203,8 @@
     "FIELD_TOO_LONG": "This text is too long."
   },
   "Account": {
-    "metaTitle": "My account",
-    "title": "My account",
+    "metaTitle": "Settings",
+    "title": "Settings",
     "viewProfile": "View my public profile",
     "profile": {
       "title": "Profile",
@@ -255,7 +255,7 @@
     "confirm": "Repeat the new password",
     "hint": "At least 10 characters. Your other sessions will be signed out.",
     "submit": "Change password",
-    "back": "Back to my account"
+    "back": "Back to settings"
   },
   "Occupation": {
     "STUDENT": "Student",

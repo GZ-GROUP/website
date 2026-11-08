@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "GZ Group — Software hecho por estudiantes",
-    "description": "Comunidad estudiantil que publica proyectos, investigaciones y experimentos de software, explicados por quienes los construyeron."
+    "title": "GZ Group — Software hecho por talento emergente",
+    "description": "Comunidad de desarrolladores que publica proyectos, investigaciones y experimentos de software, explicados por quienes los construyeron."
   },
   "Common": {
     "brand": "GZ Group",
@@ -20,7 +20,7 @@
     "menuTitle": "Menú",
     "allProjects": "Ver todos los proyectos",
     "closeMenu": "Cerrar menú",
-    "account": "Mi cuenta",
+    "account": "Ajustes",
     "profile": "Mi perfil",
     "admin": "Administración",
     "signOut": "Cerrar sesión",
@@ -60,8 +60,8 @@
     "en": "English"
   },
   "Hero": {
-    "title": "Software hecho por estudiantes",
-    "lead": "GZ Group es una comunidad estudiantil que publica sus proyectos, investigaciones y experimentos de software, explicados por quienes los construyeron.",
+    "title": "Software hecho por talento emergente",
+    "lead": "GZ Group es una comunidad de desarrolladores que publica sus proyectos, investigaciones y experimentos de software, explicados por quienes los construyeron.",
     "primaryCta": "Explorar proyectos",
     "secondaryCta": "Leer el blog"
   },
@@ -102,7 +102,7 @@
     "verifiedWith": "Identidad verificada con {provider}"
   },
   "Footer": {
-    "tagline": "Comunidad estudiantil de desarrollo de software. Publicamos lo que construimos y explicamos cómo lo hicimos.",
+    "tagline": "Comunidad de desarrolladores de software. Publicamos lo que construimos y explicamos cómo lo hicimos.",
     "explore": "Explorar",
     "community": "Comunidad",
     "legal": "Legal",
@@ -203,8 +203,8 @@
     "FIELD_TOO_LONG": "Este texto es demasiado largo."
   },
   "Account": {
-    "metaTitle": "Mi cuenta",
-    "title": "Mi cuenta",
+    "metaTitle": "Ajustes",
+    "title": "Ajustes",
     "viewProfile": "Ver mi perfil público",
     "profile": {
       "title": "Perfil",
@@ -255,7 +255,7 @@
     "confirm": "Repite la nueva contraseña",
     "hint": "Mínimo 10 caracteres. Se cerrarán tus otras sesiones.",
     "submit": "Cambiar contraseña",
-    "back": "Volver a mi cuenta"
+    "back": "Volver a ajustes"
   },
   "Occupation": {
     "STUDENT": "Estudiante",

@@ -5,7 +5,7 @@
 
 ## Context
 
-GZ Group is a small student team building an editorial platform that must be able to grow. Microservices would add deployment, networking and data-consistency work with no current benefit.
+GZ Group is a small team of developers building an editorial platform that must be able to grow. Microservices would add deployment, networking and data-consistency work with no current benefit.
 
 ## Decision
 
