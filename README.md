@@ -2,7 +2,7 @@
 
 Editorial platform for GZ Group, a student software development community: a place to publish, discover and discuss members' software projects, research and experiments, with verified authorship.
 
-> **Status:** Phase 1 (foundation). The bilingual landing page, design system and project infrastructure exist. Accounts, articles, projects, comments and profiles are **not built yet**; see the [roadmap](docs/roadmap.md).
+> **Status:** Phase 3 (authentication) done. The bilingual landing page, accounts (sign-up, sign-in, password reset, GitHub linking), profiles and role management exist. Articles, projects and comments are **not built yet**; see the [roadmap](docs/roadmap.md).
 
 ## Stack
 
@@ -12,8 +12,9 @@ Editorial platform for GZ Group, a student software development community: a pla
 | UI | Tailwind CSS v4 (tokens in `app/globals.css`), shadcn/ui on Base UI, lucide icons |
 | i18n | next-intl: Spanish (default, `/`) and English (`/en`) |
 | Data | Prisma 7 + PostgreSQL 17 (driver adapter `@prisma/adapter-pg`) |
-| Auth | Better Auth (planned, Phase 3) |
-| Quality | ESLint, `tsc`, Vitest, GitHub Actions, Dependabot |
+| Auth | Better Auth 1.7: email/username + password, GitHub OAuth, RBAC (ADR 0002) |
+| Email | nodemailer over the self-hosted SMTP server (ADR 0006) |
+| Quality | ESLint, `tsc`, Vitest, Playwright, GitHub Actions, Dependabot |
 | Runtime | Docker (standalone Next.js image), deployed on Dokploy |
 
 Architecture: a modular monolith. Route handlers and server actions stay thin; domain logic lives in `lib/`. Decisions are recorded in [`docs/adr/`](docs/adr).
@@ -37,6 +38,8 @@ npm run db:migrate            # apply migrations to the dev database
 npm run dev                   # http://localhost:3000 (Spanish) · /en (English)
 ```
 
+On first start the server creates the master admin from `ADMIN_EMAIL` / `ADMIN_INITIAL_PASSWORD` (see [Authentication](#authentication)). Without `SMTP_HOST`, emails such as password-reset links are printed in the terminal.
+
 > npm 11 blocks dependency install scripts by default. Prisma works without them; if a tool asks for its scripts, review them with `npm install-scripts ls` before approving.
 
 ## Environment variables
@@ -47,8 +50,10 @@ See [`.env.example`](.env.example) for the full list with comments. Summary:
 | --- | --- | --- | --- |
 | `DATABASE_URL` | `.env` (compose DB) | inline in `ci.yml` (throwaway DB) | Dokploy env (internal Postgres URL) |
 | `NEXT_PUBLIC_APP_URL` | `.env` | — | Dokploy env |
-| `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL` | `.env` (Phase 3) | GitHub secret if needed | Dokploy env |
-| OAuth client IDs/secrets | `.env` (Phase 3) | — | Dokploy env |
+| `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL` | `.env` | throwaway values in `ci.yml` | Dokploy env (secret) |
+| `ADMIN_EMAIL`, `ADMIN_INITIAL_PASSWORD` | `.env` | fixed test values in `playwright.config.ts` | Dokploy env (secret); remove the password after the first sign-in |
+| `SMTP_*`, `EMAIL_FROM` | optional (console fallback) | not used (file mailbox) | Dokploy env (required) |
+| `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` | `.env` (optional) | — | Dokploy env |
 
 Secrets never enter Git or the Docker image.
 
@@ -60,7 +65,8 @@ Secrets never enter Git or the Docker image.
 | `npm run build` / `npm start` | Production build / server |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | Generates Next route types, then `tsc --noEmit` |
-| `npm test` | Vitest (includes es/en message parity) |
+| `npm test` | Vitest unit tests (RBAC, validation, email templates, bootstrap, es/en message parity) |
+| `npm run test:e2e` | Playwright: production build against a separate `gz_group_e2e` database that is reset on every run |
 | `npm run db:migrate` | `prisma migrate dev` |
 | `npm run db:deploy` | `prisma migrate deploy` (CI/production) |
 | `npm run db:studio` | Prisma Studio |
@@ -81,20 +87,38 @@ docker run --rm -p 3000:3000 -e DATABASE_URL="postgresql://…" gz-group
 app/
   [locale]/              root layout (<html lang>), localized pages and 404
     (marketing)/         public landing
+    (auth)/              login, register, forgot/reset password
+    account/             account settings, change password (private)
+    u/[username]/        public profile
+    admin/               user roles (admin only; 404 for everyone else)
+  api/auth/[...all]/     Better Auth handler
   globals.css            design tokens: the single source of truth
 components/
   ui/                    shadcn primitives (Base UI)
-  layout/                header, footer, container, locale switcher
+  layout/                header, footer, container, locale switcher, user menu
   marketing/             landing sections
-  article/ shared/ brand/
+  auth/ account/ admin/ forms/ article/ shared/ brand/
 i18n/                    next-intl routing, request config, navigation
 messages/                es.json (reference) and en.json
-lib/                     db client, content read models, site facts
+lib/
+  auth/                  Better Auth config, RBAC, session guards, admin bootstrap
+  email/                 SMTP transport and localized templates
+  validation/            zod schemas shared by forms and server actions
 prisma/                  schema and migrations
 docs/                    ADRs, roadmap, design system
-tests/                   Vitest
+tests/                   Vitest (unit) · tests/e2e: Playwright
+instrumentation.ts       server-start hook (master admin bootstrap)
 proxy.ts                 locale negotiation (Next 16 "proxy", formerly middleware)
 ```
+
+## Authentication
+
+- **Roles:**
+  - Every sign-up is a **Reader**, who can comment and react once Phase 5 ships.
+  - A Reader becomes a **Writer** only when the master admin promotes them from `/admin`. That page is not linked anywhere public and answers 404 to non-admins.
+  - Authorization is always checked on the server: `lib/auth/session.ts` and the server actions.
+- **Master admin:** created on first server start from `ADMIN_EMAIL` and `ADMIN_INITIAL_PASSWORD`. It must change that password on first sign-in, and nobody can sign up with its email. See [ADR 0005](docs/adr/0005-master-admin-bootstrap.md).
+- **GitHub:** set `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET` to enable "Continue with GitHub" and account linking. The OAuth app's callback URL is `<BETTER_AUTH_URL>/api/auth/callback/github`. Linking GitHub shows the "GitHub ✓" badge on the profile.
 
 ## Internationalization
 
@@ -105,7 +129,7 @@ proxy.ts                 locale negotiation (Next 16 "proxy", formerly middlewar
 
 ## CI/CD
 
-GitHub Actions ([`ci.yml`](.github/workflows/ci.yml)) on every pull request and push to `main`: dependency audit → Prisma generate → lint → typecheck → migrations on a throwaway Postgres → tests → build → Docker image build. Deployment to Dokploy is planned for Phase 2; see [ADR 0004](docs/adr/0004-deployment-dokploy.md).
+GitHub Actions ([`ci.yml`](.github/workflows/ci.yml)) on every pull request and push to `main`: dependency audit → Prisma generate → lint → typecheck → migrations on a throwaway Postgres → unit tests → build, then in parallel the Playwright e2e suite and the Docker image build. Deployment to Dokploy is planned for Phase 2; see [ADR 0004](docs/adr/0004-deployment-dokploy.md).
 
 ## Contributing
 

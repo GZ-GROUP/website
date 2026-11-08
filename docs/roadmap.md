@@ -10,9 +10,9 @@ Modular monolith, Next.js 16 + Prisma 7 + PostgreSQL 17, Docker (dev DB + produc
 
 Design tokens and semantic layer (per-mode, contrast-checked), Poppins 400/700, layout shell, bilingual routing (es default, en), landing page with honest empty states, real logo.
 
-## Phase 2 — First deploy on Dokploy [MVP]
+## Phase 2 — First deploy on Dokploy [MVP] (next)
 
-Moved ahead of auth on purpose: deploying is cheap on Dokploy, surfaces Docker/env problems early, and OAuth callbacks need real URLs.
+Planned ahead of auth; auth ended up landing first by decision on 2026-11-08. Reasons it stays important: deploying is cheap on Dokploy, surfaces Docker/env problems early, and OAuth callbacks need real URLs.
 
 - Dokploy application from the Dockerfile (or a GHCR image built in CI)
 - Dokploy-managed PostgreSQL + scheduled backups to S3-compatible storage
@@ -21,9 +21,22 @@ Moved ahead of auth on purpose: deploying is cheap on Dokploy, surfaces Docker/e
 - `prisma migrate deploy` before the app starts (see ADR 0004)
 - Staging and production environments
 
-## Phase 3 — Authentication and RBAC [MVP]
+## Phase 3 — Authentication and RBAC [MVP] ✅
 
-Better Auth (ADR 0002): email/username + password, sessions, password reset, GitHub and LinkedIn OAuth, account linking, verification records, roles (Reader/Writer/Admin + superadmin) enforced server-side, profiles, `/login` and `/register`. Content-Security-Policy once third-party origins are known.
+Better Auth (ADR 0002):
+- Email or username + password and sessions.
+- Password reset over SMTP (ADR 0006) and optional email verification.
+- GitHub OAuth with explicit account linking, which drives the identity-verification badges.
+- Roles enforced on the server:
+  - Reader is the default for every sign-up.
+  - Writer is granted only by the master admin, from a `/admin` page that answers 404 to everyone else and is never linked publicly.
+  - Admin.
+- Master admin bootstrap with a forced password change (ADR 0005).
+- Account settings and public `/u/[username]` profiles.
+- Database rate limiting.
+- Playwright e2e suite in CI.
+
+Deferred: LinkedIn (app pending), Content-Security-Policy (Phase 6), 2FA for the master admin [POST-MVP].
 
 ## Phase 4 — Editorial [MVP]
 
