@@ -4,6 +4,9 @@ import { newUser, register, signIn } from "./helpers";
 
 // Screenshots for design review (not pixel assertions), at phone, tablet and
 // desktop widths. Runs after admin.spec.ts, which sets the admin password below.
+// Screenshot tests visit many pages; give them room beyond the 30s default.
+test.describe.configure({ timeout: 120_000 });
+
 const VIEWPORTS = [
   { name: "390", width: 390, height: 844 },
   { name: "768", width: 768, height: 1024 },
@@ -20,7 +23,7 @@ for (const viewport of VIEWPORTS) {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     for (const path of PUBLIC_PAGES) {
       await page.goto(path);
-      await page.waitForLoadState("networkidle");
+      await page.waitForLoadState("load");
       await page.screenshot({ path: shot(path, viewport.name), fullPage: true });
     }
   });
@@ -31,7 +34,7 @@ for (const viewport of VIEWPORTS) {
     await register(page, user);
     for (const path of ["/account", `/u/${user.username}`]) {
       await page.goto(path);
-      await page.waitForLoadState("networkidle");
+      await page.waitForLoadState("load");
       await page.screenshot({ path: shot(path.startsWith("/u/") ? "/profile" : path, viewport.name), fullPage: true });
     }
 
@@ -39,7 +42,7 @@ for (const viewport of VIEWPORTS) {
     await signIn(page, E2E_ADMIN.email, ADMIN_PASSWORD);
     await page.waitForURL(/\/account$/);
     await page.goto("/admin");
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState("load");
     await page.screenshot({ path: shot("/admin", viewport.name), fullPage: true });
   });
 }

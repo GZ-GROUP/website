@@ -70,10 +70,20 @@ jobs:
         options: >-
           --health-cmd "pg_isready -U gz_user"
           --health-interval 5s --health-timeout 5s --health-retries 5
+      # S3-compatible storage for image uploads (same image as docker-compose).
+      rustfs:
+        image: rustfs/rustfs:1.0.4
+        env:
+          RUSTFS_ACCESS_KEY: ci_access
+          RUSTFS_SECRET_KEY: ci_secret_not_a_real_secret
+        ports: ["9000:9000"]
     env:
       # playwright.config.ts resets this database before starting the app.
       E2E_DATABASE_URL: postgresql://gz_user:gz_password@localhost:5432/gz_group_e2e
       DATABASE_URL: postgresql://gz_user:gz_password@localhost:5432/gz_group_e2e
+      E2E_S3_ENDPOINT: http://localhost:9000
+      E2E_S3_ACCESS_KEY_ID: ci_access
+      E2E_S3_SECRET_ACCESS_KEY: ci_secret_not_a_real_secret
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -82,6 +92,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx prisma generate
+      - name: Wait for RustFS
+        run: for i in $(seq 1 30); do curl -fsS http://localhost:9000/health && exit 0; sleep 2; done; exit 1
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: End-to-end tests

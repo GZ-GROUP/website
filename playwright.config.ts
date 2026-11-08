@@ -8,6 +8,8 @@ const baseURL = `http://localhost:${PORT}`;
 export const E2E_ADMIN = {
   email: "admin@gzgroup.dev",
   initialPassword: "e2e-initial-master-password",
+  /** Set by admin.spec.ts (first spec to run); later specs sign in with it. */
+  password: "e2e-changed-master-password",
 } as const;
 
 const env = {
@@ -20,6 +22,13 @@ const env = {
   AUTH_RATE_LIMIT: "off",
   ADMIN_EMAIL: E2E_ADMIN.email,
   ADMIN_INITIAL_PASSWORD: E2E_ADMIN.initialPassword,
+  // Local RustFS from docker-compose (CI runs it as a service); separate bucket.
+  S3_ENDPOINT: process.env.E2E_S3_ENDPOINT ?? "http://localhost:9000",
+  S3_REGION: "us-east-1",
+  S3_ACCESS_KEY_ID: process.env.E2E_S3_ACCESS_KEY_ID ?? "gz_dev_access",
+  S3_SECRET_ACCESS_KEY: process.env.E2E_S3_SECRET_ACCESS_KEY ?? "gz_dev_secret_change_me",
+  S3_BUCKET: "gz-media-e2e",
+  S3_FORCE_PATH_STYLE: "true",
   GITHUB_CLIENT_ID: "",
   GITHUB_CLIENT_SECRET: "",
   NEXT_TELEMETRY_DISABLED: "1",
