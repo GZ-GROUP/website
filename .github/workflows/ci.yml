@@ -15,6 +15,12 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  NEXT_TELEMETRY_DISABLED: 1
+  # Throwaway values for a disposable CI database — not secrets.
+  BETTER_AUTH_SECRET: ci-only-secret-not-used-anywhere-else-0123456789
+  BETTER_AUTH_URL: http://localhost:3000
+
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -31,9 +37,7 @@ jobs:
           --health-cmd "pg_isready -U gz_user"
           --health-interval 5s --health-timeout 5s --health-retries 5
     env:
-      # Throwaway CI database — not a secret.
       DATABASE_URL: postgresql://gz_user:gz_password@localhost:5432/gz_group_test
-      NEXT_TELEMETRY_DISABLED: 1
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -50,6 +54,45 @@ jobs:
         run: npx prisma migrate deploy
       - run: npm test
       - run: npm run build
+
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    needs: quality
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: gz_user
+          POSTGRES_PASSWORD: gz_password
+          POSTGRES_DB: gz_group_e2e
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U gz_user"
+          --health-interval 5s --health-timeout 5s --health-retries 5
+    env:
+      # playwright.config.ts resets this database before starting the app.
+      E2E_DATABASE_URL: postgresql://gz_user:gz_password@localhost:5432/gz_group_e2e
+      DATABASE_URL: postgresql://gz_user:gz_password@localhost:5432/gz_group_e2e
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx prisma generate
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: End-to-end tests
+        run: npx playwright test
+      - name: Upload traces and screenshots
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: e2e-artifacts
+          path: .e2e/
+          retention-days: 7
 
   docker:
     # Proves the production image builds; it is not pushed anywhere yet.

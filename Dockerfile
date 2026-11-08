@@ -14,10 +14,13 @@ WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# prisma.config.ts requires DATABASE_URL to be defined even though `generate`
-# never connects. This placeholder is not a secret and only exists in this step.
-RUN DATABASE_URL="postgresql://build:build@localhost:5432/build" npx prisma generate
-RUN npm run build
+# Build-only placeholders (not secrets, never reach the runtime image):
+# prisma.config.ts needs DATABASE_URL to be defined even though `generate` never
+# connects, and Better Auth refuses its default secret while Next collects page
+# data. The real values come from the Dokploy environment at runtime.
+ENV BUILD_DATABASE_URL="postgresql://build:build@localhost:5432/build"
+RUN DATABASE_URL="$BUILD_DATABASE_URL" npx prisma generate
+RUN DATABASE_URL="$BUILD_DATABASE_URL" BETTER_AUTH_SECRET="build-only-placeholder-not-used-at-runtime" npm run build
 
 # ---- runner: minimal runtime, non-root ----
 FROM node:24-alpine AS runner

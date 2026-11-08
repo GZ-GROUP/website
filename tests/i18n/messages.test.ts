@@ -13,9 +13,12 @@ function keys(catalog: Catalog, prefix = ""): string[] {
   });
 }
 
-/** ICU placeholders in a message: "Hi {name}" → ["name"]. */
+/**
+ * ICU argument names in a message: "Hi {name}" → ["name"],
+ * "{count, plural, one {# user} other {# users}}" → ["count"] (branch text is not an argument).
+ */
 function placeholders(message: string): string[] {
-  return [...message.matchAll(/\{(\w+)/g)].map((m) => m[1]).sort();
+  return [...new Set([...message.matchAll(/\{\s*(\w+)\s*[,}]/g)].map((m) => m[1]))].sort();
 }
 
 function get(catalog: Catalog, path: string): string {

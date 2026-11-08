@@ -52,3 +52,8 @@ ignore
 Thumbs.db
 # design tooling output
 /.taste-skill/
+
+# end-to-end artifacts (Playwright)
+/.e2e/
+/test-results/
+/playwright-report/
