@@ -7,13 +7,11 @@ datasource db {
   provider = "postgresql"
 }
 
-// ── Enums ──────────────────────────────────────────────
+// Conventions: tables in snake_case via @@map, columns in camelCase.
+// User, Session, Account, Verification and RateLimit follow the shape Better Auth
+// expects (see `npx auth generate`); extra fields are ours.
 
-enum Role {
-  READER
-  WRITER
-  ADMIN
-}
+// ── Enums ──────────────────────────────────────────────
 
 enum Occupation {
   STUDENT
@@ -29,18 +27,35 @@ enum AuthProvider {
   LINKEDIN
 }
 
-// ── Models ─────────────────────────────────────────────
+// ── Identity & auth (Better Auth) ──────────────────────
 
 model User {
-  id           String   @id @default(cuid())
-  email        String   @unique
-  username     String   @unique
-  passwordHash String?  // null when the user only signed up through OAuth
-  role         Role     @default(READER)
+  id            String  @id @default(cuid())
+  name          String
+  email         String  @unique
+  emailVerified Boolean @default(false)
+  image         String?
 
-  profile       Profile?
-  accounts      Account[]
-  verifications Verification[]
+  // username plugin. Optional so OAuth sign-ups can be created; a username is
+  // derived from the provider handle when there is one.
+  username        String? @unique
+  displayUsername String?
+
+  // admin plugin. `role` is text because the plugin stores role names as strings;
+  // valid values ("reader" | "writer" | "admin") are enforced by lib/auth/permissions.ts.
+  role       String    @default("reader")
+  banned     Boolean   @default(false)
+  banReason  String?
+  banExpires DateTime?
+
+  // Master admin (ADR 0005). A partial unique index in the migration allows only one.
+  isSuperAdmin       Boolean @default(false)
+  mustChangePassword Boolean @default(false)
+
+  profile               Profile?
+  sessions              Session[]
+  accounts              Account[]
+  identityVerifications IdentityVerification[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -48,15 +63,79 @@ model User {
   @@map("users")
 }
 
+model Session {
+  id             String   @id
+  token          String   @unique
+  expiresAt      DateTime
+  ipAddress      String?
+  userAgent      String?
+  impersonatedBy String? // admin plugin
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+// Authentication methods of a user: the password ("credential") or a linked
+// OAuth provider ("github", "linkedin"). Linking ≠ verification ≠ role.
+model Account {
+  id                    String    @id @default(cuid())
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String? // scrypt hash, only for providerId "credential"
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([providerId, accountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+// Better Auth's short-lived tokens (password reset, email verification).
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verifications")
+}
+
+model RateLimit {
+  id          String @id
+  key         String @unique
+  count       Int
+  lastRequest BigInt
+
+  @@map("rate_limits")
+}
+
+// ── Product ────────────────────────────────────────────
+
 model Profile {
   id     String @id @default(cuid())
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  displayName String?
-  avatarUrl   String?
-  bio         String?  @db.VarChar(280)
-  description String?
+  bio         String?     @db.VarChar(280)
+  description String?     @db.VarChar(2000)
   occupation  Occupation?
 
   createdAt DateTime @default(now())
@@ -65,32 +144,15 @@ model Profile {
   @@map("profiles")
 }
 
-// A linked external account (OAuth sign-in / sign-up)
-model Account {
-  id     String @id @default(cuid())
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  provider          AuthProvider
-  providerAccountId String
-
-  createdAt DateTime @default(now())
-
-  @@unique([provider, providerAccountId])
-  @@index([userId])
-  @@map("accounts")
-}
-
-// Fact: "this provider confirms this user's public identity".
-// Kept separate from Account even though both come from the same OAuth flow today.
-model Verification {
-  id     String @id @default(cuid())
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+// Fact: "this provider confirms this user's public identity" (byline badges).
+// Created when a GitHub/LinkedIn account is linked, removed when it is unlinked.
+model IdentityVerification {
+  id         String       @id @default(cuid())
+  userId     String
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   provider   AuthProvider
-  verifiedAt DateTime @default(now())
+  verifiedAt DateTime     @default(now())
 
   @@unique([userId, provider])
-  @@map("verifications")
+  @@map("identity_verifications")
 }
