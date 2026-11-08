@@ -10,6 +10,8 @@ const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["400", "700"],
+  // Real italics for article emphasis (never a synthesized slant).
+  style: ["normal", "italic"],
   display: "swap",
 });
 

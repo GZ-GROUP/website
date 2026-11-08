@@ -118,6 +118,9 @@
   --text-5xl: 4.21rem;
   --leading-display: 1.05;
   --tracking-display: -0.03em;
+  --leading-prose: 1.8; /* article body */
+  --text-code: 0.875rem; /* code is denser than prose; mono reads larger */
+  --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Code", "Fira Code", Menlo, Consolas, monospace;
 
   /* ── Containers: the only page widths allowed ───────── */
   --container-form: 28rem; /* auth and single-column forms */
@@ -218,6 +221,12 @@
   --border: var(--background-200);          /* decorative separation */
   --input: var(--background-600);           /* form control edge: 3.2:1 */
   --ring: var(--primary-700);               /* focus ring: 4.5:1 */
+
+  /* Syntax highlighting, on --card (contrast measured against background-100) */
+  --code-keyword: var(--primary-800);       /* 7.3:1 */
+  --code-string: var(--accent-800);
+  --code-comment: var(--text-700);          /* 5.0:1 */
+  --code-number: var(--secondary-700);      /* 9.3:1 */
 }
 
 /* ── Layer 2: semantic slots — dark (default) ─────────── */
@@ -248,6 +257,11 @@
   --border: var(--background-200);
   --input: var(--background-300);           /* 3.3:1 */
   --ring: var(--primary-500);               /* 10.2:1 */
+
+  --code-keyword: var(--primary-500);       /* 8.6:1 */
+  --code-string: var(--accent-500);         /* 7.8:1 */
+  --code-comment: var(--text-600);          /* 8.0:1 */
+  --code-number: var(--secondary-700);      /* 5.9:1 */
 }
 
 /* ── Motion: scroll-linked entrance ─────────────────────
@@ -284,6 +298,76 @@
   stroke-dasharray: 1;
   stroke-dashoffset: 0;
   animation: trail-draw 900ms var(--ease-out-strong) both;
+}
+
+/* ── Article typography (public page, preview and editor) ──
+ * One class so the editor shows exactly what readers will see. */
+.article-prose {
+  font-size: var(--text-base);
+  line-height: var(--leading-prose);
+  color: var(--foreground);
+  overflow-wrap: break-word;
+
+  & > * + * { margin-top: 1.25em; }
+  & h2 {
+    margin-top: 2.5em;
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: var(--tracking-display);
+    scroll-margin-top: 2rem;
+  }
+  & h3 {
+    margin-top: 2em;
+    font-size: var(--text-xl);
+    font-weight: 700;
+    line-height: 1.3;
+    scroll-margin-top: 2rem;
+  }
+  & h2 + *, & h3 + * { margin-top: 0.75em; }
+  & a { color: var(--primary-ink); text-decoration: underline; text-underline-offset: 0.2em; }
+  & a:hover { text-decoration-thickness: 2px; }
+  & strong { font-weight: 700; }
+  & ul { list-style: disc; padding-left: 1.5em; }
+  & ol { list-style: decimal; padding-left: 1.5em; }
+  & li + li { margin-top: 0.4em; }
+  & li::marker { color: var(--muted-foreground); }
+  & blockquote {
+    padding-left: 1.25em;
+    border-left: 1px solid var(--border);
+    font-size: var(--text-xl);
+    line-height: 1.6;
+    color: var(--muted-foreground);
+  }
+  & code {
+    font-family: var(--font-mono);
+    font-size: var(--text-code);
+    background: var(--muted);
+    padding: 0.15em 0.35em;
+  }
+  & pre {
+    overflow-x: auto;
+    padding: 1.25rem 1.5rem;
+    background: var(--card);
+    font-size: var(--text-code);
+    line-height: 1.7;
+    tab-size: 2;
+  }
+  & pre code { background: none; padding: 0; font-size: inherit; }
+  & hr { border: 0; border-top: 1px solid var(--border); margin: 3em 0; }
+  & figure, & img { max-width: 100%; }
+  & img { height: auto; display: block; }
+  & figure { margin-block: 2em; }
+
+  /* highlight.js tokens (lowlight, rendered on the server) */
+  & .hljs-keyword, & .hljs-built_in, & .hljs-literal, & .hljs-selector-tag { color: var(--code-keyword); }
+  & .hljs-string, & .hljs-regexp, & .hljs-addition, & .hljs-attribute { color: var(--code-string); }
+  & .hljs-comment, & .hljs-quote, & .hljs-deletion, & .hljs-meta { color: var(--code-comment); }
+  & .hljs-number, & .hljs-title, & .hljs-type, & .hljs-variable, & .hljs-attr, & .hljs-symbol {
+    color: var(--code-number);
+  }
+  & .hljs-emphasis { font-style: italic; }
+  & .hljs-strong { font-weight: 700; }
 }
 
 /* ── Base: the browser surfaces carry the design too ─── */
