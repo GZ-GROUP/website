@@ -41,3 +41,16 @@ export async function requireAdmin(): Promise<AppSession> {
   }
   return session;
 }
+
+/**
+ * Studio area (writers and admins): anyone else gets a 404, like /admin, so the
+ * author workflow is never revealed publicly.
+ */
+export async function requireStudio(): Promise<AppSession> {
+  const session = await getSession();
+  if (!session || !(hasRole(session.user, "writer") || hasRole(session.user, "admin"))) notFound();
+  if (session.user.mustChangePassword) {
+    return redirect({ href: "/account/password", locale: await getLocale() });
+  }
+  return session;
+}
