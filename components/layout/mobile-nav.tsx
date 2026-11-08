@@ -1,5 +1,7 @@
 "use client";
 
+import { ButtonLink } from "@/components/ui/button-link";
+
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Menu } from "lucide-react";
@@ -20,7 +22,9 @@ export function MobileNav() {
   const close = () => setOpen(false);
   const { data } = authClient.useSession();
   const user = data?.user;
-  const isAdmin = (user?.role ?? "").split(",").includes("admin");
+  const roles = (user?.role ?? "").split(",");
+  const isAdmin = roles.includes("admin");
+  const isWriter = isAdmin || roles.includes("writer");
 
   return (
     <div className="flex items-center gap-1 lg:hidden">
@@ -47,13 +51,18 @@ export function MobileNav() {
             {user ? (
               <>
                 <p className="text-sm text-muted-foreground">{user.name}</p>
-                <Button variant="outline" nativeButton={false} render={<Link href="/account" onClick={close} />}>
+                <ButtonLink variant="outline" href="/account" onClick={close}>
                   {t("account")}
-                </Button>
+                </ButtonLink>
+                {isWriter && (
+                  <ButtonLink variant="outline" href="/studio" onClick={close}>
+                    {t("studio")}
+                  </ButtonLink>
+                )}
                 {isAdmin && (
-                  <Button variant="outline" nativeButton={false} render={<Link href="/admin" onClick={close} />}>
+                  <ButtonLink variant="outline" href="/admin" onClick={close}>
                     {t("admin")}
-                  </Button>
+                  </ButtonLink>
                 )}
                 <Button
                   variant="ghost"
@@ -69,12 +78,12 @@ export function MobileNav() {
               </>
             ) : (
               <>
-                <Button nativeButton={false} render={<Link href="/register" onClick={close} />}>
+                <ButtonLink href="/register" onClick={close}>
                   {t("register")}
-                </Button>
-                <Button variant="outline" nativeButton={false} render={<Link href="/login" onClick={close} />}>
+                </ButtonLink>
+                <ButtonLink variant="outline" href="/login" onClick={close}>
                   {t("login")}
-                </Button>
+                </ButtonLink>
               </>
             )}
           </div>

@@ -1,6 +1,5 @@
+import { ButtonLink } from "@/components/ui/button-link";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
-import { Button } from "@/components/ui/button";
 import { GZLogo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
 
@@ -29,12 +28,12 @@ export function Hero() {
             {t("lead")}
           </p>
           <div className={`mt-10 flex flex-col gap-3 sm:flex-row delay-150 ${RISE}`}>
-            <Button size="lg" nativeButton={false} render={<Link href="/projects" />}>
+            <ButtonLink size="lg" href="/projects">
               {t("primaryCta")}
-            </Button>
-            <Button size="lg" variant="outline" nativeButton={false} render={<Link href="/blog" />}>
+            </ButtonLink>
+            <ButtonLink size="lg" variant="outline" href="/blog">
               {t("secondaryCta")}
-            </Button>
+            </ButtonLink>
           </div>
         </div>
 

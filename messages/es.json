@@ -24,7 +24,8 @@
     "profile": "Mi perfil",
     "admin": "Administración",
     "signOut": "Cerrar sesión",
-    "userMenu": "Menú de tu cuenta"
+    "userMenu": "Menú de tu cuenta",
+    "studio": "Studio"
   },
   "Categories": {
     "software": {
@@ -38,6 +39,18 @@
     "experiments": {
       "title": "Experimentos",
       "description": "Prototipos en fase temprana: ideas que todavía se están probando."
+    },
+    "tutorial": {
+      "title": "Tutoriales",
+      "description": "Guías paso a paso para aprender haciendo."
+    },
+    "opinion": {
+      "title": "Opinión",
+      "description": "Ideas y posturas sobre tecnología y educación."
+    },
+    "community": {
+      "title": "Comunidad",
+      "description": "Noticias y crónicas de GZ Group."
     }
   },
   "LocaleSwitcher": {
@@ -285,5 +298,185 @@
     "removeWriter": "Quitar autor",
     "roleUpdated": "Rol actualizado.",
     "forbidden": "No tienes permiso para hacer ese cambio."
+  },
+  "Languages": {
+    "ES": "Español",
+    "EN": "Inglés"
+  },
+  "Blog": {
+    "metaTitle": "Blog",
+    "title": "Blog",
+    "lead": "Artículos, tutoriales y proyectos de la comunidad, escritos por quienes los construyeron.",
+    "projectsMetaTitle": "Proyectos",
+    "projectsTitle": "Proyectos",
+    "projectsLead": "Software, investigación y experimentos construidos por integrantes de GZ Group.",
+    "filters": "Filtros",
+    "search": "Buscar",
+    "searchPlaceholder": "Título, tema o tecnología",
+    "searchSubmit": "Buscar",
+    "category": "Categoría",
+    "allCategories": "Todas",
+    "tags": "Etiquetas",
+    "sort": "Orden",
+    "recent": "Más recientes",
+    "oldest": "Más antiguos",
+    "clear": "Quitar filtros",
+    "results": "{count, plural, =0 {Sin resultados} one {# artículo} other {# artículos}}",
+    "empty": "No hay artículos que coincidan con estos filtros.",
+    "emptyAll": "Todavía no hay artículos publicados.",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "pageOf": "Página {page} de {count}",
+    "pagination": "Paginación"
+  },
+  "ArticlePage": {
+    "by": "Por",
+    "and": "y",
+    "publishedOn": "Publicado el {date}",
+    "readingTime": "{minutes, plural, one {# min de lectura} other {# min de lectura}}",
+    "writtenIn": "Escrito en {language}",
+    "tags": "Etiquetas",
+    "repository": "Ver el repositorio",
+    "demo": "Ver el proyecto",
+    "authors": "Autoría",
+    "previewBanner": "Vista previa. Así se verá el artículo cuando esté publicado.",
+    "backToEditor": "Volver al editor"
+  },
+  "Studio": {
+    "metaTitle": "Studio",
+    "title": "Studio",
+    "newArticle": "Nuevo artículo",
+    "empty": "Todavía no escribiste ningún artículo.",
+    "untitled": "Sin título",
+    "columns": {
+      "article": "Artículo",
+      "status": "Estado",
+      "role": "Rol",
+      "updated": "Editado"
+    },
+    "status": {
+      "DRAFT": "Borrador",
+      "PUBLISHED": "Publicado",
+      "ARCHIVED": "Archivado"
+    },
+    "roleAuthor": "Autor",
+    "roleCoAuthor": "Coautor",
+    "edit": "Editar",
+    "view": "Ver"
+  },
+  "Editor": {
+    "metaTitle": "Editor",
+    "back": "Studio",
+    "titlePlaceholder": "Título del artículo",
+    "excerptPlaceholder": "Resumen en una o dos frases. Aparece en las tarjetas y en buscadores.",
+    "titleLabel": "Título",
+    "excerptLabel": "Resumen",
+    "contentLabel": "Contenido",
+    "saved": "Guardado",
+    "unsaved": "Cambios sin guardar",
+    "saving": "Guardando…",
+    "save": "Guardar",
+    "publish": "Publicar",
+    "unpublish": "Despublicar",
+    "archive": "Archivar",
+    "restore": "Restaurar",
+    "delete": "Eliminar borrador",
+    "confirmDelete": "¿Eliminar este borrador? No se puede deshacer.",
+    "preview": "Vista previa",
+    "viewPublished": "Ver publicado",
+    "published": "Artículo publicado.",
+    "readOnly": "Este artículo está archivado. Restáuralo para volver a editarlo.",
+    "coAuthorNotice": "Eres coautor: puedes editar el contenido; publicar lo decide el autor.",
+    "leaveWarning": "Tienes cambios sin guardar.",
+    "panel": {
+      "title": "Detalles",
+      "category": "Categoría",
+      "language": "Idioma del artículo",
+      "tags": "Etiquetas",
+      "tagsHint": "Hasta 5. Pulsa Enter para agregar.",
+      "tagsPlaceholder": "Ej. rust",
+      "removeTag": "Quitar {tag}",
+      "cover": "Imagen de portada",
+      "coverUpload": "Subir imagen",
+      "coverReplace": "Cambiar",
+      "coverRemove": "Quitar",
+      "coverHint": "JPG, PNG o WebP, hasta 5 MB.",
+      "coverAlt": "Texto alternativo de la portada",
+      "coverAltHint": "Describe la imagen para quien no puede verla.",
+      "repository": "Repositorio",
+      "repositoryHint": "Enlace https al código, por ejemplo en GitHub.",
+      "demo": "Demo o sitio del proyecto",
+      "coAuthors": "Coautores",
+      "coAuthorsHint": "Solo autores de GZ Group. Escribe al menos 2 letras del usuario.",
+      "coAuthorsSearch": "Buscar por usuario",
+      "removeCoAuthor": "Quitar a {name}",
+      "noResults": "Sin coincidencias"
+    },
+    "toolbar": {
+      "label": "Formato",
+      "heading2": "Título de sección",
+      "heading3": "Subtítulo",
+      "bold": "Negrita",
+      "italic": "Cursiva",
+      "code": "Código en línea",
+      "link": "Enlace",
+      "bulletList": "Lista",
+      "orderedList": "Lista numerada",
+      "blockquote": "Cita",
+      "codeBlock": "Bloque de código",
+      "image": "Insertar imagen",
+      "rule": "Separador",
+      "undo": "Deshacer",
+      "redo": "Rehacer",
+      "linkUrl": "URL del enlace",
+      "linkApply": "Aplicar",
+      "linkRemove": "Quitar enlace",
+      "imageAlt": "Texto alternativo de la imagen",
+      "codeLanguage": "Lenguaje",
+      "uploading": "Subiendo imagen…"
+    },
+    "errors": {
+      "FORBIDDEN": "No tienes permiso para hacer esto.",
+      "NOT_FOUND": "Este artículo ya no existe.",
+      "INVALID_FIELDS": "Revisa los campos marcados.",
+      "INVALID_IMAGE": "Una de las imágenes no es válida. Súbela de nuevo.",
+      "INVALID_CO_AUTHOR": "Algún coautor no es un autor de GZ Group.",
+      "NOT_READY": "Antes de publicar, completa lo siguiente:",
+      "INVALID_CONTENT": "El contenido tiene un formato no válido.",
+      "CONTENT_TOO_LARGE": "El contenido es demasiado largo.",
+      "UNSAFE_LINK": "Hay un enlace no permitido. Usa enlaces http, https o mailto.",
+      "EXTERNAL_IMAGE": "Las imágenes deben subirse desde el editor.",
+      "FIELD_TOO_LONG": "Este texto es demasiado largo.",
+      "INVALID_URL": "Usa un enlace que empiece con https://",
+      "TOO_MANY_TAGS": "Máximo 5 etiquetas.",
+      "TOO_MANY_CO_AUTHORS": "Máximo 5 coautores.",
+      "TITLE_REQUIRED": "Escribe un título.",
+      "EXCERPT_REQUIRED": "Escribe un resumen.",
+      "CONTENT_TOO_SHORT": "Escribe el contenido del artículo.",
+      "COVER_ALT_REQUIRED": "Describe la imagen de portada.",
+      "UPLOAD_TOO_LARGE": "La imagen supera los 5 MB.",
+      "UPLOAD_UNSUPPORTED": "Usa una imagen JPG, PNG o WebP.",
+      "UPLOAD_FAILED": "No se pudo subir la imagen. Intenta de nuevo.",
+      "UNKNOWN": "Algo salió mal. Intenta de nuevo."
+    }
+  },
+  "AdminArticles": {
+    "metaTitle": "Artículos",
+    "title": "Artículos",
+    "total": "{count, plural, =0 {Sin artículos} one {# artículo} other {# artículos}}",
+    "empty": "Todavía no hay artículos.",
+    "columns": {
+      "article": "Artículo",
+      "author": "Autor",
+      "status": "Estado",
+      "updated": "Editado"
+    },
+    "archive": "Archivar",
+    "restore": "Restaurar"
+  },
+  "AdminNav": {
+    "label": "Administración",
+    "users": "Usuarios",
+    "articles": "Artículos"
   }
 }

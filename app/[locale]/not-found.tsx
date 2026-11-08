@@ -1,8 +1,7 @@
+import { ButtonLink } from "@/components/ui/button-link";
 import { useTranslations } from "next-intl";
 import { SiteShell } from "@/components/layout/site-shell";
 import { Container } from "@/components/layout/container";
-import { Button } from "@/components/ui/button";
-import { Link } from "@/i18n/navigation";
 
 export default function NotFound() {
   const t = useTranslations("NotFound");
@@ -14,9 +13,9 @@ export default function NotFound() {
           {t("title")}
         </h1>
         <p className="mt-6 text-base leading-7 text-muted-foreground">{t("body")}</p>
-        <Button nativeButton={false} render={<Link href="/" />} className="mt-10">
+        <ButtonLink className="mt-10" href="/">
           {t("home")}
-        </Button>
+        </ButtonLink>
       </Container>
     </SiteShell>
   );

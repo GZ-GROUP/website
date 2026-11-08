@@ -1,6 +1,6 @@
+import { ButtonAnchor } from "@/components/ui/button-link";
 import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { ArticleCard } from "@/components/article/article-card";
 import { EmptyState } from "@/components/shared/empty-state";
 import { Section } from "@/components/marketing/section";
@@ -24,14 +24,10 @@ export function LatestWork({ projects, articles }: LatestWorkProps) {
           title={t("emptyTitle")}
           description={t("emptyBody")}
           action={
-            <Button
-              variant="outline"
-              nativeButton={false}
-              render={<a href={site.githubUrl} target="_blank" rel="noopener noreferrer" />}
-            >
+            <ButtonAnchor variant="outline" href={site.githubUrl} target="_blank" rel="noopener noreferrer">
               {t("githubCta")}
               <ArrowUpRight data-icon="inline-end" aria-hidden />
-            </Button>
+            </ButtonAnchor>
           }
         />
       ) : (

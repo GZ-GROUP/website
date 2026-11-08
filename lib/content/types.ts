@@ -1,7 +1,6 @@
 import type { AuthProvider } from "@/lib/generated/prisma/enums";
 
-// Read models for public content. They mirror the shape the Prisma queries will
-// return in the Editorial phase, so the UI only changes its data source then.
+// Read models for public content, produced by lib/articles/queries.ts.
 
 export type CategoryKind = "SHOWCASE" | "EDITORIAL";
 
@@ -20,8 +19,12 @@ export type ArticleSummary = {
   title: string;
   excerpt: string;
   coverImageUrl: string | null;
+  coverAlt: string | null;
   publishedAt: Date;
-  category: { slug: string; name: string; kind: CategoryKind };
+  language: "ES" | "EN";
+  readingMinutes: number;
+  /** Display name comes from messages (Categories.<slug>.title). */
+  category: { slug: string; kind: CategoryKind };
   author: AuthorSummary;
   coAuthors: AuthorSummary[];
 };

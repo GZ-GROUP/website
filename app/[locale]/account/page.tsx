@@ -1,8 +1,8 @@
+import { ButtonLink } from "@/components/ui/button-link";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { SettingsSection } from "@/components/account/settings-section";
 import { ProfileForm } from "@/components/account/profile-form";
@@ -73,9 +73,9 @@ export default async function AccountPage() {
 
         <SettingsSection id="security" title={t("security.title")} description={t("security.description")}>
           <div className="flex flex-wrap gap-3">
-            <Button variant="outline" nativeButton={false} render={<Link href="/account/password" />}>
+            <ButtonLink variant="outline" href="/account/password">
               {t("security.changePassword")}
-            </Button>
+            </ButtonLink>
             <SignOutButton variant="ghost" label={t("security.signOut")} />
           </div>
         </SettingsSection>

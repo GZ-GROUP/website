@@ -1,7 +1,6 @@
+import { ButtonAnchor, ButtonLink } from "@/components/ui/button-link";
 import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
-import { Link } from "@/i18n/navigation";
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { site } from "@/lib/site";
 
@@ -19,24 +18,13 @@ export function CallToAction() {
           <p className="mt-6 max-w-xl text-base leading-7 md:text-xl md:leading-8">{t("body")}</p>
         </div>
         <div className="reveal flex flex-col gap-3 sm:flex-row lg:justify-end">
-          <Button
-            size="lg"
-            nativeButton={false}
-            render={<Link href="/register" />}
-            className="bg-background text-foreground hover:bg-background/85 focus-visible:outline-primary-foreground"
-          >
+          <ButtonLink size="lg" className="bg-background text-foreground hover:bg-background/85 focus-visible:outline-primary-foreground" href="/register">
             {t("primary")}
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            nativeButton={false}
-            render={<a href={site.githubUrl} target="_blank" rel="noopener noreferrer" />}
-            className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground focus-visible:outline-primary-foreground"
-          >
+          </ButtonLink>
+          <ButtonAnchor size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground focus-visible:outline-primary-foreground" href={site.githubUrl} target="_blank" rel="noopener noreferrer">
             {t("secondary")}
             <ArrowUpRight data-icon="inline-end" aria-hidden />
-          </Button>
+          </ButtonAnchor>
         </div>
       </Container>
     </section>

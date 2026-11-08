@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { VerifiedBadge } from "@/components/shared/verified-badge";
 import { Section } from "@/components/marketing/section";
@@ -35,7 +36,9 @@ export function FeaturedMembers({ members }: { members: AuthorSummary[] }) {
                 <AvatarFallback>{member.displayName.charAt(0)}</AvatarFallback>
               </Avatar>
               <div className="flex flex-col gap-2">
-                <span className="font-bold">{member.displayName}</span>
+                <Link href={`/u/${member.username}`} className="font-bold hover:text-primary-ink">
+                  {member.displayName}
+                </Link>
                 <div className="flex flex-wrap gap-2">
                   {member.verifications.map((provider) => (
                     <VerifiedBadge key={provider} provider={provider} />

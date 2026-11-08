@@ -1,5 +1,7 @@
 "use client";
 
+import { ButtonLink } from "@/components/ui/button-link";
+
 import { useTranslations } from "next-intl";
 import { ChevronDown } from "lucide-react";
 import { Link, useRouter } from "@/i18n/navigation";
@@ -27,18 +29,20 @@ export function UserMenu() {
   if (!data) {
     return (
       <div className="flex items-center gap-2">
-        <Button variant="ghost" nativeButton={false} render={<Link href="/login" />}>
+        <ButtonLink variant="ghost" href="/login">
           {t("login")}
-        </Button>
-        <Button nativeButton={false} render={<Link href="/register" />}>
+        </ButtonLink>
+        <ButtonLink href="/register">
           {t("register")}
-        </Button>
+        </ButtonLink>
       </div>
     );
   }
 
   const { user } = data;
-  const isAdmin = (user.role ?? "").split(",").includes("admin");
+  const roles = (user.role ?? "").split(",");
+  const isAdmin = roles.includes("admin");
+  const isWriter = isAdmin || roles.includes("writer");
 
   return (
     <DropdownMenu>
@@ -56,6 +60,7 @@ export function UserMenu() {
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuItem render={<Link href="/account" />}>{t("account")}</DropdownMenuItem>
         {user.username && <DropdownMenuItem render={<Link href={`/u/${user.username}`} />}>{t("profile")}</DropdownMenuItem>}
+        {isWriter && <DropdownMenuItem render={<Link href="/studio" />}>{t("studio")}</DropdownMenuItem>}
         {isAdmin && <DropdownMenuItem render={<Link href="/admin" />}>{t("admin")}</DropdownMenuItem>}
         <DropdownMenuSeparator />
         <DropdownMenuItem

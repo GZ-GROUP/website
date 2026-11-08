@@ -24,7 +24,8 @@
     "profile": "My profile",
     "admin": "Admin",
     "signOut": "Sign out",
-    "userMenu": "Your account menu"
+    "userMenu": "Your account menu",
+    "studio": "Studio"
   },
   "Categories": {
     "software": {
@@ -38,6 +39,18 @@
     "experiments": {
       "title": "Experiments",
       "description": "Early-stage prototypes: ideas that are still being tested."
+    },
+    "tutorial": {
+      "title": "Tutorials",
+      "description": "Step-by-step guides to learn by doing."
+    },
+    "opinion": {
+      "title": "Opinion",
+      "description": "Ideas and positions on technology and education."
+    },
+    "community": {
+      "title": "Community",
+      "description": "News and stories from GZ Group."
     }
   },
   "LocaleSwitcher": {
@@ -285,5 +298,185 @@
     "removeWriter": "Remove author",
     "roleUpdated": "Role updated.",
     "forbidden": "You don't have permission to make that change."
+  },
+  "Languages": {
+    "ES": "Spanish",
+    "EN": "English"
+  },
+  "Blog": {
+    "metaTitle": "Blog",
+    "title": "Blog",
+    "lead": "Articles, tutorials and projects from the community, written by the people who built them.",
+    "projectsMetaTitle": "Projects",
+    "projectsTitle": "Projects",
+    "projectsLead": "Software, research and experiments built by GZ Group members.",
+    "filters": "Filters",
+    "search": "Search",
+    "searchPlaceholder": "Title, topic or technology",
+    "searchSubmit": "Search",
+    "category": "Category",
+    "allCategories": "All",
+    "tags": "Tags",
+    "sort": "Sort",
+    "recent": "Most recent",
+    "oldest": "Oldest",
+    "clear": "Clear filters",
+    "results": "{count, plural, =0 {No results} one {# article} other {# articles}}",
+    "empty": "No articles match these filters.",
+    "emptyAll": "No articles have been published yet.",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {page} of {count}",
+    "pagination": "Pagination"
+  },
+  "ArticlePage": {
+    "by": "By",
+    "and": "and",
+    "publishedOn": "Published on {date}",
+    "readingTime": "{minutes, plural, one {# min read} other {# min read}}",
+    "writtenIn": "Written in {language}",
+    "tags": "Tags",
+    "repository": "View the repository",
+    "demo": "View the project",
+    "authors": "Authors",
+    "previewBanner": "Preview. This is how the article will look once published.",
+    "backToEditor": "Back to the editor"
+  },
+  "Studio": {
+    "metaTitle": "Studio",
+    "title": "Studio",
+    "newArticle": "New article",
+    "empty": "You haven't written any articles yet.",
+    "untitled": "Untitled",
+    "columns": {
+      "article": "Article",
+      "status": "Status",
+      "role": "Role",
+      "updated": "Edited"
+    },
+    "status": {
+      "DRAFT": "Draft",
+      "PUBLISHED": "Published",
+      "ARCHIVED": "Archived"
+    },
+    "roleAuthor": "Author",
+    "roleCoAuthor": "Co-author",
+    "edit": "Edit",
+    "view": "View"
+  },
+  "Editor": {
+    "metaTitle": "Editor",
+    "back": "Studio",
+    "titlePlaceholder": "Article title",
+    "excerptPlaceholder": "A one- or two-sentence summary. Shown on cards and in search engines.",
+    "titleLabel": "Title",
+    "excerptLabel": "Summary",
+    "contentLabel": "Content",
+    "saved": "Saved",
+    "unsaved": "Unsaved changes",
+    "saving": "Saving…",
+    "save": "Save",
+    "publish": "Publish",
+    "unpublish": "Unpublish",
+    "archive": "Archive",
+    "restore": "Restore",
+    "delete": "Delete draft",
+    "confirmDelete": "Delete this draft? This can't be undone.",
+    "preview": "Preview",
+    "viewPublished": "View published",
+    "published": "Article published.",
+    "readOnly": "This article is archived. Restore it to edit again.",
+    "coAuthorNotice": "You're a co-author: you can edit the content; the author decides when to publish.",
+    "leaveWarning": "You have unsaved changes.",
+    "panel": {
+      "title": "Details",
+      "category": "Category",
+      "language": "Article language",
+      "tags": "Tags",
+      "tagsHint": "Up to 5. Press Enter to add.",
+      "tagsPlaceholder": "e.g. rust",
+      "removeTag": "Remove {tag}",
+      "cover": "Cover image",
+      "coverUpload": "Upload image",
+      "coverReplace": "Replace",
+      "coverRemove": "Remove",
+      "coverHint": "JPG, PNG or WebP, up to 5 MB.",
+      "coverAlt": "Cover alt text",
+      "coverAltHint": "Describe the image for people who can't see it.",
+      "repository": "Repository",
+      "repositoryHint": "https link to the code, for example on GitHub.",
+      "demo": "Project demo or website",
+      "coAuthors": "Co-authors",
+      "coAuthorsHint": "GZ Group authors only. Type at least 2 letters of the username.",
+      "coAuthorsSearch": "Search by username",
+      "removeCoAuthor": "Remove {name}",
+      "noResults": "No matches"
+    },
+    "toolbar": {
+      "label": "Formatting",
+      "heading2": "Section heading",
+      "heading3": "Subheading",
+      "bold": "Bold",
+      "italic": "Italic",
+      "code": "Inline code",
+      "link": "Link",
+      "bulletList": "List",
+      "orderedList": "Numbered list",
+      "blockquote": "Quote",
+      "codeBlock": "Code block",
+      "image": "Insert image",
+      "rule": "Divider",
+      "undo": "Undo",
+      "redo": "Redo",
+      "linkUrl": "Link URL",
+      "linkApply": "Apply",
+      "linkRemove": "Remove link",
+      "imageAlt": "Image alt text",
+      "codeLanguage": "Language",
+      "uploading": "Uploading image…"
+    },
+    "errors": {
+      "FORBIDDEN": "You don't have permission to do this.",
+      "NOT_FOUND": "This article no longer exists.",
+      "INVALID_FIELDS": "Check the highlighted fields.",
+      "INVALID_IMAGE": "One of the images isn't valid. Upload it again.",
+      "INVALID_CO_AUTHOR": "A co-author isn't a GZ Group author.",
+      "NOT_READY": "Before publishing, complete the following:",
+      "INVALID_CONTENT": "The content has an invalid format.",
+      "CONTENT_TOO_LARGE": "The content is too long.",
+      "UNSAFE_LINK": "A link isn't allowed. Use http, https or mailto links.",
+      "EXTERNAL_IMAGE": "Images must be uploaded from the editor.",
+      "FIELD_TOO_LONG": "This text is too long.",
+      "INVALID_URL": "Use a link that starts with https://",
+      "TOO_MANY_TAGS": "Up to 5 tags.",
+      "TOO_MANY_CO_AUTHORS": "Up to 5 co-authors.",
+      "TITLE_REQUIRED": "Write a title.",
+      "EXCERPT_REQUIRED": "Write a summary.",
+      "CONTENT_TOO_SHORT": "Write the article's content.",
+      "COVER_ALT_REQUIRED": "Describe the cover image.",
+      "UPLOAD_TOO_LARGE": "The image is larger than 5 MB.",
+      "UPLOAD_UNSUPPORTED": "Use a JPG, PNG or WebP image.",
+      "UPLOAD_FAILED": "The image couldn't be uploaded. Try again.",
+      "UNKNOWN": "Something went wrong. Please try again."
+    }
+  },
+  "AdminArticles": {
+    "metaTitle": "Articles",
+    "title": "Articles",
+    "total": "{count, plural, =0 {No articles} one {# article} other {# articles}}",
+    "empty": "There are no articles yet.",
+    "columns": {
+      "article": "Article",
+      "author": "Author",
+      "status": "Status",
+      "updated": "Edited"
+    },
+    "archive": "Archive",
+    "restore": "Restore"
+  },
+  "AdminNav": {
+    "label": "Administration",
+    "users": "Users",
+    "articles": "Articles"
   }
 }

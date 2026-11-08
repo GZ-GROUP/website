@@ -1,17 +1,19 @@
 import type { ArticleSummary, AuthorSummary } from "./types";
+import { activeWriters, latestPublished } from "@/lib/articles/queries";
 
-// Landing page data source. Nothing has been published yet, so these return
-// empty lists and the UI renders its empty states. In the Editorial phase each
-// function becomes a Prisma query with the same return type.
+// Landing page data. The landing is statically generated and revalidated, but
+// `next build` runs without a database: during the build these return empty
+// lists and the first revalidation (or a publish) fills them in.
+const isBuild = () => process.env.NEXT_PHASE === "phase-production-build";
 
 export async function getFeaturedProjects(): Promise<ArticleSummary[]> {
-  return [];
+  return isBuild() ? [] : latestPublished("SHOWCASE", 3);
 }
 
 export async function getFeaturedArticles(): Promise<ArticleSummary[]> {
-  return [];
+  return isBuild() ? [] : latestPublished("EDITORIAL", 3);
 }
 
 export async function getFeaturedMembers(): Promise<AuthorSummary[]> {
-  return [];
+  return isBuild() ? [] : activeWriters(6);
 }

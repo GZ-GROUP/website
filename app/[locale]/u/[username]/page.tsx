@@ -5,6 +5,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Container } from "@/components/layout/container";
 import { SiteShell } from "@/components/layout/site-shell";
 import { EmptyState } from "@/components/shared/empty-state";
+import { ArticleGrid } from "@/components/article/article-grid";
+import { publishedByUser } from "@/lib/articles/queries";
 import { VerifiedBadge } from "@/components/shared/verified-badge";
 import { hasRole } from "@/lib/auth/session";
 import { prisma } from "@/lib/db";
@@ -13,6 +15,7 @@ async function findProfile(username: string) {
   return prisma.user.findUnique({
     where: { username: username.toLowerCase() },
     select: {
+      id: true,
       name: true,
       username: true,
       displayUsername: true,
@@ -44,6 +47,7 @@ export default async function PublicProfilePage({ params }: PageProps<"/[locale]
   const to = await getTranslations("Occupation");
   const format = await getFormatter();
   const isWriter = hasRole(user, "writer") || hasRole(user, "admin");
+  const articles = isWriter ? await publishedByUser(user.id) : [];
 
   return (
     <SiteShell mainClassName="py-16 md:py-24">
@@ -90,7 +94,13 @@ export default async function PublicProfilePage({ params }: PageProps<"/[locale]
               <h2 id="articles-title" className="text-xl font-bold">
                 {t("articles")}
               </h2>
-              <EmptyState className="mt-6" as="p" title={t("articlesEmpty")} />
+              {articles.length === 0 ? (
+                <EmptyState className="mt-6" as="p" title={t("articlesEmpty")} />
+              ) : (
+                <div className="mt-8">
+                  <ArticleGrid items={articles} columns={2} />
+                </div>
+              )}
             </section>
           )}
         </div>
