@@ -1,0 +1,48 @@
+import { z } from "zod";
+
+// Server-only environment, validated lazily (at first use, not at import) so
+// `next build` can run without runtime secrets. Empty strings count as unset.
+
+const optional = z.preprocess((v) => (v === "" ? undefined : v), z.string().optional());
+const flag = z.preprocess((v) => (v === "" ? undefined : v), z.enum(["true", "false"]).optional()).transform(
+  (v) => v === "true",
+);
+
+const schema = z.object({
+  NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
+  BETTER_AUTH_URL: z.url(),
+
+  // Email (self-hosted SMTP). EMAIL_TRANSPORT overrides the automatic choice.
+  SMTP_HOST: optional,
+  SMTP_PORT: z.coerce.number().int().positive().default(587),
+  SMTP_SECURE: flag,
+  SMTP_USER: optional,
+  SMTP_PASSWORD: optional,
+  EMAIL_FROM: optional,
+  EMAIL_TRANSPORT: z.preprocess((v) => (v === "" ? undefined : v), z.enum(["smtp", "console", "file"]).optional()),
+
+  // Master admin bootstrap (ADR 0005)
+  ADMIN_EMAIL: z.preprocess((v) => (v === "" ? undefined : v), z.email().default("admin@gzgroup.dev")),
+  ADMIN_INITIAL_PASSWORD: optional,
+
+  // OAuth (optional: a provider is enabled only when both values exist)
+  GITHUB_CLIENT_ID: optional,
+  GITHUB_CLIENT_SECRET: optional,
+  LINKEDIN_CLIENT_ID: optional,
+  LINKEDIN_CLIENT_SECRET: optional,
+});
+
+export type ServerEnv = z.infer<typeof schema>;
+
+let cached: ServerEnv | undefined;
+
+export function serverEnv(): ServerEnv {
+  if (cached) return cached;
+  const parsed = schema.safeParse(process.env);
+  if (!parsed.success) {
+    const issues = parsed.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ");
+    throw new Error(`Invalid server environment: ${issues}`);
+  }
+  cached = parsed.data;
+  return cached;
+}
