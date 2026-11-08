@@ -1,0 +1,100 @@
+{
+  "Metadata": {
+    "title": "GZ Group — Software hecho por estudiantes",
+    "description": "Comunidad estudiantil que publica proyectos, investigaciones y experimentos de software, explicados por quienes los construyeron."
+  },
+  "Common": {
+    "brand": "GZ Group",
+    "skipToContent": "Saltar al contenido",
+    "githubOrg": "GZ Group en GitHub"
+  },
+  "Header": {
+    "homeLabel": "GZ Group, inicio",
+    "primaryNav": "Navegación principal",
+    "blog": "Blog",
+    "projects": "Proyectos",
+    "team": "Equipo",
+    "login": "Ingresar",
+    "register": "Crear cuenta",
+    "openMenu": "Abrir menú",
+    "menuTitle": "Menú",
+    "allProjects": "Ver todos los proyectos",
+    "closeMenu": "Cerrar menú"
+  },
+  "Categories": {
+    "software": {
+      "title": "Software",
+      "description": "Aplicaciones, herramientas y librerías construidas por integrantes, con su código y sus decisiones técnicas."
+    },
+    "research": {
+      "title": "Investigación",
+      "description": "Trabajos académicos y hallazgos técnicos, contados para que cualquiera pueda seguirlos."
+    },
+    "experiments": {
+      "title": "Experimentos",
+      "description": "Prototipos en fase temprana: ideas que todavía se están probando."
+    }
+  },
+  "LocaleSwitcher": {
+    "label": "Idioma",
+    "switchTo": "Ver en {language}",
+    "es": "Español",
+    "en": "English"
+  },
+  "Hero": {
+    "title": "Software hecho por estudiantes",
+    "lead": "GZ Group es una comunidad estudiantil que publica sus proyectos, investigaciones y experimentos de software, explicados por quienes los construyeron.",
+    "primaryCta": "Explorar proyectos",
+    "secondaryCta": "Leer el blog"
+  },
+  "Home": {
+    "publish": {
+      "title": "Qué vas a encontrar",
+      "editorial": "Además, el blog reúne tutoriales, opinión y noticias de la comunidad.",
+      "editorialCta": "Ir al blog"
+    },
+    "latest": {
+      "title": "Lo último publicado",
+      "projects": "Proyectos",
+      "articles": "Artículos",
+      "emptyTitle": "Todavía no hay publicaciones",
+      "emptyBody": "Los primeros proyectos y artículos están en preparación. Mientras tanto, el código de la comunidad vive en GitHub.",
+      "emptyList": "Nada publicado en esta sección todavía.",
+      "githubCta": "Ver GZ Group en GitHub"
+    },
+    "members": {
+      "title": "Quiénes escriben",
+      "body": "Los artículos los firman integrantes de GZ Group. Cada autor puede vincular su cuenta de GitHub o LinkedIn, y su firma muestra qué cuentas verificó.",
+      "exampleCaption": "Así se ve una firma verificada",
+      "exampleName": "Tu nombre",
+      "empty": "Los perfiles de los integrantes se publicarán junto con los primeros artículos."
+    },
+    "cta": {
+      "title": "Revisa lo que construimos",
+      "body": "Crea una cuenta para comentar, reaccionar y seguir lo que publica la comunidad.",
+      "primary": "Crear cuenta",
+      "secondary": "Ver el código en GitHub"
+    }
+  },
+  "Article": {
+    "by": "Por",
+    "coAuthors": "con {names}"
+  },
+  "Verification": {
+    "verifiedWith": "Identidad verificada con {provider}"
+  },
+  "Footer": {
+    "tagline": "Comunidad estudiantil de desarrollo de software. Publicamos lo que construimos y explicamos cómo lo hicimos.",
+    "explore": "Explorar",
+    "community": "Comunidad",
+    "legal": "Legal",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "copyright": "© {year} GZ Group"
+  },
+  "NotFound": {
+    "title": "Esta página no existe",
+    "body": "Puede que el enlace esté mal escrito o que la página todavía no se haya publicado.",
+    "home": "Volver al inicio"
+  }
+}
