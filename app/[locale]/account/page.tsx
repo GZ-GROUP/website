@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/layout/container";
 import { SettingsSection } from "@/components/account/settings-section";
+import { AccountTabs } from "@/components/account/account-tabs";
 import { AvatarField } from "@/components/account/avatar-field";
 import { ProfileForm } from "@/components/account/profile-form";
 import { EmailStatus } from "@/components/account/email-status";
@@ -39,6 +40,7 @@ export default async function AccountPage() {
 
   return (
     <Container size="content">
+      <AccountTabs />
       <div className="flex flex-wrap items-end justify-between gap-4 pb-10">
         <h1 className="text-2xl font-bold leading-display tracking-display md:text-3xl">{t("title")}</h1>
         {user.username && (

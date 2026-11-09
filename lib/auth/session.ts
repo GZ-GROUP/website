@@ -32,10 +32,10 @@ export async function requireUser(options: { allowPendingPasswordChange?: boolea
   return session;
 }
 
-/** Admin area: anyone else gets a 404, so the area's existence is not revealed. */
+/** Admin area, for the master admin only: anyone else gets a 404, so its existence is not revealed. */
 export async function requireAdmin(): Promise<AppSession> {
   const session = await getSession();
-  if (!session || !hasRole(session.user, "admin")) notFound();
+  if (!session?.user.isSuperAdmin) notFound();
   if (session.user.mustChangePassword) {
     return redirect({ href: "/account/password", locale: await getLocale() });
   }
