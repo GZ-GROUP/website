@@ -245,6 +245,24 @@
       "description": "Cambia tu contraseña o cierra tu sesión en este dispositivo.",
       "changePassword": "Cambiar contraseña",
       "signOut": "Cerrar sesión"
+    },
+    "avatar": {
+      "upload": "Subir foto",
+      "replace": "Cambiar foto",
+      "remove": "Quitar foto",
+      "uploading": "Subiendo…",
+      "removing": "Quitando…",
+      "hint": "JPG, PNG o WebP, hasta 5 MB. Se recorta en forma cuadrada.",
+      "uploaded": "Foto actualizada.",
+      "removed": "Foto eliminada.",
+      "errors": {
+        "TOO_LARGE": "La imagen pesa más de 5 MB. Elige una más liviana.",
+        "UNSUPPORTED_TYPE": "Ese formato no es compatible. Usa JPG, PNG o WebP.",
+        "INVALID_IMAGE": "No se pudo leer esa imagen. Prueba con otra.",
+        "RATE_LIMITED": "Espera unos segundos antes de volver a cambiar la foto.",
+        "UNAUTHORIZED": "Tu sesión terminó. Vuelve a ingresar para continuar.",
+        "UNKNOWN": "No se pudo guardar la foto. Inténtalo de nuevo."
+      }
     }
   },
   "Password": {

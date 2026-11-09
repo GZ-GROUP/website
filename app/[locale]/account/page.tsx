@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/layout/container";
 import { SettingsSection } from "@/components/account/settings-section";
+import { AvatarField } from "@/components/account/avatar-field";
 import { ProfileForm } from "@/components/account/profile-form";
 import { EmailStatus } from "@/components/account/email-status";
 import { LinkedAccounts } from "@/components/account/linked-accounts";
@@ -26,6 +27,7 @@ export default async function AccountPage() {
     where: { id: session.user.id },
     select: {
       name: true,
+      image: true,
       email: true,
       emailVerified: true,
       username: true,
@@ -52,6 +54,7 @@ export default async function AccountPage() {
 
       <div className="divide-y divide-border">
         <SettingsSection id="profile" title={t("profile.title")} description={t("profile.lead")}>
+          <AvatarField name={user.name} image={user.image} />
           <ProfileForm
             defaults={{
               name: user.name,

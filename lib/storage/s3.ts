@@ -1,5 +1,6 @@
 import {
   CreateBucketCommand,
+  DeleteObjectCommand,
   GetObjectCommand,
   HeadBucketCommand,
   NoSuchKey,
@@ -52,6 +53,10 @@ export async function putObject(key: string, body: Buffer, contentType: string):
       CacheControl: "public, max-age=31536000, immutable",
     }),
   );
+}
+
+export async function deleteObject(key: string): Promise<void> {
+  await s3().send(new DeleteObjectCommand({ Bucket: bucket(), Key: key }));
 }
 
 export type StoredObject = {

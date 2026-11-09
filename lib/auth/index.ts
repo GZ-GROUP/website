@@ -116,6 +116,16 @@ export const auth = betterAuth({
 
   databaseHooks: {
     user: {
+      update: {
+        // The public update endpoint would accept any URL as a photo (a tracking
+        // pixel, for one). Photos only change through /api/account/avatar.
+        before: async (user, context) => {
+          if (context?.path === "/update-user" && "image" in user) {
+            // Better Auth merges this over the original, so the key must be overwritten.
+            return { data: { image: undefined } };
+          }
+        },
+      },
       create: {
         before: async (user) => {
           // OAuth sign-ups get a username from the provider handle; keep it unique.

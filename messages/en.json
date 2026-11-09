@@ -245,6 +245,24 @@
       "description": "Change your password or sign out on this device.",
       "changePassword": "Change password",
       "signOut": "Sign out"
+    },
+    "avatar": {
+      "upload": "Upload photo",
+      "replace": "Change photo",
+      "remove": "Remove photo",
+      "uploading": "Uploading…",
+      "removing": "Removing…",
+      "hint": "JPG, PNG or WebP, up to 5 MB. It is cropped to a square.",
+      "uploaded": "Photo updated.",
+      "removed": "Photo removed.",
+      "errors": {
+        "TOO_LARGE": "The image is larger than 5 MB. Choose a smaller one.",
+        "UNSUPPORTED_TYPE": "That format isn't supported. Use JPG, PNG or WebP.",
+        "INVALID_IMAGE": "That image couldn't be read. Try another one.",
+        "RATE_LIMITED": "Wait a few seconds before changing your photo again.",
+        "UNAUTHORIZED": "Your session ended. Sign in again to continue.",
+        "UNKNOWN": "The photo couldn't be saved. Try again."
+      }
     }
   },
   "Password": {

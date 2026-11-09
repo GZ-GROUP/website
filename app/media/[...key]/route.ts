@@ -1,4 +1,4 @@
-import { MEDIA_PATH_PATTERN } from "@/lib/editor/links";
+import { isServedMediaPath } from "@/lib/editor/links";
 import { getObject } from "@/lib/storage/s3";
 
 // Serves uploaded images from the private bucket. Keys are random UUIDs and
@@ -6,7 +6,7 @@ import { getObject } from "@/lib/storage/s3";
 export async function GET(_request: Request, { params }: RouteContext<"/media/[...key]">) {
   const { key } = await params;
   const path = `/media/${key.join("/")}`;
-  if (!MEDIA_PATH_PATTERN.test(path)) return new Response("Not found", { status: 404 });
+  if (!isServedMediaPath(path)) return new Response("Not found", { status: 404 });
 
   const object = await getObject(key.join("/"));
   if (!object) return new Response("Not found", { status: 404 });

@@ -23,6 +23,13 @@ Articles have a cover image and inline images. Files must not live in the contai
   - The route validates the key pattern and streams the object with `Cache-Control: public, max-age=31536000, immutable`, `X-Content-Type-Options: nosniff` and a restrictive CSP.
 - **Validation on save:** articles can only reference keys that exist in `Media`, both for the cover and for inline images. The content validator rejects any other image source.
 
+- **Profile photos (`POST` and `DELETE /api/account/avatar`):**
+  - Any signed-in user, at most one change every 5 seconds.
+  - Same validation as article images, then a 512 px square cropped around the most interesting part of the picture, stored under `avatars/<uuid>.webp`.
+  - Replacing or removing a photo deletes the previous file.
+  - `avatars/` keys are served by `/media` but can never be embedded in an article.
+  - Better Auth's public `/update-user` endpoint cannot change `image`, so a photo cannot point to an external URL.
+
 ## Consequences
 
 - Production needs an S3-compatible endpoint and credentials, either RustFS on the server or a managed S3 bucket. Deployment work stays paused until every phase is finished.

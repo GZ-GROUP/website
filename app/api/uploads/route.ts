@@ -3,7 +3,8 @@ import { canUseStudio } from "@/lib/articles/permissions";
 import { prisma } from "@/lib/db";
 import { mediaUrl } from "@/lib/editor/links";
 import { putObject } from "@/lib/storage/s3";
-import { MAX_UPLOAD_BYTES, processImage } from "@/lib/storage/images";
+import { processImage } from "@/lib/storage/images";
+import { readUploadedFile } from "@/lib/storage/upload-request";
 
 const json = (status: number, body: object) => Response.json(body, { status });
 
@@ -15,19 +16,10 @@ export async function POST(request: Request) {
     return json(404, { error: "NOT_FOUND" });
   }
 
-  const declared = Number(request.headers.get("content-length") ?? 0);
-  if (declared > MAX_UPLOAD_BYTES + 64 * 1024) return json(413, { error: "TOO_LARGE" });
+  const file = await readUploadedFile(request);
+  if ("status" in file) return json(file.status, { error: file.error });
 
-  let file: FormDataEntryValue | null;
-  try {
-    file = (await request.formData()).get("file");
-  } catch {
-    return json(400, { error: "INVALID_IMAGE" });
-  }
-  if (!(file instanceof File)) return json(400, { error: "INVALID_IMAGE" });
-  if (file.size > MAX_UPLOAD_BYTES) return json(413, { error: "TOO_LARGE" });
-
-  const image = await processImage(Buffer.from(await file.arrayBuffer()));
+  const image = await processImage(file.buffer);
   if ("error" in image) return json(image.error === "TOO_LARGE" ? 413 : 415, { error: image.error });
 
   await putObject(image.key, image.data, image.mimeType);

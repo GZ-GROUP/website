@@ -52,6 +52,9 @@ model User {
   isSuperAdmin       Boolean @default(false)
   mustChangePassword Boolean @default(false)
 
+  // Last time the profile photo changed: limits how often images are processed.
+  avatarUpdatedAt DateTime?
+
   profile               Profile?
   sessions              Session[]
   accounts              Account[]
