@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import type { AppLocale } from "@/i18n/routing";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { Container } from "@/components/layout/container";
 import { SiteShell } from "@/components/layout/site-shell";
 import { EmptyState } from "@/components/shared/empty-state";
@@ -14,7 +16,7 @@ const isBuild = () => process.env.NEXT_PHASE === "phase-production-build";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Team");
-  return { title: t("metaTitle"), description: t("lead") };
+  return pageMetadata({ title: t("metaTitle"), description: t("metaDescription"), path: "/team", locale: (await getLocale()) as AppLocale });
 }
 
 export default async function TeamPage() {

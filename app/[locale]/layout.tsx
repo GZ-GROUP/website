@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
   return {
     // Resolves relative social images to absolute URLs.
     metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
-    title: t("title"),
+    title: { default: t("title"), template: "%s | GZ Group" },
     description: t("description"),
   };
 }

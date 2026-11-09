@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import type { AppLocale } from "@/i18n/routing";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { Link } from "@/i18n/navigation";
 import { LEGAL_LINK, LegalContact, LegalPage, LegalSection } from "@/components/legal/legal-page";
 import { serverEnv } from "@/lib/env";
@@ -12,7 +14,7 @@ const FIELDS = ["data", "purpose", "basis", "retention"] as const;
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Legal.privacy");
-  return { title: t("metaTitle"), description: t("lead") };
+  return pageMetadata({ title: t("metaTitle"), description: t("metaDescription"), path: "/privacy", locale: (await getLocale()) as AppLocale });
 }
 
 export default async function PrivacyPage() {

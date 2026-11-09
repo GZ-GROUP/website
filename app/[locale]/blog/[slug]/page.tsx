@@ -7,6 +7,8 @@ import { ArticleReaction } from "@/components/community/article-reaction";
 import { ArticleReadTracker } from "@/components/community/article-read-tracker";
 import { CommentSection } from "@/components/community/comment-section";
 import { getPublishedArticle } from "@/lib/articles/queries";
+import { articleJsonLd, JsonLd } from "@/lib/seo/json-ld";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { getSession } from "@/lib/auth/session";
 import { getArticleComments, getLikeState } from "@/lib/community/queries";
 
@@ -19,16 +21,26 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/blog/[sl
   const { slug } = await params;
   const article = await getPublishedArticle(slug);
   if (!article) return {};
-  return {
+  const seo = pageMetadata({
     title: article.title,
     description: article.excerpt,
+    path: `/blog/${article.slug}`,
+    // The content exists in one language: that version is the canonical one.
+    locale: article.language === "EN" ? "en" : "es",
+    translated: false,
+  });
+  const cover = article.coverImageUrl ? [{ url: article.coverImageUrl, alt: article.coverAlt ?? "" }] : undefined;
+  return {
+    ...seo,
     openGraph: {
+      ...seo.openGraph,
       type: "article",
-      title: article.title,
-      description: article.excerpt,
       publishedTime: article.publishedAt.toISOString(),
-      ...(article.coverImageUrl ? { images: [{ url: article.coverImageUrl, alt: article.coverAlt ?? "" }] } : {}),
+      modifiedTime: article.updatedAt.toISOString(),
+      authors: [article.author, ...article.coAuthors].map((person) => person.displayName),
+      ...(cover ? { images: cover } : {}),
     },
+    ...(cover ? { twitter: { ...seo.twitter, images: cover } } : {}),
   };
 }
 
@@ -47,6 +59,7 @@ export default async function ArticlePage({ params, searchParams }: PageProps<"/
 
   return (
     <SiteShell mainClassName="py-16 md:py-24">
+      <JsonLd data={articleJsonLd(article)} />
       {actor && <ArticleReadTracker articleId={article.id} />}
       <ArticleView article={article} />
       {/* Interaction lives here, not in ArticleView, which the studio preview also renders. */}

@@ -12,6 +12,7 @@ import { VerifiedBadge } from "@/components/shared/verified-badge";
 import { hasRole } from "@/lib/auth/session";
 import { getProfileCommunity } from "@/lib/community/queries";
 import { prisma } from "@/lib/db";
+import { pageMetadata } from "@/lib/seo/metadata";
 
 // Rendered per request: the statistics below must never be a stale copy.
 export const dynamic = "force-dynamic";
@@ -39,7 +40,13 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/u/[usern
   const user = await findProfile(username);
   if (!user || user.banned || !user.username) return {};
   const t = await getTranslations("Profile");
-  return { title: t("metaTitle", { name: user.name, username: user.username }), description: user.profile?.bio ?? undefined };
+  return pageMetadata({
+    title: t("metaTitle", { name: user.name, username: user.username }),
+    description: user.profile?.bio ?? undefined,
+    path: `/u/${user.username}`,
+    locale: "es",
+    translated: false,
+  });
 }
 
 // Public profile. Identity, real statistics and public work; never the

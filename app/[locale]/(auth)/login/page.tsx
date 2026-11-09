@@ -10,7 +10,7 @@ import { getSession } from "@/lib/auth/session";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Auth.login");
-  return { title: t("metaTitle") };
+  return { title: t("metaTitle"), robots: { index: false, follow: true } };
 }
 
 export default async function LoginPage({ searchParams }: PageProps<"/[locale]/login">) {

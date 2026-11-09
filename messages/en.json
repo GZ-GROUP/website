@@ -361,7 +361,8 @@
     "previous": "Previous",
     "next": "Next",
     "pageOf": "Page {page} of {count}",
-    "pagination": "Pagination"
+    "pagination": "Pagination",
+    "metaDescription": "Software projects, research, tutorials and opinion published by the GZ Group developer community, explained by the people who made them."
   },
   "ArticlePage": {
     "by": "By",
@@ -493,7 +494,8 @@
       "UPLOAD_UNSUPPORTED": "Use a JPG, PNG or WebP image.",
       "UPLOAD_FAILED": "The image couldn't be uploaded. Try again.",
       "UNKNOWN": "Something went wrong. Please try again.",
-      "UPLOAD_RATE_LIMITED": "You're uploading too many images. Wait a minute."
+      "UPLOAD_RATE_LIMITED": "You're uploading too many images. Wait a minute.",
+      "IMAGE_ALT_REQUIRED": "Describe every image in the article."
     }
   },
   "AdminArticles": {
@@ -579,7 +581,8 @@
     "lead": "The people behind GZ Group's projects, research and articles.",
     "publications": "{count, plural, one {# publication} other {# publications}}",
     "emptyTitle": "No signed work yet",
-    "emptyBody": "Once the first work is published, the people who made it will appear here."
+    "emptyBody": "Once the first work is published, the people who made it will appear here.",
+    "metaDescription": "Meet the members of GZ Group: developers with published work, their profiles and the accounts they have verified."
   },
   "AdminComments": {
     "metaTitle": "Comments",
@@ -693,7 +696,8 @@
       "changes": {
         "title": "Changes to this policy",
         "body": "If we change this policy, we will update the date on this page and, if the change is important, we will let you know."
-      }
+      },
+      "metaDescription": "What data GZ Group keeps, what it is used for and how to exercise your rights under Panama's Law 81 of 2019."
     },
     "terms": {
       "metaTitle": "Terms and conditions",
@@ -743,7 +747,8 @@
       "law": {
         "title": "Governing law",
         "body": "These terms are governed by the laws of the Republic of Panama. Any dispute will be submitted to the competent courts of Panama. For any questions, write to <contact></contact>."
-      }
+      },
+      "metaDescription": "The rules for using GZ Group: your account, your content, what is not allowed and the governing law in Panama."
     }
   },
   "Error": {
@@ -826,6 +831,7 @@
         "q": "What do you do with my data?",
         "a": "It's explained in the <privacy>Privacy policy</privacy>. To get a copy of your data or have it deleted, use this form and choose Privacy and data."
       }
-    }
+    },
+    "metaDescription": "Write to GZ Group with questions, proposals, account issues or privacy requests. The frequently asked questions are here too."
   }
 }
