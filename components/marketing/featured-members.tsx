@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { VerifiedBadge } from "@/components/shared/verified-badge";
+import { WriterCard } from "@/components/shared/writer-card";
 import { Section } from "@/components/marketing/section";
 import type { AuthorSummary } from "@/lib/content/types";
 
@@ -30,21 +30,8 @@ export function FeaturedMembers({ members }: { members: AuthorSummary[] }) {
       ) : (
         <ul className="mt-12 grid gap-8 sm:grid-cols-2">
           {members.map((member) => (
-            <li key={member.username} className="flex items-center gap-4">
-              <Avatar size="lg">
-                {member.avatarUrl && <AvatarImage src={member.avatarUrl} alt="" />}
-                <AvatarFallback>{member.displayName.charAt(0)}</AvatarFallback>
-              </Avatar>
-              <div className="flex flex-col gap-2">
-                <Link href={`/u/${member.username}`} className="font-bold hover:text-primary-ink">
-                  {member.displayName}
-                </Link>
-                <div className="flex flex-wrap gap-2">
-                  {member.verifications.map((provider) => (
-                    <VerifiedBadge key={provider} provider={provider} />
-                  ))}
-                </div>
-              </div>
+            <li key={member.username}>
+              <WriterCard member={member} />
             </li>
           ))}
         </ul>
