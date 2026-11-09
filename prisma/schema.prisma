@@ -59,6 +59,9 @@ model User {
   articles              Article[]              @relation("ArticleAuthor")
   coAuthorships         ArticleCoAuthor[]
   media                 Media[]
+  comments              Comment[]
+  articleLikes          ArticleLike[]
+  articleReads          ArticleRead[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -229,6 +232,9 @@ model Article {
 
   coAuthors ArticleCoAuthor[]
   tags      ArticleTag[]
+  comments  Comment[]
+  likes     ArticleLike[]
+  reads     ArticleRead[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -277,4 +283,56 @@ model Media {
 
   @@index([uploaderId])
   @@map("media")
+}
+
+// ── Community ──────────────────────────────────────────
+
+/// One level of replies, enforced in lib/community/mutations.ts. A comment that
+/// still has replies is kept as a tombstone (deletedAt set, body emptied).
+model Comment {
+  id        String    @id @default(cuid())
+  articleId String
+  article   Article   @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  authorId  String
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Restrict)
+  parentId  String?
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies   Comment[] @relation("CommentReplies")
+  body      String    @db.VarChar(2000)
+  deletedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([articleId, parentId, createdAt])
+  @@index([authorId, createdAt])
+  @@index([parentId])
+  @@map("comments")
+}
+
+model ArticleLike {
+  articleId String
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@id([articleId, userId])
+  @@index([userId, createdAt])
+  @@map("article_likes")
+}
+
+/// Private reading history behind the dashboard: signed-in users only, one row
+/// per user and article, no IP or anonymous data (ADR 0009).
+model ArticleRead {
+  articleId   String
+  article     Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  firstReadAt DateTime @default(now())
+  lastReadAt  DateTime @default(now())
+
+  @@id([articleId, userId])
+  @@index([userId, lastReadAt])
+  @@map("article_reads")
 }
