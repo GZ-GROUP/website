@@ -11,7 +11,7 @@ import { GithubButton } from "@/components/auth/github-button";
 import { authClient } from "@/lib/auth/client";
 import { authErrorKey, type AuthErrorKey } from "@/lib/auth/errors";
 
-export function LoginForm({ githubEnabled }: { githubEnabled: boolean }) {
+export function LoginForm({ githubEnabled, next }: { githubEnabled: boolean; next?: string | null }) {
   const t = useTranslations("Auth");
   const te = useTranslations("AuthErrors");
   const router = useRouter();
@@ -35,8 +35,9 @@ export function LoginForm({ githubEnabled }: { githubEnabled: boolean }) {
       setPending(false);
       return;
     }
-    // The account page redirects to the forced password change when needed.
-    router.replace("/account");
+    // `next` is already validated by the page (safeNextPath). Without one, the
+    // account page redirects to the forced password change when needed.
+    router.replace(next ?? "/account");
     router.refresh();
   }
 

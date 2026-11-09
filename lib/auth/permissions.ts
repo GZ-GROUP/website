@@ -8,24 +8,32 @@ export const statements = {
   ...defaultStatements,
   profile: ["update-own"],
   article: ["create", "update-own", "publish-own", "delete-own"],
+  comment: ["create", "delete-own", "delete-any"],
+  reaction: ["set-own"],
 } as const;
 
 export const ac = createAccessControl(statements);
 
-/** Default for every public sign-up. Comments and reactions arrive in Phase 5. */
+/** Default for every public sign-up: comments, likes and their own profile. */
 export const reader = ac.newRole({
   profile: ["update-own"],
+  comment: ["create", "delete-own"],
+  reaction: ["set-own"],
 });
 
 /** Granted only by the master admin, never through sign-up. */
 export const writer = ac.newRole({
   profile: ["update-own"],
   article: ["create", "update-own", "publish-own", "delete-own"],
+  comment: ["create", "delete-own"],
+  reaction: ["set-own"],
 });
 
 export const admin = ac.newRole({
   profile: ["update-own"],
   article: ["create", "update-own", "publish-own", "delete-own"],
+  comment: ["create", "delete-own", "delete-any"],
+  reaction: ["set-own"],
   user: ["create", "list", "set-role", "ban", "get", "update"],
   session: ["list", "revoke"],
 });

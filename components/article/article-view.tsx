@@ -22,19 +22,20 @@ export async function ArticleView({ article }: { article: ArticleDetail }) {
     <article>
       <Container size="reading">
         <header>
-          <Link
-            href={`/blog?category=${article.category.slug}`}
-            className="text-base font-bold text-primary-ink underline-offset-4 hover:underline"
-          >
-            {tc(`${article.category.slug}.title` as "software.title")}
-          </Link>
-          <h1 className="mt-4 text-3xl font-bold leading-display tracking-display text-balance md:text-4xl">
+          <h1 className="text-3xl font-bold leading-display tracking-display text-balance md:text-4xl">
             {article.title}
           </h1>
           {article.excerpt && (
             <p className="mt-6 text-xl leading-8 text-pretty text-muted-foreground">{article.excerpt}</p>
           )}
           <p className="mt-8 flex flex-wrap gap-x-3 gap-y-1 text-base text-muted-foreground tabular-nums">
+            <Link
+              href={`/blog?category=${article.category.slug}`}
+              className="font-bold text-primary-ink underline-offset-4 hover:underline"
+            >
+              {tc(`${article.category.slug}.title` as "software.title")}
+            </Link>
+            <span aria-hidden>·</span>
             <time dateTime={article.publishedAt.toISOString()}>
               {t("publishedOn", { date: format.dateTime(article.publishedAt, { dateStyle: "long" }) })}
             </time>

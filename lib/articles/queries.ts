@@ -8,7 +8,7 @@ import { buildArticleOrder, buildArticleWhere, PAGE_SIZE, type ListFilters } fro
 // Read models for public pages and the studio. Only published articles leave
 // this module for public callers.
 
-const authorSelect = {
+export const authorSelect = {
   name: true,
   username: true,
   displayUsername: true,
@@ -86,14 +86,19 @@ export async function latestPublished(kind: "SHOWCASE" | "EDITORIAL", take: numb
   return rows.map(toSummary);
 }
 
-/** Published articles a user authored or co-authored (public profile). */
-export async function publishedByUser(userId: string): Promise<ArticleSummary[]> {
-  const rows = await prisma.article.findMany({
-    where: { status: "PUBLISHED", OR: [{ authorId: userId }, { coAuthors: { some: { userId } } }] },
-    orderBy: { publishedAt: "desc" },
-    select: summarySelect,
-  });
-  return rows.map(toSummary);
+/** Published articles of a user, as author and as co-author (public profile). */
+export async function publishedByUser(userId: string): Promise<{ authored: ArticleSummary[]; coAuthored: ArticleSummary[] }> {
+  const list = (relation: Prisma.ArticleWhereInput) =>
+    prisma.article.findMany({
+      where: { status: "PUBLISHED", ...relation },
+      orderBy: { publishedAt: "desc" },
+      select: summarySelect,
+    });
+  const [authored, coAuthored] = await Promise.all([
+    list({ authorId: userId }),
+    list({ coAuthors: { some: { userId } } }),
+  ]);
+  return { authored: authored.map(toSummary), coAuthored: coAuthored.map(toSummary) };
 }
 
 /** Writers with at least one published article, most recent first. */

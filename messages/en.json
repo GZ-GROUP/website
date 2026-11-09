@@ -25,7 +25,8 @@
     "admin": "Admin",
     "signOut": "Sign out",
     "userMenu": "Your account menu",
-    "studio": "Studio"
+    "studio": "Studio",
+    "dashboard": "My activity"
   },
   "Categories": {
     "software": {
@@ -271,7 +272,15 @@
     "noBio": "No bio yet.",
     "writer": "Author",
     "articles": "Articles",
-    "articlesEmpty": "Their articles will appear here once they publish."
+    "articlesEmpty": "Their articles will appear here once they publish.",
+    "coAuthored": "Co-authored",
+    "recentComments": "Recent comments",
+    "commentOn": "On “{title}”",
+    "stats": {
+      "publications": "Publications",
+      "likesReceived": "Likes received",
+      "comments": "Comments"
+    }
   },
   "Admin": {
     "metaTitle": "Admin",
@@ -477,6 +486,82 @@
   "AdminNav": {
     "label": "Administration",
     "users": "Users",
-    "articles": "Articles"
+    "articles": "Articles",
+    "comments": "Comments"
+  },
+  "Reactions": {
+    "like": "Like",
+    "signIn": "sign in to react"
+  },
+  "Comments": {
+    "title": "Comments",
+    "count": "{count, plural, =0 {No comments} one {# comment} other {# comments}}",
+    "label": "Write a comment",
+    "replyLabel": "Your reply to {name}",
+    "submit": "Comment",
+    "submitting": "Sending…",
+    "reply": "Reply",
+    "replyTo": "Reply to {name}",
+    "replies": "Replies",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "deleteFrom": "Delete comment by {name}",
+    "deleting": "Deleting…",
+    "confirmDelete": "Delete this comment?",
+    "confirm": "Yes, delete",
+    "removed": "Comment removed",
+    "empty": "No comments yet. Yours can be the first.",
+    "signInLead": "Sign in to join the conversation.",
+    "signIn": "Sign in",
+    "loadMore": "Show more comments",
+    "remaining": "{count, plural, one {# character left} other {# characters left}}",
+    "errors": {
+      "UNAUTHORIZED": "Your session ended. Sign in again to continue.",
+      "FORBIDDEN": "You don't have permission to do this.",
+      "NOT_FOUND": "This content no longer exists.",
+      "INVALID_BODY": "Write a comment of up to 2000 characters.",
+      "INVALID_PARENT": "That comment can no longer be replied to.",
+      "RATE_LIMITED": "You're commenting too often. Wait a minute and try again.",
+      "UNKNOWN": "It couldn't be saved. Try again."
+    }
+  },
+  "Dashboard": {
+    "metaTitle": "My activity",
+    "title": "My activity",
+    "privacy": "Only you can see your reading history and your likes.",
+    "explore": "Explore articles",
+    "metrics": {
+      "reads": "Articles viewed",
+      "likes": "Likes given",
+      "comments": "Comments written"
+    },
+    "recentReads": "Recently read",
+    "recentComments": "Your comments",
+    "recentLikes": "You liked",
+    "commentOn": "On “{title}”",
+    "emptyReads": "Articles you open will show up here.",
+    "emptyComments": "You haven't commented on any article yet.",
+    "emptyLikes": "You haven't liked any article yet."
+  },
+  "Team": {
+    "metaTitle": "Team",
+    "title": "Team",
+    "lead": "The people behind GZ Group's projects, research and articles.",
+    "publications": "{count, plural, one {# publication} other {# publications}}",
+    "emptyTitle": "No signed work yet",
+    "emptyBody": "Once the first work is published, the people who made it will appear here."
+  },
+  "AdminComments": {
+    "metaTitle": "Comments",
+    "title": "Comments",
+    "total": "{count, plural, =0 {No comments} one {# comment} other {# comments}}",
+    "empty": "No comments yet.",
+    "columns": {
+      "comment": "Comment",
+      "author": "Author",
+      "article": "Article",
+      "date": "Date",
+      "actions": "Actions"
+    }
   }
 }
