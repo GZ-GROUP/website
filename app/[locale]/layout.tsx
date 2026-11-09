@@ -25,6 +25,8 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
   const t = await getTranslations({ locale, namespace: "Metadata" });
 
   return {
+    // Resolves relative social images to absolute URLs.
+    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
     title: t("title"),
     description: t("description"),
   };
