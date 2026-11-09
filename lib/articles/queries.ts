@@ -101,6 +101,16 @@ export async function publishedByUser(userId: string): Promise<{ authored: Artic
   return { authored: authored.map(toSummary), coAuthored: coAuthored.map(toSummary) };
 }
 
+/** What robots.txt-level discovery needs: sitemap and llms.txt. Published only, newest first. */
+export async function publishedForDiscovery(take?: number) {
+  return prisma.article.findMany({
+    where: { status: "PUBLISHED" },
+    orderBy: { publishedAt: "desc" },
+    ...(take ? { take } : {}),
+    select: { slug: true, title: true, excerpt: true, language: true, updatedAt: true },
+  });
+}
+
 /** Tags used by published articles, for the blog filter. */
 export async function publishedTags(take = 30) {
   return prisma.tag.findMany({
