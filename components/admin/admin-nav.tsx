@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 const ITEMS = [
   { key: "users", href: "/admin" },
   { key: "articles", href: "/admin/articles" },
+  { key: "comments", href: "/admin/comments" },
 ] as const;
 
 // Area navigation: the active item is a change of ink and an underline, not a coloured pill.
