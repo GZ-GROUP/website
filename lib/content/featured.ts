@@ -1,5 +1,5 @@
-import type { ArticleSummary, AuthorSummary } from "./types";
-import { activeWriters, latestPublished } from "@/lib/articles/queries";
+import type { ArticleSummary } from "./types";
+import { latestPublished } from "@/lib/articles/queries";
 
 // Landing page data. The landing is statically generated and revalidated, but
 // `next build` runs without a database: during the build these return empty
@@ -12,8 +12,4 @@ export async function getFeaturedProjects(): Promise<ArticleSummary[]> {
 
 export async function getFeaturedArticles(): Promise<ArticleSummary[]> {
   return isBuild() ? [] : latestPublished("EDITORIAL", 3);
-}
-
-export async function getFeaturedMembers(): Promise<AuthorSummary[]> {
-  return isBuild() ? [] : activeWriters(6);
 }

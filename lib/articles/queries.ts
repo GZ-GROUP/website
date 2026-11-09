@@ -101,17 +101,6 @@ export async function publishedByUser(userId: string): Promise<{ authored: Artic
   return { authored: authored.map(toSummary), coAuthored: coAuthored.map(toSummary) };
 }
 
-/** Writers with at least one published article, most recent first. */
-export async function activeWriters(take: number): Promise<AuthorSummary[]> {
-  const users = await prisma.user.findMany({
-    where: { banned: false, articles: { some: { status: "PUBLISHED" } } },
-    orderBy: { createdAt: "asc" },
-    take,
-    select: authorSelect,
-  });
-  return users.map(toAuthorSummary);
-}
-
 /** Tags used by published articles, for the blog filter. */
 export async function publishedTags(take = 30) {
   return prisma.tag.findMany({
