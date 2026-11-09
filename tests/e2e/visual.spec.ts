@@ -12,7 +12,7 @@ const VIEWPORTS = [
   { name: "768", width: 768, height: 1024 },
   { name: "1440", width: 1440, height: 900 },
 ];
-const PUBLIC_PAGES = ["/login", "/register", "/forgot-password", "/en/login", "/privacy", "/terms", "/e2e-error"];
+const PUBLIC_PAGES = ["/login", "/register", "/forgot-password", "/en/login", "/contact", "/privacy", "/terms", "/e2e-error"];
 const ADMIN_PASSWORD = "e2e-changed-master-password";
 
 const shot = (path: string, width: string) =>

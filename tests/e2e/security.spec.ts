@@ -61,7 +61,7 @@ test("no page triggers a Content-Security-Policy violation", async ({ page }) =>
     if (list.length) found[path] = list;
   };
 
-  for (const path of ["/", "/en", "/blog", "/projects", "/team", "/privacy", "/terms", "/login", "/register", article]) await visit(path);
+  for (const path of ["/", "/en", "/blog", "/projects", "/team", "/contact", "/privacy", "/terms", "/login", "/register", article]) await visit(path);
 
   await promotedWriter(page);
   for (const path of ["/account", "/account/activity", "/studio", article]) await visit(path);
