@@ -55,6 +55,10 @@ model User {
   // Last time the profile photo changed: limits how often images are processed.
   avatarUpdatedAt DateTime?
 
+  // When this person accepted the terms, and which version (Decreto 285, traceability).
+  termsAcceptedAt DateTime?
+  termsVersion    String?
+
   profile               Profile?
   sessions              Session[]
   accounts              Account[]

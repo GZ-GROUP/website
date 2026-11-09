@@ -35,6 +35,9 @@ const schema = z.object({
     .preprocess((v) => (v === "" ? undefined : v), z.enum(["true", "false"]).default("true"))
     .transform((v) => v === "true"),
 
+  // Contact published in the privacy policy (Decreto Ejecutivo 285, art. 14)
+  LEGAL_CONTACT_EMAIL: optional,
+
   // OAuth (optional: a provider is enabled only when both values exist)
   GITHUB_CLIENT_ID: optional,
   GITHUB_CLIENT_SECRET: optional,

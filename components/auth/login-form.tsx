@@ -8,6 +8,7 @@ import { FormField } from "@/components/forms/form-field";
 import { FormMessage } from "@/components/forms/form-message";
 import { SubmitButton } from "@/components/forms/submit-button";
 import { GithubButton } from "@/components/auth/github-button";
+import { LegalNotice } from "@/components/auth/legal-notice";
 import { authClient } from "@/lib/auth/client";
 import { authErrorKey, type AuthErrorKey } from "@/lib/auth/errors";
 
@@ -70,6 +71,7 @@ export function LoginForm({ githubEnabled, next }: { githubEnabled: boolean; nex
         <div className="flex flex-col gap-4">
           <p className="text-sm text-muted-foreground">{t("common.or")}</p>
           <GithubButton label={t("common.github")} />
+          <LegalNotice messageKey="login.legal" />
         </div>
       )}
 

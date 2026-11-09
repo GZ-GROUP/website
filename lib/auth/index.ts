@@ -6,6 +6,7 @@ import { prisma } from "@/lib/db";
 import { sendEmail } from "@/lib/email";
 import { passwordResetEmail, resolveEmailLocale, verifyEmailEmail } from "@/lib/email/templates";
 import { ac, roles } from "@/lib/auth/permissions";
+import { LEGAL_VERSION } from "@/lib/legal/version";
 import { isValidUsername, toUsernameCandidate, USERNAME_MAX, USERNAME_MIN } from "@/lib/auth/usernames";
 
 // Server-only. Read env with process.env here (not serverEnv()) so that
@@ -87,6 +88,8 @@ export const auth = betterAuth({
     additionalFields: {
       isSuperAdmin: { type: "boolean", required: false, defaultValue: false, input: false },
       mustChangePassword: { type: "boolean", required: false, defaultValue: false, input: false },
+      termsAcceptedAt: { type: "date", required: false, input: false },
+      termsVersion: { type: "string", required: false, input: false },
     },
     // The master admin address can only be provisioned by the bootstrap (admin method).
     validateUserInfo: ({ user, source }) => {
@@ -128,10 +131,16 @@ export const auth = betterAuth({
       },
       create: {
         before: async (user) => {
+          const data: Record<string, unknown> = {};
           // OAuth sign-ups get a username from the provider handle; keep it unique.
-          if (typeof user.username === "string") {
-            return { data: { ...user, username: await uniqueUsername(user.username) } };
+          if (typeof user.username === "string") data.username = await uniqueUsername(user.username);
+          // Every public sign-up happens under the notice next to the sign-up
+          // buttons. The master admin is created by the bootstrap, not by a person.
+          if (user.email.toLowerCase() !== masterAdminEmail) {
+            data.termsAcceptedAt = new Date();
+            data.termsVersion = LEGAL_VERSION;
           }
+          return { data: { ...user, ...data } };
         },
       },
     },
