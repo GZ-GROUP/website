@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ButtonAnchor } from "@/components/ui/button-link";
 import type { JSONContent } from "@tiptap/core";
 import { getFormatter, getLocale, getTranslations } from "next-intl/server";
@@ -56,9 +57,17 @@ export async function ArticleView({ article }: { article: ArticleDetail }) {
 
       {article.coverImageUrl && (
         <Container size="content" className="mt-12 md:mt-16">
-          {/* Already WebP and size-capped at upload (ADR 0008). */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={article.coverImageUrl} alt={article.coverAlt ?? ""} className="w-full bg-card" />
+          {/* The page's largest element: loaded first, at the width each screen needs. */}
+          <Image
+            src={article.coverImageUrl}
+            alt={article.coverAlt ?? ""}
+            width={article.coverSize?.width ?? 1200}
+            height={article.coverSize?.height ?? 750}
+            sizes="(min-width: 72rem) 1088px, 100vw"
+            loading="eager"
+            fetchPriority="high"
+            className="h-auto w-full bg-card"
+          />
         </Container>
       )}
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Fragment } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import type { JSONContent } from "@tiptap/core";
@@ -52,15 +53,12 @@ function ContentImage({ node }: NodeProps) {
   if (!isMediaSrc(src)) return null; // validated on save; defense in depth
   return (
     <figure>
-      {/* Already re-encoded to WebP and size-capped on upload (lib/storage), so no next/image pass. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={src}
         alt={typeof alt === "string" ? alt : ""}
-        width={typeof width === "number" ? width : undefined}
-        height={typeof height === "number" ? height : undefined}
-        loading="lazy"
-        decoding="async"
+        width={typeof width === "number" ? width : 1200}
+        height={typeof height === "number" ? height : 750}
+        sizes="(min-width: 42rem) 608px, 100vw"
       />
     </figure>
   );

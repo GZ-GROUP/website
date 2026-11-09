@@ -55,7 +55,7 @@ describe("renderArticleContent", () => {
         { type: "image", attrs: { src: "https://evil.example/x.png", alt: "x" } },
       ],
     });
-    expect(out).toContain(`src="${MEDIA}"`);
+    expect(out).toContain(encodeURIComponent(MEDIA)); // through the image optimizer
     expect(out).toContain('width="800"');
     expect(out).not.toContain("evil.example");
   });

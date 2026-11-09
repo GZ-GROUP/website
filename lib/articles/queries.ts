@@ -140,9 +140,14 @@ export type ArticleDetail = ArticleSummary & {
   externalUrl: string | null;
   updatedAt: Date;
   tags: { slug: string; name: string }[];
+  /** Reserves the cover's space so the page doesn't jump when it loads. */
+  coverSize: { width: number; height: number } | null;
 };
 
-function toDetail(row: Prisma.ArticleGetPayload<{ select: typeof articleDetailSelect }>): ArticleDetail {
+async function toDetail(row: Prisma.ArticleGetPayload<{ select: typeof articleDetailSelect }>): Promise<ArticleDetail> {
+  const coverSize = row.coverImageKey
+    ? await prisma.media.findUnique({ where: { key: row.coverImageKey }, select: { width: true, height: true } })
+    : null;
   return {
     ...toSummary(row),
     // Drafts (studio preview) have no publication date yet: show the last edit.
@@ -153,6 +158,7 @@ function toDetail(row: Prisma.ArticleGetPayload<{ select: typeof articleDetailSe
     externalUrl: row.externalUrl,
     updatedAt: row.updatedAt,
     tags: row.tags.map((t) => t.tag),
+    coverSize,
   };
 }
 
