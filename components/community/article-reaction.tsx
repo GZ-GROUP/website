@@ -31,10 +31,9 @@ export function ArticleReaction({
   returnTo: string;
 }) {
   const t = useTranslations("Reactions");
-  const tc = useTranslations("Comments.errors");
   const [confirmed, setConfirmed] = useState(initial);
   const [optimistic, setOptimistic] = useOptimistic(confirmed);
-  const [failed, setFailed] = useState(false);
+  const [problem, setProblem] = useState<"rateLimited" | "failed" | null>(null);
 
   if (!signedIn) {
     return (
@@ -49,12 +48,12 @@ export function ArticleReaction({
 
   function toggle() {
     const liked = !optimistic.liked;
-    setFailed(false);
+    setProblem(null);
     startTransition(async () => {
       setOptimistic({ liked, count: Math.max(0, optimistic.count + (liked ? 1 : -1)) });
       const result = await setLikeAction(articleId, liked).catch(() => null);
       if (result?.ok) setConfirmed({ liked: result.liked, count: result.count });
-      else setFailed(true); // the optimistic value reverts when the transition ends
+      else setProblem(result?.error === "RATE_LIMITED" ? "rateLimited" : "failed"); // the optimistic value reverts when the transition ends
     });
   }
 
@@ -78,7 +77,7 @@ export function ArticleReaction({
         <Count value={optimistic.count} />
       </Button>
       <p role="status" className="text-sm text-destructive">
-        {failed ? tc("UNKNOWN") : ""}
+        {problem ? t(problem) : ""}
       </p>
     </div>
   );

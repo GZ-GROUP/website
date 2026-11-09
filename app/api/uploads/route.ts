@@ -5,6 +5,7 @@ import { mediaUrl } from "@/lib/editor/links";
 import { putObject } from "@/lib/storage/s3";
 import { processImage } from "@/lib/storage/images";
 import { readUploadedFile } from "@/lib/storage/upload-request";
+import { withinRateLimit } from "@/lib/security/rate-limit";
 
 const json = (status: number, body: object) => Response.json(body, { status });
 
@@ -15,6 +16,8 @@ export async function POST(request: Request) {
   if (!session || session.user.mustChangePassword || !canUseStudio(session.user)) {
     return json(404, { error: "NOT_FOUND" });
   }
+
+  if (!(await withinRateLimit("upload", session.user.id))) return json(429, { error: "RATE_LIMITED" });
 
   const file = await readUploadedFile(request);
   if ("status" in file) return json(file.status, { error: file.error });

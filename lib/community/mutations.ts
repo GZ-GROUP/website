@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db";
 import { canComment, canDeleteComment, canLike, type CommunityActor } from "@/lib/community/permissions";
 import { deletionPlan } from "@/lib/community/threads";
 import { COMMENT_RATE_MAX, COMMENT_RATE_WINDOW_MS, commentBodySchema } from "@/lib/community/validation";
+import { withinRateLimit } from "@/lib/security/rate-limit";
 
 // Every community write goes through here. Callers pass the signed-in actor;
 // each function re-checks permissions against what is stored.
@@ -98,6 +99,7 @@ export async function setLike(actor: CommunityActor, articleId: string, liked: b
   const article = await loadArticle(articleId);
   if (!article) return { ok: false, error: "NOT_FOUND" };
   if (!canLike(actor, article.status)) return { ok: false, error: "FORBIDDEN" };
+  if (!(await withinRateLimit("like", actor.id))) return { ok: false, error: "RATE_LIMITED" };
 
   if (liked) {
     await prisma.articleLike.createMany({ data: { articleId, userId: actor.id }, skipDuplicates: true });
@@ -111,6 +113,7 @@ export async function setLike(actor: CommunityActor, articleId: string, liked: b
 export async function recordRead(actor: CommunityActor, articleId: string): Promise<void> {
   const article = await loadArticle(articleId);
   if (article?.status !== "PUBLISHED") return;
+  if (!(await withinRateLimit("read", actor.id))) return;
   const now = new Date();
   await prisma.articleRead.upsert({
     where: { articleId_userId: { articleId, userId: actor.id } },
