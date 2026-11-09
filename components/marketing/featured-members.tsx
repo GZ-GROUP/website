@@ -20,7 +20,6 @@ export function FeaturedMembers({ members }: { members: AuthorSummary[] }) {
           </Avatar>
           <span className="text-xl font-bold">{t("exampleName")}</span>
           <VerifiedBadge provider="GITHUB" />
-          <VerifiedBadge provider="LINKEDIN" />
         </div>
         <figcaption className="mt-4 text-sm text-muted-foreground">{t("exampleCaption")}</figcaption>
       </figure>
