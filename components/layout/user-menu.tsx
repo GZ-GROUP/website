@@ -70,6 +70,7 @@ export function UserMenu() {
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
+        <DropdownMenuItem render={<Link href="/dashboard" />}>{t("dashboard")}</DropdownMenuItem>
         <DropdownMenuItem render={<Link href="/account" />}>{t("account")}</DropdownMenuItem>
         {user.username && <DropdownMenuItem render={<Link href={`/u/${user.username}`} />}>{t("profile")}</DropdownMenuItem>}
         {isWriter && <DropdownMenuItem render={<Link href="/studio" />}>{t("studio")}</DropdownMenuItem>}

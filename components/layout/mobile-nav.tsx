@@ -52,6 +52,9 @@ export function MobileNav() {
             {user ? (
               <>
                 <p className="text-sm text-muted-foreground">{user.name}</p>
+                <ButtonLink variant="outline" href="/dashboard" onClick={close}>
+                  {t("dashboard")}
+                </ButtonLink>
                 <ButtonLink variant="outline" href="/account" onClick={close}>
                   {t("account")}
                 </ButtonLink>
