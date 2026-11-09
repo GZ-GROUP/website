@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { FormField } from "@/components/forms/form-field";
 import { SubmitButton } from "@/components/forms/submit-button";
 import { addCommentAction } from "@/app/[locale]/blog/actions";
-import { MAX_COMMENT_LENGTH } from "@/lib/community/validation";
+import { MAX_COMMENT_LENGTH } from "@/lib/community/limits";
 
 /** The limit only appears once it is relevant. */
 const SHOW_COUNTER_AT = MAX_COMMENT_LENGTH - 200;

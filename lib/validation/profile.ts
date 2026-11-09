@@ -1,8 +1,6 @@
 import { z } from "zod";
 import { isValidUsername } from "@/lib/auth/usernames";
-
-export const OCCUPATIONS = ["STUDENT", "PROFESSOR", "COMPANY", "RESEARCHER", "DEVELOPER", "OTHER"] as const;
-export type OccupationValue = (typeof OCCUPATIONS)[number];
+import { OCCUPATIONS, PASSWORD_MAX, PASSWORD_MIN } from "@/lib/validation/limits";
 
 const trimmedOptional = (max: number) =>
   z
@@ -29,9 +27,6 @@ export const profileSchema = z.object({
 
 export type ProfileInput = z.input<typeof profileSchema>;
 export type ProfileValues = z.output<typeof profileSchema>;
-
-export const PASSWORD_MIN = 10;
-export const PASSWORD_MAX = 128;
 
 export const changePasswordSchema = z
   .object({

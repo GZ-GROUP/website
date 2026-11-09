@@ -26,7 +26,7 @@ import { TagInput } from "@/components/editor/tag-input";
 import { CoverField } from "@/components/editor/cover-field";
 import { CoAuthorPicker, type CoAuthor } from "@/components/editor/co-author-picker";
 import { articleExtensions } from "@/lib/editor/extensions";
-import { CATEGORY_SLUGS, type CategorySlug } from "@/lib/articles/validation";
+import { CATEGORY_SLUGS, type CategorySlug } from "@/lib/articles/limits";
 import type { MutationResult } from "@/lib/articles/mutations";
 import {
   archiveArticleAction,

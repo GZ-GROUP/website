@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { SiteShell } from "@/components/layout/site-shell";
 import { ArticleListing } from "@/components/blog/listing";
 import { parseListFilters } from "@/lib/articles/filters";
-import { CATEGORY_SLUGS } from "@/lib/articles/validation";
+import { CATEGORY_SLUGS } from "@/lib/articles/limits";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Blog");

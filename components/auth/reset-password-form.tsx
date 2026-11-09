@@ -9,7 +9,7 @@ import { FormMessage } from "@/components/forms/form-message";
 import { SubmitButton } from "@/components/forms/submit-button";
 import { authClient } from "@/lib/auth/client";
 import { authErrorKey, type AuthErrorKey } from "@/lib/auth/errors";
-import { PASSWORD_MAX, PASSWORD_MIN } from "@/lib/validation/profile";
+import { PASSWORD_MAX, PASSWORD_MIN } from "@/lib/validation/limits";
 
 export function ResetPasswordForm({ token }: { token: string | null }) {
   const t = useTranslations("Auth");

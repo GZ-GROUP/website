@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { searchWritersAction } from "@/app/[locale]/studio/actions";
-import { MAX_CO_AUTHORS } from "@/lib/articles/validation";
+import { MAX_CO_AUTHORS } from "@/lib/articles/limits";
 
 export type CoAuthor = { username: string; name: string };
 

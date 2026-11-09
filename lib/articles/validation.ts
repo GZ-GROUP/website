@@ -1,12 +1,6 @@
 import { z } from "zod";
+import { CATEGORY_SLUGS, MAX_CO_AUTHORS, MAX_TAGS } from "@/lib/articles/limits";
 import { isHttpsUrl, MEDIA_PATH_PATTERN } from "@/lib/editor/links";
-
-export const CATEGORY_SLUGS = ["software", "research", "experiments", "tutorial", "opinion", "community"] as const;
-export type CategorySlug = (typeof CATEGORY_SLUGS)[number];
-export const SHOWCASE_SLUGS = ["software", "research", "experiments"] as const;
-
-export const MAX_TAGS = 5;
-export const MAX_CO_AUTHORS = 5;
 
 const optionalHttps = z
   .string()

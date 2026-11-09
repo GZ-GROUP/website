@@ -1,5 +1,5 @@
 import type { Prisma } from "@/lib/generated/prisma/client";
-import { CATEGORY_SLUGS, type CategorySlug } from "@/lib/articles/validation";
+import { CATEGORY_SLUGS, type CategorySlug } from "@/lib/articles/limits";
 import { slugify } from "@/lib/articles/slug";
 
 // Public listing filters, parsed from URL search params. Pure and unit-tested;

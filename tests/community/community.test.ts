@@ -2,7 +2,8 @@ import { describe, expect, it } from "vitest";
 import { safeNextPath } from "@/lib/auth/next-path";
 import { canComment, canDeleteComment, canLike } from "@/lib/community/permissions";
 import { buildThreads, deletionPlan, type CommentRow } from "@/lib/community/threads";
-import { commentBodySchema, MAX_COMMENT_LENGTH } from "@/lib/community/validation";
+import { MAX_COMMENT_LENGTH } from "@/lib/community/limits";
+import { commentBodySchema } from "@/lib/community/validation";
 
 const NOW = Date.UTC(2026, 10, 8, 12);
 const reader = { id: "r1", role: "reader" };

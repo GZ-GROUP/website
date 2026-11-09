@@ -9,7 +9,7 @@ import { FormField } from "@/components/forms/form-field";
 import { FormMessage } from "@/components/forms/form-message";
 import { SubmitButton } from "@/components/forms/submit-button";
 import { updateProfile, type FormState } from "@/app/[locale]/account/actions";
-import { OCCUPATIONS } from "@/lib/validation/profile";
+import { OCCUPATIONS } from "@/lib/validation/limits";
 import { USERNAME_MAX, USERNAME_MIN } from "@/lib/auth/usernames";
 
 type ProfileFormProps = {

@@ -6,7 +6,7 @@ import { Container } from "@/components/layout/container";
 import { ArticleEditor } from "@/components/editor/article-editor";
 import { requireStudio } from "@/lib/auth/session";
 import { prisma } from "@/lib/db";
-import type { CategorySlug } from "@/lib/articles/validation";
+import type { CategorySlug } from "@/lib/articles/limits";
 import {
   canArchive,
   canDelete,

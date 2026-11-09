@@ -1,6 +1,6 @@
 import { z } from "zod";
+import { MAX_COMMENT_LENGTH } from "@/lib/community/limits";
 
-export const MAX_COMMENT_LENGTH = 2000;
 /** Anti-spam: at most this many comments per user in the window. */
 export const COMMENT_RATE_MAX = 5;
 export const COMMENT_RATE_WINDOW_MS = 60_000;

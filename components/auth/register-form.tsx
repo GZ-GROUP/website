@@ -8,10 +8,11 @@ import { FormField } from "@/components/forms/form-field";
 import { FormMessage } from "@/components/forms/form-message";
 import { SubmitButton } from "@/components/forms/submit-button";
 import { GithubButton } from "@/components/auth/github-button";
+import { LegalNotice } from "@/components/auth/legal-notice";
 import { authClient } from "@/lib/auth/client";
 import { authErrorKey, type AuthErrorKey } from "@/lib/auth/errors";
 import { USERNAME_MAX, USERNAME_MIN } from "@/lib/auth/usernames";
-import { PASSWORD_MAX, PASSWORD_MIN } from "@/lib/validation/profile";
+import { PASSWORD_MAX, PASSWORD_MIN } from "@/lib/validation/limits";
 
 export function RegisterForm({ githubEnabled }: { githubEnabled: boolean }) {
   const t = useTranslations("Auth");
@@ -99,6 +100,8 @@ export function RegisterForm({ githubEnabled }: { githubEnabled: boolean }) {
           <GithubButton label={t("common.github")} />
         </div>
       )}
+
+      <LegalNotice messageKey="register.legal" />
 
       <p className="text-base text-muted-foreground">
         {t("register.haveAccount")}{" "}

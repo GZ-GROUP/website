@@ -7,7 +7,7 @@ import { FormField } from "@/components/forms/form-field";
 import { FormMessage } from "@/components/forms/form-message";
 import { SubmitButton } from "@/components/forms/submit-button";
 import { changePassword, type FormState } from "@/app/[locale]/account/actions";
-import { PASSWORD_MAX, PASSWORD_MIN } from "@/lib/validation/profile";
+import { PASSWORD_MAX, PASSWORD_MIN } from "@/lib/validation/limits";
 
 const initial: FormState = { status: "idle" };
 

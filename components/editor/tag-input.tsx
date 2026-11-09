@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { X } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { MAX_TAGS } from "@/lib/articles/validation";
+import { MAX_TAGS } from "@/lib/articles/limits";
 
 type TagInputProps = {
   id: string;
