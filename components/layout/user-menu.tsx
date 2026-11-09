@@ -3,7 +3,7 @@
 import { ButtonLink } from "@/components/ui/button-link";
 
 import { useTranslations } from "next-intl";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Pencil, Settings, User } from "lucide-react";
 import { Link, useRouter } from "@/i18n/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,7 @@ import { authClient } from "@/lib/auth/client";
 import { ripple } from "@/lib/ui/ripple";
 
 // Client-side so public pages stay static: the session is read in the browser.
-// Showing "Admin" here is cosmetic; /admin authorizes on the server.
+// Showing "Studio" here is cosmetic; /studio authorizes on the server.
 export function UserMenu() {
   const t = useTranslations("Header");
   const router = useRouter();
@@ -42,8 +42,7 @@ export function UserMenu() {
 
   const { user } = data;
   const roles = (user.role ?? "").split(",");
-  const isAdmin = roles.includes("admin");
-  const isWriter = isAdmin || roles.includes("writer");
+  const isWriter = roles.includes("admin") || roles.includes("writer");
 
   return (
     <DropdownMenu>
@@ -70,11 +69,22 @@ export function UserMenu() {
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuItem render={<Link href="/dashboard" />}>{t("dashboard")}</DropdownMenuItem>
-        <DropdownMenuItem render={<Link href="/account" />}>{t("account")}</DropdownMenuItem>
-        {user.username && <DropdownMenuItem render={<Link href={`/u/${user.username}`} />}>{t("profile")}</DropdownMenuItem>}
-        {isWriter && <DropdownMenuItem render={<Link href="/studio" />}>{t("studio")}</DropdownMenuItem>}
-        {isAdmin && <DropdownMenuItem render={<Link href="/admin" />}>{t("admin")}</DropdownMenuItem>}
+        {user.username && (
+          <DropdownMenuItem render={<Link href={`/u/${user.username}`} />}>
+            <User aria-hidden />
+            {t("profile")}
+          </DropdownMenuItem>
+        )}
+        {isWriter && (
+          <DropdownMenuItem render={<Link href="/studio" />}>
+            <Pencil aria-hidden />
+            {t("studio")}
+          </DropdownMenuItem>
+        )}
+        <DropdownMenuItem render={<Link href="/account" />}>
+          <Settings aria-hidden />
+          {t("account")}
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={async () => {

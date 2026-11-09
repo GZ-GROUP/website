@@ -4,7 +4,7 @@ import { ButtonLink } from "@/components/ui/button-link";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Menu } from "lucide-react";
+import { Menu, Pencil, Settings, User } from "lucide-react";
 import { Link, useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -24,8 +24,7 @@ export function MobileNav() {
   const { data } = authClient.useSession();
   const user = data?.user;
   const roles = (user?.role ?? "").split(",");
-  const isAdmin = roles.includes("admin");
-  const isWriter = isAdmin || roles.includes("writer");
+  const isWriter = roles.includes("admin") || roles.includes("writer");
 
   return (
     <div className="flex items-center gap-1 lg:hidden">
@@ -52,22 +51,22 @@ export function MobileNav() {
             {user ? (
               <>
                 <p className="text-sm text-muted-foreground">{user.name}</p>
-                <ButtonLink variant="outline" href="/dashboard" onClick={close}>
-                  {t("dashboard")}
-                </ButtonLink>
-                <ButtonLink variant="outline" href="/account" onClick={close}>
-                  {t("account")}
-                </ButtonLink>
+                {user.username && (
+                  <ButtonLink variant="outline" href={`/u/${user.username}`} onClick={close}>
+                    <User data-icon="inline-start" aria-hidden />
+                    {t("profile")}
+                  </ButtonLink>
+                )}
                 {isWriter && (
                   <ButtonLink variant="outline" href="/studio" onClick={close}>
+                    <Pencil data-icon="inline-start" aria-hidden />
                     {t("studio")}
                   </ButtonLink>
                 )}
-                {isAdmin && (
-                  <ButtonLink variant="outline" href="/admin" onClick={close}>
-                    {t("admin")}
-                  </ButtonLink>
-                )}
+                <ButtonLink variant="outline" href="/account" onClick={close}>
+                  <Settings data-icon="inline-start" aria-hidden />
+                  {t("account")}
+                </ButtonLink>
                 <Button
                   variant="ghost"
                   onClick={async () => {
