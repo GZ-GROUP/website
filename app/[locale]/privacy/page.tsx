@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { LEGAL_LINK, LegalContact, LegalPage, LegalSection } from "@/components/legal/legal-page";
 import { serverEnv } from "@/lib/env";
 
 // The contact address is a runtime variable, unavailable when the image is built.
 export const dynamic = "force-dynamic";
 
-const TREATMENTS = ["account", "profile", "activity", "reading", "linked", "technical"] as const;
+const TREATMENTS = ["account", "profile", "activity", "reading", "linked", "contact", "technical"] as const;
 const FIELDS = ["data", "purpose", "basis", "retention"] as const;
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -54,7 +55,16 @@ export default async function PrivacyPage() {
 
       <LegalSection title={t("rights.title")}>
         <p>{t("rights.body")}</p>
-        <p>{t.rich("rights.body2", { contact: () => contact })}</p>
+        <p>
+          {t.rich("rights.body2", {
+            contact: () => contact,
+            form: (text) => (
+              <Link href="/contact" className={LEGAL_LINK}>
+                {text}
+              </Link>
+            ),
+          })}
+        </p>
         <p>
           {t.rich("rights.body3", {
             antai: (text) => (

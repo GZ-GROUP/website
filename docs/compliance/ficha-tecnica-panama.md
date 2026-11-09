@@ -29,6 +29,7 @@ Al cambiar el texto de `/privacy` o `/terms`, actualizar `LEGAL_VERSION` en `lib
 | Likes | Usuario y artículo | `article_likes` | Relación contractual | Hasta quitar el like o cancelar |
 | Historial de lectura | Usuario, artículo, fechas | `article_reads` | Relación contractual | Mientras exista la cuenta |
 | Identidad vinculada | ID de GitHub, verificación | `accounts`, `identity_verifications` | Consentimiento | Hasta desvincular |
+| Formulario de contacto | Nombre, email, teléfono, organización, motivo, asunto, mensaje | No se guarda: llega por correo al admin maestro | Consentimiento (casilla) | Hasta resolver la consulta; borrar el correo después |
 | Sesiones | Token, IP, navegador | `sessions` | Interés legítimo | Caducan a los 7 días sin actividad |
 | Límites de uso | Clave por usuario o IP, contadores | `rate_limits` | Interés legítimo | Se sobrescriben en cada ventana |
 | Aceptación legal | Fecha y versión | `users.termsAcceptedAt`, `users.termsVersion` | Obligación de trazabilidad | Mientras exista la cuenta |
@@ -40,7 +41,7 @@ No hay datos sensibles previstos, decisiones automatizadas ni analítica de terc
 
 ## Protocolo de derechos ARCO
 
-Canal: `LEGAL_CONTACT_EMAIL`. Gratis para el titular o su representante.
+Canales: `LEGAL_CONTACT_EMAIL` y el formulario `/contact` (motivo Privacidad y datos). Gratis para el titular o su representante.
 
 | Solicitud | Plazo | Cómo se atiende hoy |
 |---|---|---|
