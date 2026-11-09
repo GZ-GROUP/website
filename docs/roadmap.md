@@ -45,7 +45,7 @@ Deferred: LinkedIn (app pending), Content-Security-Policy (Phase 6), 2FA for the
 - **Workflow:** DRAFT → PUBLISHED → ARCHIVED, published directly with no approval step. The slug is fixed at first publication. Admin moderation lives in `/admin/articles`.
 - **Studio:** `/studio`, with a TipTap 3 editor (ADR 0007), preview, and image uploads to S3/RustFS (ADR 0008).
 - **Public pages:**
-  - `/blog` and `/projects` with search, category and tag filters, sort and pagination.
+  - `/blog` with search, category and tag filters, sort and pagination. `/projects` redirects to it.
   - Article pages with a verified byline and server-side code highlighting.
   - Live data on the landing (ISR) and on author profiles.
 

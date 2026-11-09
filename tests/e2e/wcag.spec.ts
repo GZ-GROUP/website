@@ -41,7 +41,7 @@ for (const width of [390, 1440]) {
     await page.goto("/blog");
     const firstArticle = await page.getByRole("main").getByRole("heading", { level: 2 }).getByRole("link").first().getAttribute("href");
     const discussed = await articleWithComments(page);
-    const pages = ["/", "/en", "/blog", "/projects", "/team", "/contact", "/privacy", "/terms", "/en/privacy", "/e2e-error", "/login", "/register", "/forgot-password", ...(firstArticle ? [firstArticle] : []), discussed];
+    const pages = ["/", "/en", "/blog", "/team", "/contact", "/privacy", "/terms", "/en/privacy", "/e2e-error", "/login", "/register", "/forgot-password", ...(firstArticle ? [firstArticle] : []), discussed];
     const failures: Record<string, unknown> = {};
     for (const path of pages) {
       await page.goto(path);

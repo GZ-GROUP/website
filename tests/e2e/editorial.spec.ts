@@ -110,7 +110,7 @@ test.describe.serial("editorial workflow", () => {
     await page.context().close();
   });
 
-  test("the article appears on the blog, projects, landing and the author's profile", async ({ page }) => {
+  test("the article appears on the blog, the landing and the author's profile", async ({ page }) => {
     await page.goto(articleUrl);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(title);
     await expect(page.getByText("Este proyecto implementa un lexer")).toBeVisible();
@@ -128,7 +128,7 @@ test.describe.serial("editorial workflow", () => {
     expect(media.headers()["content-type"]).toBe("image/webp");
     expect(media.headers()["cache-control"]).toContain("immutable");
 
-    for (const path of ["/blog", "/projects", "/", `/u/${author.username}`, `/u/${coAuthor.username}`]) {
+    for (const path of ["/blog", "/", `/u/${author.username}`, `/u/${coAuthor.username}`]) {
       await page.goto(path);
       await expect(page.getByRole("link", { name: title })).toBeVisible();
     }

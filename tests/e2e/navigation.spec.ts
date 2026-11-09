@@ -13,10 +13,12 @@ async function menuItems(page: Page) {
   return items.allTextContents();
 }
 
-test("the navbar has no Blog and says Nosotros; the footer keeps Blog", async ({ page }) => {
+test("the navbar offers Blog and Nosotros, and Projects is gone everywhere", async ({ page }) => {
   await page.goto("/");
   const banner = page.getByRole("banner");
-  await expect(banner.getByRole("link", { name: "Blog", exact: true })).toHaveCount(0);
+  await expect(banner.getByRole("button", { name: "Blog", exact: true })).toBeVisible();
+  await expect(banner.getByText("Proyectos")).toHaveCount(0);
+  await expect(page.getByRole("contentinfo").getByRole("link", { name: "Proyectos" })).toHaveCount(0);
   await expect(banner.getByRole("link", { name: "Equipo" })).toHaveCount(0);
   await expect(banner.getByRole("link", { name: "Nosotros" })).toBeVisible();
   await expect(page.getByRole("contentinfo").getByRole("link", { name: "Blog", exact: true })).toBeVisible();
@@ -68,7 +70,8 @@ test("the phone menu follows the same order", async ({ page }) => {
   await page.getByRole("button", { name: "Abrir menú" }).click();
 
   const dialog = page.getByRole("dialog");
-  await expect(dialog.getByRole("link", { name: "Blog", exact: true })).toHaveCount(0);
+  await expect(dialog.getByRole("link", { name: "Blog", exact: true })).toBeVisible();
+  await expect(dialog.getByRole("link", { name: "Proyectos" })).toHaveCount(0);
   await expect(dialog.getByRole("link", { name: "Mi perfil" })).toBeVisible();
   await expect(dialog.getByRole("link", { name: "Ajustes" })).toBeVisible();
   await expect(dialog.getByRole("link", { name: "Mi actividad" })).toHaveCount(0);
@@ -89,4 +92,37 @@ test("the open menu and the tabs fit at every width", async ({ page }) => {
   await expect(tabs(page)).toHaveCount(3);
   await page.screenshot({ path: ".e2e/screens/account-tabs-390.png" });
   expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBe(0);
+});
+
+test("old project links land on the blog, keeping their filter", async ({ page }) => {
+  await page.goto("/projects?category=software");
+  await expect(page).toHaveURL(/\/blog\?category=software$/);
+  await page.goto("/en/projects");
+  await expect(page).toHaveURL(/\/en\/blog$/);
+});
+
+test("the Blog menu opens a category of the blog", async ({ page }) => {
+  // A page with no other Software link. The panel opens on hover, outside the header.
+  await page.goto("/contact");
+  await page.getByRole("banner").getByRole("button", { name: "Blog", exact: true }).hover();
+  await page.getByRole("link", { name: /^Software/ }).click();
+  await expect(page).toHaveURL(/\/blog\?category=software$/);
+});
+
+test("the home page invites people to meet the members, with the mascot", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("img", { name: /mascota de GZ Group/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Quiénes escriben" })).toHaveCount(0);
+  await page.getByRole("link", { name: "Conocer a los miembros" }).click();
+  await expect(page).toHaveURL(/\/team$/);
+});
+
+test("login and sign-up show the mascot; password recovery keeps the logo", async ({ page }) => {
+  const mascot = (name: string) => page.getByRole("main").locator(`img[src*="${name}"]`);
+  await page.goto("/login");
+  await expect(mascot("mascot-tech")).toBeVisible();
+  await page.goto("/register");
+  await expect(mascot("mascot-coding")).toBeVisible();
+  await page.goto("/forgot-password");
+  await expect(page.getByRole("main").locator('img[src*="mascot"]')).toHaveCount(0);
 });

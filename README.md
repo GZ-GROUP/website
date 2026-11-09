@@ -2,7 +2,7 @@
 
 Editorial platform for GZ Group, a community of emerging software developers: a place to publish, discover and discuss members' software projects, research and experiments, with verified authorship.
 
-> **Status:** Phase 6 (hardening) done. The bilingual landing page, accounts, profiles, role management, the writers' studio (rich-text editor, images, co-authors, publishing), the public blog and projects pages, comments, likes, the reader dashboard, the team page and the legal pages exist. Deployment is postponed; see the [roadmap](docs/roadmap.md).
+> **Status:** Phase 6 (hardening) done. The bilingual landing page, accounts, profiles, role management, the writers' studio (rich-text editor, images, co-authors, publishing), the public blog, comments, likes, the reader dashboard, the team page and the legal pages exist. Deployment is postponed; see the [roadmap](docs/roadmap.md).
 
 ## Stack
 

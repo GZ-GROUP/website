@@ -26,7 +26,6 @@ const SENT = "Mensaje enviado.";
 test("the navbar, the hero and the footer lead to the contact page", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("navigation", { name: "Explorar" }).getByRole("link")).toHaveText([
-    "Proyectos",
     "Blog",
     "Nosotros",
     "Contáctanos",
