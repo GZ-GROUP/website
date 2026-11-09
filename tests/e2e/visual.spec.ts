@@ -32,11 +32,17 @@ for (const viewport of VIEWPORTS) {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     const user = newUser();
     await register(page, user);
-    for (const path of ["/account", `/u/${user.username}`]) {
+    for (const path of ["/account", "/dashboard", "/team", `/u/${user.username}`]) {
       await page.goto(path);
       await page.waitForLoadState("load");
       await page.screenshot({ path: shot(path.startsWith("/u/") ? "/profile" : path, viewport.name), fullPage: true });
     }
+
+    await page.goto(`/blog?q=${encodeURIComponent("Notas de comunidad")}`);
+    await page.getByRole("main").getByRole("heading", { level: 2 }).getByRole("link").first().click();
+    await page.waitForURL(/\/blog\/.+/);
+    await page.locator("#comments").scrollIntoViewIfNeeded();
+    await page.screenshot({ path: shot("/article-comments", viewport.name), fullPage: true });
 
     await page.context().clearCookies();
     await signIn(page, E2E_ADMIN.email, ADMIN_PASSWORD);
@@ -44,5 +50,8 @@ for (const viewport of VIEWPORTS) {
     await page.goto("/admin");
     await page.waitForLoadState("load");
     await page.screenshot({ path: shot("/admin", viewport.name), fullPage: true });
+    await page.goto("/admin/comments");
+    await page.waitForLoadState("load");
+    await page.screenshot({ path: shot("/admin/comments", viewport.name), fullPage: true });
   });
 }
