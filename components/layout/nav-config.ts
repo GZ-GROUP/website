@@ -7,10 +7,16 @@ import type { ShowcaseCategorySlug } from "@/lib/content/types";
 export const PRIMARY_NAV = [
   { key: "projects", href: "/projects" },
   { key: "team", href: "/team" },
+  { key: "contact", href: "/contact" },
 ] as const;
 
 /** The footer keeps Blog: tutorials and opinion pieces are not listed under Projects. */
-export const FOOTER_NAV = [{ key: "blog", href: "/blog" }, ...PRIMARY_NAV] as const;
+export const FOOTER_NAV = [
+  { key: "projects", href: "/projects" },
+  { key: "blog", href: "/blog" },
+  { key: "team", href: "/team" },
+  { key: "contact", href: "/contact" },
+] as const;
 
 export const SHOWCASE_CATEGORIES: ReadonlyArray<{
   slug: ShowcaseCategorySlug;

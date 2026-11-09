@@ -82,6 +82,18 @@ export function HeaderNav() {
             {t("team")}
           </NavigationMenuLink>
         </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            render={<Link href="/contact" />}
+            className={NAV_ITEM}
+            data-active={section("/contact")}
+            aria-current={section("/contact") ? "page" : undefined}
+            onPointerDown={ripple}
+          >
+            {t("contact")}
+          </NavigationMenuLink>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );

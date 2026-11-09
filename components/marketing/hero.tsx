@@ -33,7 +33,7 @@ export function Hero() {
             <ButtonLink size="lg" href="/projects">
               {t("primaryCta")}
             </ButtonLink>
-            <ButtonLink size="lg" variant="outline" href="/blog">
+            <ButtonLink size="lg" variant="outline" href="/contact">
               {t("secondaryCta")}
             </ButtonLink>
           </div>
