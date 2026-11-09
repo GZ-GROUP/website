@@ -29,6 +29,9 @@ const env = {
   S3_SECRET_ACCESS_KEY: process.env.E2E_S3_SECRET_ACCESS_KEY ?? "gz_dev_secret_change_me",
   S3_BUCKET: "gz-media-e2e",
   S3_FORCE_PATH_STYLE: "true",
+  LEGAL_CONTACT_EMAIL: "privacidad@gzgroup.test",
+  // Enables the route that throws, to test the error screen in a production build.
+  E2E_ERROR_ROUTE: "1",
   GITHUB_CLIENT_ID: "",
   GITHUB_CLIENT_SECRET: "",
   NEXT_TELEMETRY_DISABLED: "1",

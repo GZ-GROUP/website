@@ -4,7 +4,8 @@ import { newUser, register } from "./helpers";
 
 test.describe.configure({ timeout: 60_000 });
 
-const COOLDOWN = 5_200;
+// The limit is 5 s of wall-clock time; the margin absorbs clock corrections in WSL.
+const COOLDOWN = 7_000;
 
 async function photo(background: string) {
   const buffer = await sharp({ create: { width: 1200, height: 600, channels: 3, background } }).png().toBuffer();

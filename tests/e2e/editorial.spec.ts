@@ -119,8 +119,11 @@ test.describe.serial("editorial workflow", () => {
     const cover = page.getByRole("img", { name: "Diagrama del pipeline del compilador" });
     await expect(cover).toBeVisible();
     const src = await cover.getAttribute("src");
-    expect(src).toMatch(/^\/media\/articles\/[0-9a-f-]{36}\.webp$/);
-    const media = await page.request.get(src!);
+    expect(src).toContain("/_next/image?url=");
+    expect((await page.request.get(src!)).status()).toBe(200);
+    const original = new URL(src!, "http://localhost").searchParams.get("url")!;
+    expect(original).toMatch(/^\/media\/articles\/[0-9a-f-]{36}\.webp$/);
+    const media = await page.request.get(original);
     expect(media.status()).toBe(200);
     expect(media.headers()["content-type"]).toBe("image/webp");
     expect(media.headers()["cache-control"]).toContain("immutable");
