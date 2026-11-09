@@ -15,6 +15,8 @@ Documento interno que pide la normativa: registros, protocolos y reglas sobre lo
 - [ ] Confirmar el **país del servidor** y, si está fuera de Panamá, documentar la garantía de la transferencia (arts. 51 a 53 del Decreto 285).
 - [ ] Contrato de custodio con el proveedor de alojamiento (arts. 47 a 49 del Decreto 285).
 - [ ] Configurar la **rotación de logs a 90 días como máximo**: es lo que promete la política.
+- [ ] Construir la imagen con `NEXT_PUBLIC_APP_URL` apuntando al dominio real: canonical, sitemap y tarjetas sociales dependen de él.
+- [ ] Dar de alta el sitio y el sitemap en Google Search Console y Bing Webmaster Tools.
 - [ ] Programar la limpieza de sesiones vencidas (`sessions`) y definir la conservación de copias de seguridad.
 
 Al cambiar el texto de `/privacy` o `/terms`, actualizar `LEGAL_VERSION` en `lib/legal/version.ts`.

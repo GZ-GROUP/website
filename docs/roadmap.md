@@ -75,6 +75,10 @@ Details in ADR 0010.
 
 Waiting for deployment: preview environments, external uptime monitoring, log rotation. Deferred: an external error service [OPTIONAL], CSP with nonces, 2FA for the master admin and self-service account deletion [POST-MVP].
 
+## Pre-launch SEO ✅
+
+`robots.txt`, `sitemap.xml`, `llms.txt`, canonical and hreflang, social cards and structured data. Details in ADR 0011.
+
 ## Phase 7 — Advanced platform [FUTURE]
 
 Editorial workflow (`IN_REVIEW`/`APPROVED`), versioning, advanced search, analytics, notifications, recommendations, theme toggle, localized URL slugs [OPTIONAL], Storybook when the component count justifies it [OPTIONAL].
