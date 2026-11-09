@@ -84,6 +84,7 @@ Square corners everywhere (shadcn "Sera" preset): controls, cards, media. Avatar
   - Community: `ArticleReaction`, `CommentSection`, `CommentCard`, `CommentForm` and `DeleteComment`. Comments have no box around them; hierarchy and space separate them. Deleting confirms in place, in two steps.
   - `AvatarField`: the profile photo in Settings. It saves on its own, separately from the profile form.
   - `LegalPage` and `LegalSection`: legal text in the reading measure, in full ink.
+  - `AccountNav`: the tabs in Settings, with the same active style as `AdminNav`. Administration appears only for the master admin.
   - `WriterCard`: a person credited on published work, on the landing and `/team`.
   - Dashboard (`components/dashboard/activity`): `Metric` sets numbers as type, never as tiles; `ActivityPanel` keeps its heading when empty.
   - Landing sections in `components/marketing`

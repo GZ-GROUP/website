@@ -64,7 +64,7 @@ test("no page triggers a Content-Security-Policy violation", async ({ page }) =>
   for (const path of ["/", "/en", "/blog", "/projects", "/team", "/privacy", "/terms", "/login", "/register", article]) await visit(path);
 
   await promotedWriter(page);
-  for (const path of ["/account", "/dashboard", "/studio", article]) await visit(path);
+  for (const path of ["/account", "/account/activity", "/studio", article]) await visit(path);
 
   // The editor, with an image upload: the most script- and style-heavy screen.
   await page.goto("/studio");

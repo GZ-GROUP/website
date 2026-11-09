@@ -126,7 +126,7 @@ test.describe.serial("community", () => {
 
   test("the dashboard reports exactly what the Reader did", async ({ browser }) => {
     const page = await signedIn(browser, reader.email, reader.password);
-    await page.goto("/dashboard");
+    await page.goto("/account/activity");
     await expect(metric(page, "Artículos vistos")).toHaveText("1");
     await expect(metric(page, "Likes dados")).toHaveText("1");
     await expect(metric(page, "Comentarios hechos")).toHaveText("2");
@@ -137,7 +137,7 @@ test.describe.serial("community", () => {
 
   test("a new account starts at zero, with honest empty states", async ({ browser }) => {
     const page = await signedIn(browser, other.email, other.password);
-    await page.goto("/dashboard");
+    await page.goto("/account/activity");
     await expect(metric(page, "Artículos vistos")).toHaveText("0");
     await expect(page.getByText("Los artículos que abras aparecerán aquí.")).toBeVisible();
     await page.context().close();
@@ -224,7 +224,7 @@ test.describe.serial("community", () => {
       await page.goto("/team");
       await expect(page.getByRole("link", { name: writer.name })).toBeVisible({ timeout: 1_000 });
     }).toPass({ timeout: 20_000 });
-    await expect(page.getByRole("heading", { name: "Equipo", level: 1 })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Nosotros", level: 1 })).toBeVisible();
     await expect(page.getByText("1 publicación").first()).toBeVisible();
   });
 

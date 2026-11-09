@@ -57,7 +57,7 @@ Details in ADR 0009.
 
 - **Comments:** plain text with one level of replies. Authors and admins delete them, including from `/admin/comments`.
 - **Likes:** one per user and article.
-- **`/dashboard`:** articles viewed, likes given and comments written, all counted from stored rows.
+- **`/account/activity`:** articles viewed, likes given and comments written, all counted from stored rows.
 - **Profiles:** real statistics, separate authored and co-authored lists, and recent comments. Reading history stays private.
 - **`/team`:** everyone credited on published work.
 

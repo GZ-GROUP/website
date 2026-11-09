@@ -32,7 +32,7 @@ for (const viewport of VIEWPORTS) {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     const user = newUser();
     await register(page, user);
-    for (const path of ["/account", "/dashboard", "/team", `/u/${user.username}`]) {
+    for (const path of ["/account", "/account/activity", "/team", `/u/${user.username}`]) {
       await page.goto(path);
       await page.waitForLoadState("load");
       await page.screenshot({ path: shot(path.startsWith("/u/") ? "/profile" : path, viewport.name), fullPage: true });

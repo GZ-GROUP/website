@@ -58,7 +58,7 @@ for (const width of [390, 1440]) {
     const user = newUser();
     await register(page, user);
     const discussed = await articleWithComments(page);
-    for (const path of ["/account", "/account/password", "/dashboard", `/u/${user.username}`, discussed]) {
+    for (const path of ["/account", "/account/password", "/account/activity", `/u/${user.username}`, discussed]) {
       await page.goto(path);
       await page.waitForLoadState("load");
       const violations = await scan(page, `reader-${width}${path.replaceAll("/", "_")}`);
