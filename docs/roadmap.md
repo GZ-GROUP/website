@@ -63,9 +63,17 @@ Details in ADR 0009.
 
 Deferred: editing and reporting comments, likes on comments, clearing the reading history [POST-MVP].
 
-## Phase 6 — Hardening and observability [POST-MVP]
+## Phase 6 — Hardening and observability [POST-MVP] ✅
 
-Rate limiting, error tracking, uptime/log monitoring, security scanning in CI, image optimization and upload pipeline, performance budgets, preview environments, legal pages.
+Details in ADR 0010.
+
+- **Security:** Content-Security-Policy without nonces, stricter headers, and limits on likes, reads and uploads.
+- **Observability:** structured JSON logs, every server error recorded with a reference, error screens, `/api/health` and a container `HEALTHCHECK`.
+- **CI:** CodeQL, secret scanning, image scanning and Dependabot.
+- **Performance:** article images through `next/image`, and budgets for LCP, CLS and JavaScript in the e2e suite.
+- **Legal:** `/privacy` and `/terms` for Panama, with recorded acceptance. What must be reviewed before launch is in `docs/compliance/ficha-tecnica-panama.md`.
+
+Waiting for deployment: preview environments, external uptime monitoring, log rotation. Deferred: an external error service [OPTIONAL], CSP with nonces, 2FA for the master admin and self-service account deletion [POST-MVP].
 
 ## Phase 7 — Advanced platform [FUTURE]
 
