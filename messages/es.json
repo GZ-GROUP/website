@@ -1,6 +1,6 @@
 {
   "Metadata": {
-    "title": "GZ Group — Software hecho por talento emergente",
+    "title": "GZ Group | Software hecho por talento emergente",
     "description": "Comunidad de desarrolladores que publica proyectos, investigaciones y experimentos de software, explicados por quienes los construyeron."
   },
   "Common": {
@@ -24,7 +24,8 @@
     "profile": "Mi perfil",
     "signOut": "Cerrar sesión",
     "userMenu": "Menú de tu cuenta",
-    "studio": "Estudio"
+    "studio": "Estudio",
+    "contact": "Contáctanos"
   },
   "Categories": {
     "software": {
@@ -37,7 +38,7 @@
     },
     "experiments": {
       "title": "Experimentos",
-      "description": "Prototipos en fase temprana: ideas que todavía se están probando."
+      "description": "Prototipos que todavía se están probando."
     },
     "tutorial": {
       "title": "Tutoriales",
@@ -62,12 +63,12 @@
     "title": "Software hecho por talento emergente",
     "lead": "GZ Group es una comunidad de desarrolladores que publica sus proyectos, investigaciones y experimentos de software, explicados por quienes los construyeron.",
     "primaryCta": "Explorar proyectos",
-    "secondaryCta": "Leer el blog"
+    "secondaryCta": "Contáctanos"
   },
   "Home": {
     "publish": {
       "title": "Qué vas a encontrar",
-      "editorial": "Además, el blog reúne tutoriales, opinión y noticias de la comunidad.",
+      "editorial": "El blog reúne tutoriales, opinión y noticias de la comunidad.",
       "editorialCta": "Ir al blog"
     },
     "latest": {
@@ -75,20 +76,20 @@
       "projects": "Proyectos",
       "articles": "Artículos",
       "emptyTitle": "Todavía no hay publicaciones",
-      "emptyBody": "Los primeros proyectos y artículos están en preparación. Mientras tanto, el código de la comunidad vive en GitHub.",
+      "emptyBody": "Los primeros proyectos y artículos están en preparación. El código de la comunidad ya está en GitHub.",
       "emptyList": "Nada publicado en esta sección todavía.",
       "githubCta": "Ver GZ Group en GitHub"
     },
     "members": {
       "title": "Quiénes escriben",
-      "body": "Los artículos los firman integrantes de GZ Group. Cada autor puede vincular su cuenta de GitHub o LinkedIn, y su firma muestra qué cuentas verificó.",
+      "body": "Los artículos los firman integrantes de GZ Group. Cada autor puede vincular su cuenta de GitHub, y su firma lo muestra.",
       "exampleCaption": "Así se ve una firma verificada",
       "exampleName": "Tu nombre",
       "empty": "Los perfiles de los integrantes se publicarán junto con los primeros artículos."
     },
     "cta": {
       "title": "Revisa lo que construimos",
-      "body": "Crea una cuenta para comentar, reaccionar y seguir lo que publica la comunidad.",
+      "body": "Crea una cuenta para comentar y dar like a lo que publica la comunidad.",
       "primary": "Crear cuenta",
       "secondary": "Ver el código en GitHub"
     }
@@ -127,6 +128,17 @@
       "body": "Confirma que este email es tuyo para completar tu cuenta.",
       "cta": "Confirmar email",
       "footnote": "Si no creaste una cuenta en GZ Group, ignora este correo."
+    },
+    "contact": {
+      "mailSubject": "Contacto web: {subject}",
+      "intro": "Alguien escribió desde el formulario de contacto. Responde a este correo para contestarle.",
+      "name": "Nombre",
+      "email": "Email",
+      "phone": "Teléfono",
+      "organization": "Organización",
+      "reason": "Motivo",
+      "subject": "Asunto",
+      "message": "Mensaje"
     }
   },
   "Auth": {
@@ -150,7 +162,7 @@
     "register": {
       "metaTitle": "Crear cuenta",
       "title": "Crea tu cuenta",
-      "lead": "Con una cuenta puedes comentar, reaccionar y seguir lo que publica la comunidad.",
+      "lead": "Con una cuenta puedes comentar y dar like a lo que publica la comunidad.",
       "name": "Nombre",
       "username": "Nombre de usuario",
       "usernameHint": "De 3 a 30 caracteres: minúsculas, números, _ y punto.",
@@ -394,7 +406,7 @@
   },
   "Editor": {
     "metaTitle": "Editor",
-    "back": "Studio",
+    "back": "Estudio",
     "titlePlaceholder": "Título del artículo",
     "excerptPlaceholder": "Resumen en una o dos frases. Aparece en las tarjetas y en buscadores.",
     "titleLabel": "Título",
@@ -533,8 +545,8 @@
     "confirmDelete": "¿Eliminar este comentario?",
     "confirm": "Sí, eliminar",
     "removed": "Comentario eliminado",
-    "empty": "Todavía no hay comentarios. El tuyo puede ser el primero.",
-    "signInLead": "Inicia sesión para unirte a la conversación.",
+    "empty": "Todavía no hay comentarios.",
+    "signInLead": "Inicia sesión para comentar.",
     "signIn": "Ingresar",
     "loadMore": "Ver más comentarios",
     "remaining": "{count, plural, one {Queda # carácter} other {Quedan # caracteres}}",
@@ -641,6 +653,13 @@
           "basis": "Tu consentimiento, que retiras desvinculando la cuenta en Ajustes.",
           "retention": "Hasta que la desvincules."
         },
+        "contact": {
+          "name": "Formulario de contacto",
+          "data": "Nombre, email, teléfono y organización si los indicas, motivo, asunto y mensaje. Un contador temporal asociado a tu dirección IP limita los envíos.",
+          "purpose": "Responder tu mensaje. Llega por correo a GZ Group y no se guarda en la base de datos del sitio.",
+          "basis": "Tu consentimiento, que das al marcar la casilla del formulario.",
+          "retention": "Hasta resolver tu consulta."
+        },
         "technical": {
           "name": "Datos técnicos y de seguridad",
           "data": "Dirección IP y navegador de tus sesiones, y registros de errores del servidor, que no incluyen tu email ni tu contraseña.",
@@ -661,7 +680,7 @@
       "rights": {
         "title": "Tus derechos",
         "body": "Tienes derecho a acceder a tus datos, rectificarlos, cancelarlos, oponerte a su tratamiento y recibir una copia en un formato de uso común (portabilidad). También puedes retirar tu consentimiento en cualquier momento, sin que eso afecte lo ya realizado.",
-        "body2": "Muchos cambios los puedes hacer tú en Ajustes. Para lo demás, escríbenos a <contact></contact>. Es gratis. Responderemos en un máximo de 10 días hábiles las solicitudes de acceso y de 5 días hábiles las de rectificación o cancelación.",
+        "body2": "Muchos cambios los puedes hacer tú en Ajustes. Para lo demás, escríbenos a <contact></contact> o usa el <form>formulario de contacto</form>. Es gratis. Responderemos en un máximo de 10 días hábiles las solicitudes de acceso y de 5 días hábiles las de rectificación o cancelación.",
         "body3": "Si no estás conforme con nuestra respuesta, puedes acudir a la Dirección de Protección de Datos Personales de la <antai>ANTAI</antai> (protecciondedatos@antai.gob.pa) o a los tribunales de justicia."
       },
       "automated": {
@@ -744,5 +763,74 @@
     "account": "Cuenta",
     "activity": "Mi actividad",
     "admin": "Administración"
+  },
+  "Contact": {
+    "metaTitle": "Contáctanos",
+    "title": "Contáctanos",
+    "lead": "Escríbenos y tu mensaje llegará directamente a GZ Group.",
+    "form": {
+      "name": "Nombre",
+      "email": "Email",
+      "phone": "Teléfono (opcional)",
+      "organization": "Organización (opcional)",
+      "reason": "Motivo",
+      "reasonPlaceholder": "Elige un motivo",
+      "reasons": {
+        "general": "Consulta general",
+        "account": "Soporte con mi cuenta",
+        "proposal": "Propuesta para GZ Group",
+        "privacy": "Privacidad y datos",
+        "other": "Otro"
+      },
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "consent": "Leí la <privacy>Política de privacidad</privacy> y acepto que usen estos datos para responderme.",
+      "submit": "Enviar mensaje",
+      "submitting": "Enviando…",
+      "success": "Mensaje enviado. Si hace falta una respuesta, te escribiremos a tu email.",
+      "sendAnother": "Enviar otro mensaje",
+      "errors": {
+        "REQUIRED": "Este campo es obligatorio.",
+        "TOO_LONG": "Este texto es demasiado largo.",
+        "INVALID_EMAIL": "Ese email no es válido.",
+        "INVALID_PHONE": "Ese teléfono no es válido.",
+        "INVALID_TEXT": "Este campo debe ir en una sola línea.",
+        "MESSAGE_TOO_SHORT": "Escribe al menos 10 caracteres.",
+        "CONSENT_REQUIRED": "Debes aceptar la Política de privacidad para enviar el mensaje.",
+        "RATE_LIMITED": "Enviaste varios mensajes seguidos. Espera unos minutos y vuelve a intentarlo.",
+        "SEND_FAILED": "No pudimos enviar tu mensaje. Inténtalo de nuevo más tarde."
+      }
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "what": {
+        "q": "¿Qué es GZ Group?",
+        "a": "Una comunidad de desarrolladores que publica sus proyectos, investigaciones y experimentos de software."
+      },
+      "account": {
+        "q": "¿Necesito una cuenta para leer?",
+        "a": "No. Leer es gratis y no requiere cuenta. La necesitas para comentar y dar like."
+      },
+      "participate": {
+        "q": "¿Cómo comento o doy like a un artículo?",
+        "a": "Inicia sesión y abre el artículo. El botón de like y los comentarios están al final."
+      },
+      "photo": {
+        "q": "¿Cómo cambio mi foto de perfil?",
+        "a": "En Ajustes, dentro de la sección Perfil, puedes subirla, cambiarla o quitarla."
+      },
+      "github": {
+        "q": "¿Qué significa el sello de GitHub?",
+        "a": "Que esa persona vinculó su cuenta de GitHub y demostró que la controla."
+      },
+      "code": {
+        "q": "¿Dónde puedo ver el código?",
+        "a": "Los proyectos que tienen repositorio lo enlazan al final del artículo. También puedes visitar <github>GZ Group en GitHub</github>."
+      },
+      "data": {
+        "q": "¿Qué hacen con mis datos?",
+        "a": "Está explicado en la <privacy>Política de privacidad</privacy>. Si quieres una copia de tus datos o que los eliminemos, escríbenos con este formulario y elige Privacidad y datos."
+      }
+    }
   }
 }

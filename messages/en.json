@@ -1,6 +1,6 @@
 {
   "Metadata": {
-    "title": "GZ Group — Software built by emerging talent",
+    "title": "GZ Group | Software built by emerging talent",
     "description": "A developer community that publishes software projects, research and experiments, explained by the people who built them."
   },
   "Common": {
@@ -24,7 +24,8 @@
     "profile": "My profile",
     "signOut": "Sign out",
     "userMenu": "Your account menu",
-    "studio": "Studio"
+    "studio": "Studio",
+    "contact": "Contact us"
   },
   "Categories": {
     "software": {
@@ -37,7 +38,7 @@
     },
     "experiments": {
       "title": "Experiments",
-      "description": "Early-stage prototypes: ideas that are still being tested."
+      "description": "Prototypes still being tested."
     },
     "tutorial": {
       "title": "Tutorials",
@@ -62,12 +63,12 @@
     "title": "Software built by emerging talent",
     "lead": "GZ Group is a developer community that publishes its software projects, research and experiments, explained by the people who built them.",
     "primaryCta": "Explore projects",
-    "secondaryCta": "Read the blog"
+    "secondaryCta": "Contact us"
   },
   "Home": {
     "publish": {
       "title": "What you'll find here",
-      "editorial": "The blog also collects tutorials, opinion pieces and community news.",
+      "editorial": "The blog has tutorials, opinion pieces and community news.",
       "editorialCta": "Go to the blog"
     },
     "latest": {
@@ -75,20 +76,20 @@
       "projects": "Projects",
       "articles": "Articles",
       "emptyTitle": "Nothing published yet",
-      "emptyBody": "The first projects and articles are being prepared. In the meantime, the community's code lives on GitHub.",
+      "emptyBody": "The first projects and articles are being prepared. The community's code is already on GitHub.",
       "emptyList": "Nothing published in this section yet.",
       "githubCta": "See GZ Group on GitHub"
     },
     "members": {
       "title": "Who writes here",
-      "body": "Articles are signed by GZ Group members. Every author can link their GitHub or LinkedIn account, and their byline shows which accounts they verified.",
+      "body": "Articles are signed by GZ Group members. Authors can link their GitHub account, and their byline shows it.",
       "exampleCaption": "This is what a verified byline looks like",
       "exampleName": "Your name",
       "empty": "Member profiles will be published along with the first articles."
     },
     "cta": {
       "title": "Review what we build",
-      "body": "Create an account to comment, react and follow what the community publishes.",
+      "body": "Create an account to comment on and like what the community publishes.",
       "primary": "Create account",
       "secondary": "See the code on GitHub"
     }
@@ -127,6 +128,17 @@
       "body": "Confirm that this email is yours to finish setting up your account.",
       "cta": "Confirm email",
       "footnote": "If you didn't create a GZ Group account, ignore this email."
+    },
+    "contact": {
+      "mailSubject": "Website contact: {subject}",
+      "intro": "Someone wrote through the contact form. Reply to this email to answer them.",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "organization": "Organization",
+      "reason": "Reason",
+      "subject": "Subject",
+      "message": "Message"
     }
   },
   "Auth": {
@@ -150,7 +162,7 @@
     "register": {
       "metaTitle": "Create account",
       "title": "Create your account",
-      "lead": "With an account you can comment, react and follow what the community publishes.",
+      "lead": "With an account you can comment on and like what the community publishes.",
       "name": "Name",
       "username": "Username",
       "usernameHint": "3 to 30 characters: lowercase letters, numbers, _ and dot.",
@@ -533,8 +545,8 @@
     "confirmDelete": "Delete this comment?",
     "confirm": "Yes, delete",
     "removed": "Comment removed",
-    "empty": "No comments yet. Yours can be the first.",
-    "signInLead": "Sign in to join the conversation.",
+    "empty": "No comments yet.",
+    "signInLead": "Sign in to comment.",
     "signIn": "Sign in",
     "loadMore": "Show more comments",
     "remaining": "{count, plural, one {# character left} other {# characters left}}",
@@ -641,6 +653,13 @@
           "basis": "Your consent, which you withdraw by unlinking the account in Settings.",
           "retention": "Until you unlink it."
         },
+        "contact": {
+          "name": "Contact form",
+          "data": "Name, email, phone and organization if you give them, reason, subject and message. A temporary counter tied to your IP address limits submissions.",
+          "purpose": "Answering your message. It reaches GZ Group by email and is not stored in the site's database.",
+          "basis": "Your consent, given by ticking the box on the form.",
+          "retention": "Until your question is resolved."
+        },
         "technical": {
           "name": "Technical and security data",
           "data": "The IP address and browser of your sessions, and server error logs, which do not include your email or password.",
@@ -661,7 +680,7 @@
       "rights": {
         "title": "Your rights",
         "body": "You have the right to access your data, rectify it, cancel it, object to its processing and receive a copy in a commonly used format (portability). You can also withdraw your consent at any time, without affecting what was already done.",
-        "body2": "You can make many changes yourself in Settings. For anything else, write to <contact></contact>. It is free. We will answer access requests within 10 working days and rectification or cancellation requests within 5 working days.",
+        "body2": "You can make many changes yourself in Settings. For anything else, write to <contact></contact> or use the <form>contact form</form>. It is free. We will answer access requests within 10 working days and rectification or cancellation requests within 5 working days.",
         "body3": "If you are not satisfied with our answer, you can go to the Personal Data Protection Directorate of <antai>ANTAI</antai> (protecciondedatos@antai.gob.pa), Panama's authority, or to the courts."
       },
       "automated": {
@@ -744,5 +763,74 @@
     "account": "Account",
     "activity": "My activity",
     "admin": "Administration"
+  },
+  "Contact": {
+    "metaTitle": "Contact us",
+    "title": "Contact us",
+    "lead": "Write to us and your message will go straight to GZ Group.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone (optional)",
+      "organization": "Organization (optional)",
+      "reason": "Reason",
+      "reasonPlaceholder": "Choose a reason",
+      "reasons": {
+        "general": "General question",
+        "account": "Help with my account",
+        "proposal": "Proposal for GZ Group",
+        "privacy": "Privacy and data",
+        "other": "Other"
+      },
+      "subject": "Subject",
+      "message": "Message",
+      "consent": "I have read the <privacy>Privacy policy</privacy> and agree to this data being used to answer me.",
+      "submit": "Send message",
+      "submitting": "Sending…",
+      "success": "Message sent. If it needs an answer, we'll write to your email.",
+      "sendAnother": "Send another message",
+      "errors": {
+        "REQUIRED": "This field is required.",
+        "TOO_LONG": "This text is too long.",
+        "INVALID_EMAIL": "That email isn't valid.",
+        "INVALID_PHONE": "That phone number isn't valid.",
+        "INVALID_TEXT": "This field must be a single line.",
+        "MESSAGE_TOO_SHORT": "Write at least 10 characters.",
+        "CONSENT_REQUIRED": "You must accept the Privacy policy to send your message.",
+        "RATE_LIMITED": "You've sent several messages in a row. Wait a few minutes and try again.",
+        "SEND_FAILED": "We couldn't send your message. Try again later."
+      }
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "what": {
+        "q": "What is GZ Group?",
+        "a": "A developer community that publishes its software projects, research and experiments."
+      },
+      "account": {
+        "q": "Do I need an account to read?",
+        "a": "No. Reading is free and needs no account. You need one to comment and like."
+      },
+      "participate": {
+        "q": "How do I comment on or like an article?",
+        "a": "Sign in and open the article. The like button and the comments are at the end."
+      },
+      "photo": {
+        "q": "How do I change my profile photo?",
+        "a": "In Settings, under Profile, you can upload, change or remove it."
+      },
+      "github": {
+        "q": "What does the GitHub badge mean?",
+        "a": "That the person linked their GitHub account and proved they control it."
+      },
+      "code": {
+        "q": "Where can I see the code?",
+        "a": "Projects with a repository link to it at the end of the article. You can also visit <github>GZ Group on GitHub</github>."
+      },
+      "data": {
+        "q": "What do you do with my data?",
+        "a": "It's explained in the <privacy>Privacy policy</privacy>. To get a copy of your data or have it deleted, use this form and choose Privacy and data."
+      }
+    }
   }
 }

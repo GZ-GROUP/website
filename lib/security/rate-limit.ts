@@ -8,12 +8,13 @@ export const LIMITS = {
   like: { max: 30, windowMs: 60_000 },
   read: { max: 60, windowMs: 60_000 },
   upload: { max: 20, windowMs: 60_000 },
+  contact: { max: 5, windowMs: 600_000 },
 } as const;
 
 /** Counts this attempt and says whether it is still within the limit. */
-export async function withinRateLimit(action: keyof typeof LIMITS, userId: string): Promise<boolean> {
+export async function withinRateLimit(action: keyof typeof LIMITS, subject: string): Promise<boolean> {
   const { max, windowMs } = LIMITS[action];
-  const key = `app:${action}:${userId}`;
+  const key = `app:${action}:${subject}`;
   const now = BigInt(Date.now());
   const windowStart = now - BigInt(windowMs);
 

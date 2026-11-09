@@ -8,6 +8,8 @@ export type EmailMessage = {
   subject: string;
   text: string;
   html: string;
+  /** Where a reply goes when it should not reach the no-reply sender. */
+  replyTo?: string;
 };
 
 type TransportKind = "smtp" | "console" | "file";

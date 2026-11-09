@@ -85,6 +85,7 @@ Square corners everywhere (shadcn "Sera" preset): controls, cards, media. Avatar
   - `AvatarField`: the profile photo in Settings. It saves on its own, separately from the profile form.
   - `LegalPage` and `LegalSection`: legal text in the reading measure, in full ink.
   - `AccountNav`: the tabs in Settings, with the same active style as `AdminNav`. Administration appears only for the master admin.
+  - `ContactForm` and `ContactFaq`: the contact page. The form keeps what was typed when validation fails.
   - `WriterCard`: a person credited on published work, on the landing and `/team`.
   - Dashboard (`components/dashboard/activity`): `Metric` sets numbers as type, never as tiles; `ActivityPanel` keeps its heading when empty.
   - Landing sections in `components/marketing`
