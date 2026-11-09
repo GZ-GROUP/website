@@ -13,7 +13,7 @@
     "primaryNav": "Main navigation",
     "blog": "Blog",
     "projects": "Projects",
-    "team": "Team",
+    "team": "About us",
     "login": "Sign in",
     "register": "Create account",
     "openMenu": "Open menu",
@@ -22,11 +22,9 @@
     "closeMenu": "Close menu",
     "account": "Settings",
     "profile": "My profile",
-    "admin": "Admin",
     "signOut": "Sign out",
     "userMenu": "Your account menu",
-    "studio": "Studio",
-    "dashboard": "My activity"
+    "studio": "Studio"
   },
   "Categories": {
     "software": {
@@ -391,7 +389,8 @@
     "roleAuthor": "Author",
     "roleCoAuthor": "Co-author",
     "edit": "Edit",
-    "view": "View"
+    "view": "View",
+    "back": "Studio"
   },
   "Editor": {
     "metaTitle": "Editor",
@@ -508,7 +507,8 @@
     "label": "Administration",
     "users": "Users",
     "articles": "Articles",
-    "comments": "Comments"
+    "comments": "Comments",
+    "backToSettings": "Back to settings"
   },
   "Reactions": {
     "like": "Like",
@@ -567,8 +567,8 @@
     "emptyLikes": "You haven't liked any article yet."
   },
   "Team": {
-    "metaTitle": "Team",
-    "title": "Team",
+    "metaTitle": "About us",
+    "title": "About us",
     "lead": "The people behind GZ Group's projects, research and articles.",
     "publications": "{count, plural, one {# publication} other {# publications}}",
     "emptyTitle": "No signed work yet",
@@ -738,5 +738,11 @@
     "retry": "Try again",
     "home": "Back to home",
     "reference": "Error reference: {digest}"
+  },
+  "AccountNav": {
+    "label": "Settings sections",
+    "account": "Account",
+    "activity": "My activity",
+    "admin": "Administration"
   }
 }

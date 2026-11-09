@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { GZLogo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
-import { PRIMARY_NAV } from "@/components/layout/nav-config";
+import { FOOTER_NAV } from "@/components/layout/nav-config";
 import { site } from "@/lib/site";
 
 const FOOTER_LINK = "text-base text-muted-foreground transition-colors duration-150 hover:text-foreground";
@@ -28,7 +28,7 @@ export function Footer() {
           <nav aria-label={t("explore")}>
             <h2 className="text-base font-bold">{t("explore")}</h2>
             <ul className="mt-4 space-y-3">
-              {PRIMARY_NAV.map((item) => (
+              {FOOTER_NAV.map((item) => (
                 <li key={item.key}>
                   <Link href={item.href} className={FOOTER_LINK}>
                     {th(item.key)}

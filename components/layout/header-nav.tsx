@@ -40,18 +40,6 @@ export function HeaderNav() {
     <NavigationMenu aria-label={t("primaryNav")} className="hidden lg:flex">
       <NavigationMenuList className="gap-1">
         <NavigationMenuItem>
-          <NavigationMenuLink
-            render={<Link href="/blog" />}
-            className={NAV_ITEM}
-            data-active={section("/blog")}
-            aria-current={section("/blog") ? "page" : undefined}
-            onPointerDown={ripple}
-          >
-            {t("blog")}
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
           <NavigationMenuTrigger
             className={cn(NAV_ITEM, "data-popup-open:text-foreground data-popup-open:after:scale-x-100")}
             data-active={section("/projects")}

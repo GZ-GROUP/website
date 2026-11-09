@@ -13,7 +13,7 @@
     "primaryNav": "Navegación principal",
     "blog": "Blog",
     "projects": "Proyectos",
-    "team": "Equipo",
+    "team": "Nosotros",
     "login": "Ingresar",
     "register": "Crear cuenta",
     "openMenu": "Abrir menú",
@@ -22,11 +22,9 @@
     "closeMenu": "Cerrar menú",
     "account": "Ajustes",
     "profile": "Mi perfil",
-    "admin": "Administración",
     "signOut": "Cerrar sesión",
     "userMenu": "Menú de tu cuenta",
-    "studio": "Studio",
-    "dashboard": "Mi actividad"
+    "studio": "Estudio"
   },
   "Categories": {
     "software": {
@@ -372,8 +370,8 @@
     "backToEditor": "Volver al editor"
   },
   "Studio": {
-    "metaTitle": "Studio",
-    "title": "Studio",
+    "metaTitle": "Estudio",
+    "title": "Estudio",
     "newArticle": "Nuevo artículo",
     "empty": "Todavía no escribiste ningún artículo.",
     "untitled": "Sin título",
@@ -391,7 +389,8 @@
     "roleAuthor": "Autor",
     "roleCoAuthor": "Coautor",
     "edit": "Editar",
-    "view": "Ver"
+    "view": "Ver",
+    "back": "Estudio"
   },
   "Editor": {
     "metaTitle": "Editor",
@@ -508,7 +507,8 @@
     "label": "Administración",
     "users": "Usuarios",
     "articles": "Artículos",
-    "comments": "Comentarios"
+    "comments": "Comentarios",
+    "backToSettings": "Volver a ajustes"
   },
   "Reactions": {
     "like": "Me gusta",
@@ -567,8 +567,8 @@
     "emptyLikes": "Todavía no le has dado like a ningún artículo."
   },
   "Team": {
-    "metaTitle": "Equipo",
-    "title": "Equipo",
+    "metaTitle": "Nosotros",
+    "title": "Nosotros",
     "lead": "Las personas detrás de los proyectos, investigaciones y artículos de GZ Group.",
     "publications": "{count, plural, one {# publicación} other {# publicaciones}}",
     "emptyTitle": "Aún no hay publicaciones firmadas",
@@ -738,5 +738,11 @@
     "retry": "Intentar de nuevo",
     "home": "Volver al inicio",
     "reference": "Referencia del error: {digest}"
+  },
+  "AccountNav": {
+    "label": "Secciones de ajustes",
+    "account": "Cuenta",
+    "activity": "Mi actividad",
+    "admin": "Administración"
   }
 }
