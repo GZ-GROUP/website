@@ -22,7 +22,7 @@ Work explained by the people who built it, with authorship you can trust: every 
 
 ## Capabilities and Constraints
 
-- Built so far: landing page (es/en), design tokens, layout shell. Blog, projects, team, auth and profiles are planned (see docs/roadmap.md) and must not be presented as working before they ship.
+- Built so far: landing page (es/en), design tokens, accounts and profiles, the writers' studio, blog, projects, comments, likes, the reader dashboard and the team page. Later phases (see docs/roadmap.md) must not be presented as working before they ship.
 - Roles: Reader (default for every sign-up), Writer (granted only by the master admin), Admin. The master admin is the default account `admin@gzgroup.dev`, created at bootstrap, not through sign-up. RBAC is always enforced server-side.
 - Authentication, account linking, identity verification and authorization are separate concepts.
 - UI is bilingual: Spanish (default, unprefixed URLs) and English (`/en`). Code and message keys are in English. User-generated content is not translated.
@@ -38,7 +38,7 @@ Work explained by the people who built it, with authorship you can trust: every 
 
 ## Evidence on Hand
 
-- No published projects, articles, member profiles, testimonials, press or metrics exist yet. Landing sections show honest empty states; never fabricate content, people, quotes or numbers.
+- Published content depends on what members have actually written. Sections show honest empty states; never fabricate content, people, quotes or numbers.
 - No photography or footage of the group exists yet.
 
 ## Product Principles

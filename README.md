@@ -2,7 +2,7 @@
 
 Editorial platform for GZ Group, a community of emerging software developers: a place to publish, discover and discuss members' software projects, research and experiments, with verified authorship.
 
-> **Status:** Phase 4 (editorial) done. The bilingual landing page, accounts, profiles, role management, the writers' studio (rich-text editor, images, co-authors, publishing) and the public blog and projects pages exist. Comments and reactions are **not built yet**; see the [roadmap](docs/roadmap.md).
+> **Status:** Phase 5 (community) done. The bilingual landing page, accounts, profiles, role management, the writers' studio (rich-text editor, images, co-authors, publishing), the public blog and projects pages, comments, likes, the reader dashboard and the team page exist. Deployment is postponed; see the [roadmap](docs/roadmap.md).
 
 ## Stack
 
@@ -134,7 +134,7 @@ proxy.ts                 locale negotiation (Next 16 "proxy", formerly middlewar
 ## Authentication
 
 - **Roles:**
-  - Every sign-up is a **Reader**, who can comment and react once Phase 5 ships.
+  - Every sign-up is a **Reader**, who can comment on and like articles and see their own activity in `/dashboard`.
   - A Reader becomes a **Writer** only when the master admin promotes them from `/admin`. That page is not linked anywhere public and answers 404 to non-admins.
   - Authorization is always checked on the server: `lib/auth/session.ts` and the server actions.
 - **Master admin:** created on first server start from `ADMIN_EMAIL` and `ADMIN_INITIAL_PASSWORD`. It must change that password on first sign-in, and nobody can sign up with its email. See [ADR 0005](docs/adr/0005-master-admin-bootstrap.md).

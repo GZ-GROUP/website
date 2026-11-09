@@ -81,6 +81,9 @@ Square corners everywhere (shadcn "Sera" preset): controls, cards, media. Avatar
   - `ArticleCard`, `ArticleGrid`, `Byline` and `ArticleView`. `ArticleView` is the reading layout shared by the public page and the preview.
   - `StatusPill`: one status mark per row. Published uses the brand hue; the other states stay quiet.
   - Editor: `ArticleEditor`, `EditorToolbar`, `TagInput`, `CoverField` and `CoAuthorPicker`.
+  - Community: `ArticleReaction`, `CommentSection`, `CommentCard`, `CommentForm` and `DeleteComment`. Comments have no box around them; hierarchy and space separate them. Deleting confirms in place, in two steps.
+  - `WriterCard`: a person credited on published work, on the landing and `/team`.
+  - Dashboard (`components/dashboard/activity`): `Metric` sets numbers as type, never as tiles; `ActivityPanel` keeps its heading when empty.
   - Landing sections in `components/marketing`
 
 ## Article typography

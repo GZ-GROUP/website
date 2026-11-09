@@ -51,9 +51,17 @@ Deferred: LinkedIn (app pending), Content-Security-Policy (Phase 6), 2FA for the
 
 Deferred: autosave [POST-MVP], full-text search (tsvector) [POST-MVP], orphaned-upload cleanup [POST-MVP], editorial review states (Phase 7).
 
-## Phase 5 — Community [MVP → POST-MVP]
+## Phase 5 — Community [MVP] ✅
 
-Comments, reactions, public profiles, reader dashboard with real metrics only, `/team`.
+Details in ADR 0009.
+
+- **Comments:** plain text with one level of replies. Authors and admins delete them, including from `/admin/comments`.
+- **Likes:** one per user and article.
+- **`/dashboard`:** articles viewed, likes given and comments written, all counted from stored rows.
+- **Profiles:** real statistics, separate authored and co-authored lists, and recent comments. Reading history stays private.
+- **`/team`:** everyone credited on published work.
+
+Deferred: editing and reporting comments, likes on comments, clearing the reading history [POST-MVP].
 
 ## Phase 6 — Hardening and observability [POST-MVP]
 
