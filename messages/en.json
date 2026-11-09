@@ -146,7 +146,8 @@
       "submit": "Sign in",
       "forgot": "Forgot your password?",
       "noAccount": "Don't have an account?",
-      "registerLink": "Create one"
+      "registerLink": "Create one",
+      "legal": "If you sign in with GitHub for the first time, your account is created and you accept the <terms>Terms</terms> and the <privacy>Privacy policy</privacy>."
     },
     "register": {
       "metaTitle": "Create account",
@@ -158,7 +159,8 @@
       "passwordHint": "At least 10 characters.",
       "submit": "Create account",
       "haveAccount": "Already have an account?",
-      "loginLink": "Sign in"
+      "loginLink": "Sign in",
+      "legal": "By creating your account you accept the <terms>Terms</terms> and confirm you have read the <privacy>Privacy policy</privacy>."
     },
     "forgot": {
       "metaTitle": "Recover password",
@@ -484,7 +486,8 @@
       "UPLOAD_TOO_LARGE": "The image is larger than 5 MB.",
       "UPLOAD_UNSUPPORTED": "Use a JPG, PNG or WebP image.",
       "UPLOAD_FAILED": "The image couldn't be uploaded. Try again.",
-      "UNKNOWN": "Something went wrong. Please try again."
+      "UNKNOWN": "Something went wrong. Please try again.",
+      "UPLOAD_RATE_LIMITED": "You're uploading too many images. Wait a minute."
     }
   },
   "AdminArticles": {
@@ -509,7 +512,9 @@
   },
   "Reactions": {
     "like": "Like",
-    "signIn": "sign in to react"
+    "signIn": "sign in to react",
+    "rateLimited": "You're going too fast. Wait a moment.",
+    "failed": "It couldn't be saved. Try again."
   },
   "Comments": {
     "title": "Comments",
@@ -581,5 +586,157 @@
       "date": "Date",
       "actions": "Actions"
     }
+  },
+  "Legal": {
+    "updated": "Last updated: {date}",
+    "noContact": "the contact channel GZ Group lists on this site",
+    "privacy": {
+      "metaTitle": "Privacy policy",
+      "title": "Privacy policy",
+      "lead": "What data we keep when you use GZ Group, what we use it for and how you control it. It is governed by Law 81 of 2019 of the Republic of Panama and Executive Decree 285 of 2021.",
+      "controller": {
+        "title": "Who is responsible",
+        "body": "GZ Group is the controller of your personal data on this site. You can write to us at <contact></contact> about anything related to it."
+      },
+      "treatments": {
+        "title": "What we keep and why",
+        "labels": {
+          "data": "Data",
+          "purpose": "What for",
+          "basis": "Legal basis",
+          "retention": "Kept for"
+        },
+        "account": {
+          "name": "Your account",
+          "data": "Name, username, email and password (stored only in an irreversibly hashed form).",
+          "purpose": "Creating your account, signing in, recovering access and sending the emails the service needs.",
+          "basis": "Contractual relationship: needed to provide the service.",
+          "retention": "For as long as you have the account."
+        },
+        "profile": {
+          "name": "Your public profile",
+          "data": "Photo, bio, description and occupation, if you choose to add them.",
+          "purpose": "Showing your profile to other people. This information is public.",
+          "basis": "Your consent, which you withdraw by editing or removing each item in Settings.",
+          "retention": "Until you change or remove them. Changing your photo deletes the previous one."
+        },
+        "activity": {
+          "name": "Comments and likes",
+          "data": "The text of your comments and the articles you like.",
+          "purpose": "Publishing your comments next to your name and counting likes. Only the total is public: which articles you liked is visible to you alone.",
+          "basis": "Contractual relationship.",
+          "retention": "Until you delete them or request their cancellation."
+        },
+        "reading": {
+          "name": "Your reading history",
+          "data": "Which articles you opened while signed in, and when.",
+          "purpose": "Showing your activity in your dashboard. Nobody else sees it, and it is not used for advertising or profiling.",
+          "basis": "Contractual relationship: it is part of your activity dashboard. You can object by writing to us.",
+          "retention": "For as long as you have the account, or until you request its deletion."
+        },
+        "linked": {
+          "name": "Linked GitHub account",
+          "data": "Your GitHub identifier, name and photo, and the fact that you verified it.",
+          "purpose": "Signing in with GitHub and showing the verified identity badge.",
+          "basis": "Your consent, which you withdraw by unlinking the account in Settings.",
+          "retention": "Until you unlink it."
+        },
+        "technical": {
+          "name": "Technical and security data",
+          "data": "The IP address and browser of your sessions, and server error logs, which do not include your email or password.",
+          "purpose": "Keeping you signed in, preventing abuse and fixing faults.",
+          "basis": "Legitimate interest in keeping the service secure.",
+          "retention": "Each session expires after 7 days of inactivity. Error logs are kept for up to 90 days."
+        }
+      },
+      "recipients": {
+        "title": "Who we share it with",
+        "body": "We do not sell your data or use it for advertising. Only those who help us provide the service can access it, as custodians acting on our instructions: the site's hosting providers. If you link GitHub, that company, based in the United States, takes part in signing in because you authorize it.",
+        "body2": "If any of those providers is outside Panama, your data is transferred to that country with the safeguards the regulations require. We would also hand it to a competent authority if the law requires it."
+      },
+      "cookies": {
+        "title": "Cookies",
+        "body": "We only use the cookies the site needs to work: your session and the one that remembers your language. We use no analytics, advertising or third-party cookies."
+      },
+      "rights": {
+        "title": "Your rights",
+        "body": "You have the right to access your data, rectify it, cancel it, object to its processing and receive a copy in a commonly used format (portability). You can also withdraw your consent at any time, without affecting what was already done.",
+        "body2": "You can make many changes yourself in Settings. For anything else, write to <contact></contact>. It is free. We will answer access requests within 10 working days and rectification or cancellation requests within 5 working days.",
+        "body3": "If you are not satisfied with our answer, you can go to the Personal Data Protection Directorate of <antai>ANTAI</antai> (protecciondedatos@antai.gob.pa), Panama's authority, or to the courts."
+      },
+      "automated": {
+        "title": "Automated decisions",
+        "body": "We make no automated decisions about you and do not build profiles."
+      },
+      "minors": {
+        "title": "Minors",
+        "body": "If you are a minor, you need authorization from your parent or legal representative to create an account. If you believe a minor signed up without it, write to us and we will delete their data."
+      },
+      "security": {
+        "title": "Security",
+        "body": "We apply technical and organizational measures to protect your data, such as encrypted connections, hashed passwords and private file storage. If a security breach posed a significant risk to your data, we would notify you and the authority."
+      },
+      "changes": {
+        "title": "Changes to this policy",
+        "body": "If we change this policy, we will update the date on this page and, if the change is important, we will let you know."
+      }
+    },
+    "terms": {
+      "metaTitle": "Terms and conditions",
+      "title": "Terms and conditions",
+      "lead": "The rules for using GZ Group. By creating an account or using the site, you accept them.",
+      "service": {
+        "title": "The service",
+        "body": "GZ Group is a developer community that publishes projects, research and articles. Reading the site is free and needs no account. With a free account you can comment, like and manage your profile."
+      },
+      "account": {
+        "title": "Your account",
+        "body": "You must give truthful information and look after your password. You are responsible for what is done from your account. If you are a minor, you need authorization from your parent or legal representative."
+      },
+      "content": {
+        "title": "Your content",
+        "body": "What you publish remains yours. By publishing it, you authorize GZ Group to display and distribute it on this site, free of charge, for as long as it stays published.",
+        "body2": "Whoever publishes content is responsible for it and must have the right to publish it."
+      },
+      "conduct": {
+        "title": "What is not allowed",
+        "body": "You may not publish content that is illegal, harasses or discriminates, infringes the rights of others or is spam, or impersonate anyone. You may not attempt to breach the site's security or interfere with how it works."
+      },
+      "moderation": {
+        "title": "Moderation",
+        "body": "We may remove content that breaks these terms and suspend the accounts responsible. A suspended account cannot sign in and its comments stop being shown."
+      },
+      "intellectual": {
+        "title": "Brand and code",
+        "body": "The GZ Group name, logo and design belong to GZ Group. Each project's code is governed by the license stated in its repository."
+      },
+      "links": {
+        "title": "External links",
+        "body": "Articles may link to third-party repositories and demos. We do not control those sites and are not responsible for them."
+      },
+      "liability": {
+        "title": "No warranties",
+        "body": "The site is provided as is. Articles reflect the opinions and work of their authors, and you use them at your own risk. To the extent the law allows, GZ Group is not liable for damages arising from using the site."
+      },
+      "privacy": {
+        "title": "Privacy",
+        "body": "How your data is handled is explained in the <link>Privacy policy</link>."
+      },
+      "changes": {
+        "title": "Changes",
+        "body": "We may update these terms. We will publish the date of the latest version and, if the change is important, we will let you know."
+      },
+      "law": {
+        "title": "Governing law",
+        "body": "These terms are governed by the laws of the Republic of Panama. Any dispute will be submitted to the competent courts of Panama. For any questions, write to <contact></contact>."
+      }
+    }
+  },
+  "Error": {
+    "title": "Something went wrong",
+    "body": "We couldn't load this page. Try again and, if it keeps failing, come back in a few minutes.",
+    "retry": "Try again",
+    "home": "Back to home",
+    "reference": "Error reference: {digest}"
   }
 }

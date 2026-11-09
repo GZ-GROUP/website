@@ -146,7 +146,8 @@
       "submit": "Ingresar",
       "forgot": "¿Olvidaste tu contraseña?",
       "noAccount": "¿No tienes cuenta?",
-      "registerLink": "Crea una"
+      "registerLink": "Crea una",
+      "legal": "Si entras con GitHub por primera vez, se crea tu cuenta y aceptas los <terms>Términos</terms> y la <privacy>Política de privacidad</privacy>."
     },
     "register": {
       "metaTitle": "Crear cuenta",
@@ -158,7 +159,8 @@
       "passwordHint": "Mínimo 10 caracteres.",
       "submit": "Crear cuenta",
       "haveAccount": "¿Ya tienes cuenta?",
-      "loginLink": "Inicia sesión"
+      "loginLink": "Inicia sesión",
+      "legal": "Al crear tu cuenta aceptas los <terms>Términos</terms> y confirmas que leíste la <privacy>Política de privacidad</privacy>."
     },
     "forgot": {
       "metaTitle": "Recuperar contraseña",
@@ -484,7 +486,8 @@
       "UPLOAD_TOO_LARGE": "La imagen supera los 5 MB.",
       "UPLOAD_UNSUPPORTED": "Usa una imagen JPG, PNG o WebP.",
       "UPLOAD_FAILED": "No se pudo subir la imagen. Intenta de nuevo.",
-      "UNKNOWN": "Algo salió mal. Intenta de nuevo."
+      "UNKNOWN": "Algo salió mal. Intenta de nuevo.",
+      "UPLOAD_RATE_LIMITED": "Estás subiendo demasiadas imágenes. Espera un minuto."
     }
   },
   "AdminArticles": {
@@ -509,7 +512,9 @@
   },
   "Reactions": {
     "like": "Me gusta",
-    "signIn": "inicia sesión para reaccionar"
+    "signIn": "inicia sesión para reaccionar",
+    "rateLimited": "Vas muy rápido. Espera un momento.",
+    "failed": "No se pudo guardar. Inténtalo de nuevo."
   },
   "Comments": {
     "title": "Comentarios",
@@ -581,5 +586,157 @@
       "date": "Fecha",
       "actions": "Acciones"
     }
+  },
+  "Legal": {
+    "updated": "Última actualización: {date}",
+    "noContact": "el canal de contacto que GZ Group indique en este sitio",
+    "privacy": {
+      "metaTitle": "Política de privacidad",
+      "title": "Política de privacidad",
+      "lead": "Qué datos guardamos cuando usas GZ Group, para qué los usamos y cómo puedes controlarlos. Se rige por la Ley 81 de 2019 de la República de Panamá y el Decreto Ejecutivo 285 de 2021.",
+      "controller": {
+        "title": "Quién es responsable",
+        "body": "GZ Group es responsable del tratamiento de tus datos personales en este sitio. Puedes escribirnos a <contact></contact> para cualquier asunto relacionado con ellos."
+      },
+      "treatments": {
+        "title": "Qué datos guardamos y para qué",
+        "labels": {
+          "data": "Datos",
+          "purpose": "Para qué",
+          "basis": "Base legal",
+          "retention": "Conservación"
+        },
+        "account": {
+          "name": "Tu cuenta",
+          "data": "Nombre, nombre de usuario, email y contraseña (guardada solo de forma cifrada e irreversible).",
+          "purpose": "Crear tu cuenta, iniciar sesión, recuperar el acceso y enviarte los correos necesarios para el servicio.",
+          "basis": "Relación contractual: son necesarios para prestarte el servicio.",
+          "retention": "Mientras tengas la cuenta."
+        },
+        "profile": {
+          "name": "Tu perfil público",
+          "data": "Foto, bio, descripción y ocupación, si decides agregarlos.",
+          "purpose": "Mostrar tu perfil a otras personas. Es información pública.",
+          "basis": "Tu consentimiento, que retiras editando o quitando cada dato en Ajustes.",
+          "retention": "Hasta que los cambies o elimines. Al cambiar tu foto, se borra la anterior."
+        },
+        "activity": {
+          "name": "Comentarios y likes",
+          "data": "El texto de tus comentarios y los artículos a los que das like.",
+          "purpose": "Publicar tus comentarios junto a tu nombre y contar los likes. Solo el total de likes es público: qué artículos te gustaron solo lo ves tú.",
+          "basis": "Relación contractual.",
+          "retention": "Hasta que los elimines o solicites su cancelación."
+        },
+        "reading": {
+          "name": "Tu historial de lectura",
+          "data": "Qué artículos abriste con tu sesión iniciada y cuándo.",
+          "purpose": "Mostrarte tu actividad en tu panel. Nadie más lo ve y no se usa para publicidad ni para crear perfiles.",
+          "basis": "Relación contractual: es parte de tu panel de actividad. Puedes oponerte escribiéndonos.",
+          "retention": "Mientras tengas la cuenta o hasta que solicites su eliminación."
+        },
+        "linked": {
+          "name": "Cuenta de GitHub vinculada",
+          "data": "Tu identificador, nombre y foto de GitHub, y el hecho de que la verificaste.",
+          "purpose": "Iniciar sesión con GitHub y mostrar la insignia de identidad verificada.",
+          "basis": "Tu consentimiento, que retiras desvinculando la cuenta en Ajustes.",
+          "retention": "Hasta que la desvincules."
+        },
+        "technical": {
+          "name": "Datos técnicos y de seguridad",
+          "data": "Dirección IP y navegador de tus sesiones, y registros de errores del servidor, que no incluyen tu email ni tu contraseña.",
+          "purpose": "Mantener tu sesión, prevenir abusos y corregir fallos.",
+          "basis": "Interés legítimo en mantener el servicio seguro.",
+          "retention": "Cada sesión caduca tras 7 días sin actividad. Los registros de errores se conservan hasta 90 días."
+        }
+      },
+      "recipients": {
+        "title": "Con quién los compartimos",
+        "body": "No vendemos tus datos ni los usamos para publicidad. Solo acceden a ellos quienes nos ayudan a prestar el servicio, como custodios y bajo nuestras instrucciones: los proveedores de alojamiento del sitio. Si vinculas GitHub, esa empresa, ubicada en Estados Unidos, participa en el inicio de sesión porque tú lo autorizas.",
+        "body2": "Si alguno de esos proveedores está fuera de Panamá, tus datos se transfieren a ese país con las garantías que exige la normativa. También los entregaríamos a una autoridad competente si la ley lo exige."
+      },
+      "cookies": {
+        "title": "Cookies",
+        "body": "Usamos solo las cookies necesarias para que el sitio funcione: la de tu sesión y la que recuerda tu idioma. No usamos cookies de analítica, publicidad ni de terceros."
+      },
+      "rights": {
+        "title": "Tus derechos",
+        "body": "Tienes derecho a acceder a tus datos, rectificarlos, cancelarlos, oponerte a su tratamiento y recibir una copia en un formato de uso común (portabilidad). También puedes retirar tu consentimiento en cualquier momento, sin que eso afecte lo ya realizado.",
+        "body2": "Muchos cambios los puedes hacer tú en Ajustes. Para lo demás, escríbenos a <contact></contact>. Es gratis. Responderemos en un máximo de 10 días hábiles las solicitudes de acceso y de 5 días hábiles las de rectificación o cancelación.",
+        "body3": "Si no estás conforme con nuestra respuesta, puedes acudir a la Dirección de Protección de Datos Personales de la <antai>ANTAI</antai> (protecciondedatos@antai.gob.pa) o a los tribunales de justicia."
+      },
+      "automated": {
+        "title": "Decisiones automatizadas",
+        "body": "No tomamos decisiones automatizadas sobre ti ni elaboramos perfiles."
+      },
+      "minors": {
+        "title": "Menores de edad",
+        "body": "Si eres menor de edad, necesitas la autorización de tu madre, padre o representante legal para crear una cuenta. Si crees que un menor se registró sin ella, escríbenos y eliminaremos sus datos."
+      },
+      "security": {
+        "title": "Seguridad",
+        "body": "Aplicamos medidas técnicas y organizativas para proteger tus datos, como conexiones cifradas, contraseñas cifradas y almacenamiento privado de archivos. Si una violación de seguridad supusiera un riesgo significativo para tus datos, te avisaríamos a ti y a la autoridad."
+      },
+      "changes": {
+        "title": "Cambios en esta política",
+        "body": "Si cambiamos esta política, actualizaremos la fecha de esta página y, si el cambio es importante, te avisaremos."
+      }
+    },
+    "terms": {
+      "metaTitle": "Términos y condiciones",
+      "title": "Términos y condiciones",
+      "lead": "Las reglas para usar GZ Group. Al crear una cuenta o usar el sitio, las aceptas.",
+      "service": {
+        "title": "El servicio",
+        "body": "GZ Group es una comunidad de desarrolladores que publica proyectos, investigaciones y artículos. Leer el sitio es gratis y no requiere cuenta. Con una cuenta gratuita puedes comentar, dar like y administrar tu perfil."
+      },
+      "account": {
+        "title": "Tu cuenta",
+        "body": "Debes dar información verídica y cuidar tu contraseña. Eres responsable de lo que se haga desde tu cuenta. Si eres menor de edad, necesitas la autorización de tu madre, padre o representante legal."
+      },
+      "content": {
+        "title": "Tu contenido",
+        "body": "Lo que publicas sigue siendo tuyo. Al publicarlo, autorizas a GZ Group a mostrarlo y distribuirlo en este sitio de forma gratuita, mientras permanezca publicado.",
+        "body2": "Quien publica un contenido responde por él y debe tener derecho a publicarlo."
+      },
+      "conduct": {
+        "title": "Lo que no está permitido",
+        "body": "No puedes publicar contenido ilegal, que acose o discrimine, que infrinja derechos de terceros o que sea spam, ni suplantar a otra persona. Tampoco puedes intentar vulnerar la seguridad del sitio o interferir con su funcionamiento."
+      },
+      "moderation": {
+        "title": "Moderación",
+        "body": "Podemos eliminar contenido que incumpla estos términos y suspender las cuentas responsables. Una cuenta suspendida no puede iniciar sesión y sus comentarios dejan de mostrarse."
+      },
+      "intellectual": {
+        "title": "Marca y código",
+        "body": "El nombre, el logo y el diseño de GZ Group le pertenecen. El código de cada proyecto se rige por la licencia indicada en su repositorio."
+      },
+      "links": {
+        "title": "Enlaces externos",
+        "body": "Los artículos pueden enlazar a repositorios y demos de terceros. No controlamos esos sitios ni respondemos por ellos."
+      },
+      "liability": {
+        "title": "Sin garantías",
+        "body": "El sitio se ofrece tal como está. El contenido de los artículos refleja la opinión y el trabajo de sus autores, y su uso queda bajo tu responsabilidad. En la medida que la ley lo permita, GZ Group no responde por daños derivados del uso del sitio."
+      },
+      "privacy": {
+        "title": "Privacidad",
+        "body": "El tratamiento de tus datos se explica en la <link>Política de privacidad</link>."
+      },
+      "changes": {
+        "title": "Cambios",
+        "body": "Podemos actualizar estos términos. Publicaremos la fecha de la última versión y, si el cambio es importante, te avisaremos."
+      },
+      "law": {
+        "title": "Ley aplicable",
+        "body": "Estos términos se rigen por las leyes de la República de Panamá. Cualquier controversia se someterá a los tribunales competentes de Panamá. Para cualquier consulta, escríbenos a <contact></contact>."
+      }
+    }
+  },
+  "Error": {
+    "title": "Algo salió mal",
+    "body": "No pudimos cargar esta página. Inténtalo de nuevo y, si sigue fallando, vuelve en unos minutos.",
+    "retry": "Intentar de nuevo",
+    "home": "Volver al inicio",
+    "reference": "Referencia del error: {digest}"
   }
 }

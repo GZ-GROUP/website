@@ -1,3 +1,4 @@
+import { logger } from "@/lib/logging/logger";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 
@@ -19,14 +20,12 @@ export async function ensureMasterAdmin(env: NodeJS.ProcessEnv = process.env): P
   const password = env.ADMIN_INITIAL_PASSWORD;
 
   if (!password || password.length < MASTER_ADMIN_MIN_PASSWORD) {
-    console.warn(
-      `[bootstrap] No master admin yet. Set ADMIN_INITIAL_PASSWORD (${MASTER_ADMIN_MIN_PASSWORD}+ characters) and restart.`,
-    );
+    logger.warn("bootstrap_admin_skipped", { detail: "ADMIN_INITIAL_PASSWORD is missing or too short: no master admin was created." });
     return "skipped";
   }
 
   if (await prisma.user.findUnique({ where: { email }, select: { id: true } })) {
-    console.error(`[bootstrap] ${email} already belongs to a regular account; refusing to promote it automatically.`);
+    logger.error("bootstrap_admin_conflict", { detail: "The master admin address belongs to a regular account; not promoting it." });
     return "skipped";
   }
 
@@ -55,6 +54,6 @@ export async function ensureMasterAdmin(env: NodeJS.ProcessEnv = process.env): P
     throw error;
   }
 
-  console.info(`[bootstrap] Master admin created for ${email}. A password change is required on first sign-in.`);
+  logger.info("bootstrap_admin_created", { detail: "A password change is required on first sign-in." });
   return "created";
 }

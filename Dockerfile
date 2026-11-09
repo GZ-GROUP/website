@@ -14,6 +14,9 @@ WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# Public URL for social-image links on statically generated pages.
+ARG NEXT_PUBLIC_APP_URL=http://localhost:3000
+ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
 # Build-only placeholders (not secrets, never reach the runtime image):
 # prisma.config.ts needs DATABASE_URL to be defined even though `generate` never
 # connects, and Better Auth refuses its default secret while Next collects page
@@ -35,4 +38,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 USER nextjs
 EXPOSE 3000
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+  CMD wget -q -O /dev/null "http://127.0.0.1:${PORT}/api/health" || exit 1
 CMD ["node", "server.js"]
