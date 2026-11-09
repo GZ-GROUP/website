@@ -5,14 +5,6 @@ import type { ShowcaseCategorySlug } from "@/lib/content/types";
 // Labels live in messages/*.json; this file only holds routes and icons.
 
 export const PRIMARY_NAV = [
-  { key: "projects", href: "/projects" },
-  { key: "team", href: "/team" },
-  { key: "contact", href: "/contact" },
-] as const;
-
-/** The footer keeps Blog: tutorials and opinion pieces are not listed under Projects. */
-export const FOOTER_NAV = [
-  { key: "projects", href: "/projects" },
   { key: "blog", href: "/blog" },
   { key: "team", href: "/team" },
   { key: "contact", href: "/contact" },
@@ -28,5 +20,5 @@ export const SHOWCASE_CATEGORIES: ReadonlyArray<{
 ];
 
 export function categoryHref(slug: ShowcaseCategorySlug) {
-  return { pathname: "/projects", query: { category: slug } } as const;
+  return { pathname: "/blog", query: { category: slug } } as const;
 }

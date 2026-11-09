@@ -30,7 +30,7 @@ export function Hero() {
             {t("lead")}
           </p>
           <div className={`mt-10 flex flex-col gap-3 sm:flex-row delay-150 ${RISE}`}>
-            <ButtonLink size="lg" href="/projects">
+            <ButtonLink size="lg" href="/blog">
               {t("primaryCta")}
             </ButtonLink>
             <ButtonLink size="lg" variant="outline" href="/contact">

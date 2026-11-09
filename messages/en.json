@@ -12,20 +12,19 @@
     "homeLabel": "GZ Group, home",
     "primaryNav": "Main navigation",
     "blog": "Blog",
-    "projects": "Projects",
     "team": "About us",
     "login": "Sign in",
     "register": "Create account",
     "openMenu": "Open menu",
     "menuTitle": "Menu",
-    "allProjects": "See all projects",
     "closeMenu": "Close menu",
     "account": "Settings",
     "profile": "My profile",
     "signOut": "Sign out",
     "userMenu": "Your account menu",
     "studio": "Studio",
-    "contact": "Contact us"
+    "contact": "Contact us",
+    "allBlog": "See the whole blog"
   },
   "Categories": {
     "software": {
@@ -62,7 +61,7 @@
   "Hero": {
     "title": "Software built by emerging talent",
     "lead": "GZ Group is a developer community that publishes its software projects, research and experiments, explained by the people who built them.",
-    "primaryCta": "Explore projects",
+    "primaryCta": "Explore the blog",
     "secondaryCta": "Contact us"
   },
   "Home": {
@@ -81,11 +80,10 @@
       "githubCta": "See GZ Group on GitHub"
     },
     "members": {
-      "title": "Who writes here",
-      "body": "Articles are signed by GZ Group members. Authors can link their GitHub account, and their byline shows it.",
-      "exampleCaption": "This is what a verified byline looks like",
-      "exampleName": "Your name",
-      "empty": "Member profiles will be published along with the first articles."
+      "title": "Meet the people behind GZ Group",
+      "body": "Every project has a person behind it, with a name and a profile. Meet the members of GZ Group and see what each of them has published.",
+      "cta": "Meet the members",
+      "mascotAlt": "The GZ Group mascot, a blue dragon in a black hoodie, next to two people in front of a laptop."
     },
     "cta": {
       "title": "Review what we build",
@@ -346,9 +344,6 @@
     "metaTitle": "Blog",
     "title": "Blog",
     "lead": "Articles, tutorials and projects from the community, written by the people who built them.",
-    "projectsMetaTitle": "Projects",
-    "projectsTitle": "Projects",
-    "projectsLead": "Software, research and experiments built by GZ Group members.",
     "filters": "Filters",
     "search": "Search",
     "searchPlaceholder": "Title, topic or technology",

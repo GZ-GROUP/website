@@ -12,8 +12,6 @@ import { listPublishedArticles, publishedTags } from "@/lib/articles/queries";
 import { cn } from "@/lib/utils";
 
 type ListingProps = {
-  /** Base path of this listing: /blog or /projects. */
-  basePath: "/blog" | "/projects";
   title: string;
   lead: string;
   filters: ListFilters;
@@ -24,15 +22,15 @@ const CHIP =
   "inline-flex h-10 items-center px-4 text-base transition-colors duration-150 border border-border hover:border-primary-ink hover:text-primary-ink";
 const CHIP_ACTIVE = "border-primary bg-primary text-primary-foreground hover:text-primary-foreground hover:border-primary";
 
-// Shared by /blog and /projects. Filters are plain links and a GET form, so the
+// Filters are plain links and a GET form, so the
 // whole listing works without JavaScript and every state has a shareable URL.
-export async function ArticleListing({ basePath, title, lead, filters, categories }: ListingProps) {
+export async function ArticleListing({ title, lead, filters, categories }: ListingProps) {
   const t = await getTranslations("Blog");
   const tc = await getTranslations("Categories");
   const locale = await getLocale();
   const [page, tags] = await Promise.all([listPublishedArticles(filters), publishedTags()]);
   const hasFilters = Boolean(filters.category || filters.tag || filters.q || filters.sort === "oldest");
-  const href = (change: Partial<ListFilters>) => `${basePath}${filtersToQuery(filters, { page: 1, ...change })}`;
+  const href = (change: Partial<ListFilters>) => `/blog${filtersToQuery(filters, { page: 1, ...change })}`;
 
   return (
     <Container size="wide">
@@ -42,7 +40,7 @@ export async function ArticleListing({ basePath, title, lead, filters, categorie
       </header>
 
       <section aria-label={t("filters")} className="mt-12 flex flex-col gap-6 md:mt-16">
-        <form method="get" action={getPathname({ href: basePath, locale })} role="search" className="flex max-w-xl items-end gap-3">
+        <form method="get" action={getPathname({ href: "/blog", locale })} role="search" className="flex max-w-xl items-end gap-3">
           {filters.category && <input type="hidden" name="category" value={filters.category} />}
           {filters.tag && <input type="hidden" name="tag" value={filters.tag} />}
           {filters.sort === "oldest" && <input type="hidden" name="sort" value="oldest" />}
@@ -103,7 +101,7 @@ export async function ArticleListing({ basePath, title, lead, filters, categorie
               {t("oldest")}
             </Link>
             {hasFilters && (
-              <Link href={basePath} className="text-primary-ink underline-offset-4 hover:underline">
+              <Link href="/blog" className="text-primary-ink underline-offset-4 hover:underline">
                 {t("clear")}
               </Link>
             )}

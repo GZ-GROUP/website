@@ -16,7 +16,7 @@ export default async function BlogPage({ searchParams }: PageProps<"/[locale]/bl
 
   return (
     <SiteShell mainClassName="py-16 md:py-24">
-      <ArticleListing basePath="/blog" title={t("title")} lead={t("lead")} filters={filters} categories={CATEGORY_SLUGS} />
+      <ArticleListing title={t("title")} lead={t("lead")} filters={filters} categories={CATEGORY_SLUGS} />
     </SiteShell>
   );
 }

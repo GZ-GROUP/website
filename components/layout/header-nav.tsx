@@ -26,7 +26,7 @@ const NAV_ITEM = cn(
   INDICATOR,
 );
 
-/** Menu rows inside the "Projects" panel: highlighted on hover/focus, ripple on press. */
+/** Menu rows inside the "Blog" panel: highlighted on hover/focus, ripple on press. */
 const PANEL_ITEM =
   "relative grid grid-cols-[auto_1fr] items-start gap-x-4 gap-y-1 overflow-hidden p-3 transition-colors duration-150 hover:bg-popover-hover focus:bg-popover-hover focus-visible:bg-popover-hover";
 
@@ -42,10 +42,10 @@ export function HeaderNav() {
         <NavigationMenuItem>
           <NavigationMenuTrigger
             className={cn(NAV_ITEM, "data-popup-open:text-foreground data-popup-open:after:scale-x-100")}
-            data-active={section("/projects")}
+            data-active={section("/blog")}
             onPointerDown={ripple}
           >
-            {t("projects")}
+            {t("blog")}
           </NavigationMenuTrigger>
           <NavigationMenuContent className="w-[34rem] p-0">
             <ul className="grid gap-1 p-3">
@@ -60,8 +60,8 @@ export function HeaderNav() {
               ))}
             </ul>
             <div className="border-t border-border px-6 py-4">
-              <Link href="/projects" className="group inline-flex items-center gap-2 text-base font-bold text-primary-ink">
-                {t("allProjects")}
+              <Link href="/blog" className="group inline-flex items-center gap-2 text-base font-bold text-primary-ink">
+                {t("allBlog")}
                 <ArrowRight
                   className="size-4 transition-transform duration-150 ease-out group-hover:translate-x-0.5"
                   aria-hidden

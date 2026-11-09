@@ -42,6 +42,13 @@ const nextConfig: NextConfig = {
     localPatterns: [{ pathname: "/media/**", search: "" }],
     minimumCacheTTL: 31_536_000,
   },
+  // Projects became the Blog; old links (and their filters) keep working.
+  async redirects() {
+    return [
+      { source: "/projects", destination: "/blog", permanent: true },
+      { source: "/:locale(en)/projects", destination: "/:locale/blog", permanent: true },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

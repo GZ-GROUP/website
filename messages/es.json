@@ -12,20 +12,19 @@
     "homeLabel": "GZ Group, inicio",
     "primaryNav": "Navegación principal",
     "blog": "Blog",
-    "projects": "Proyectos",
     "team": "Nosotros",
     "login": "Ingresar",
     "register": "Crear cuenta",
     "openMenu": "Abrir menú",
     "menuTitle": "Menú",
-    "allProjects": "Ver todos los proyectos",
     "closeMenu": "Cerrar menú",
     "account": "Ajustes",
     "profile": "Mi perfil",
     "signOut": "Cerrar sesión",
     "userMenu": "Menú de tu cuenta",
     "studio": "Estudio",
-    "contact": "Contáctanos"
+    "contact": "Contáctanos",
+    "allBlog": "Ver todo el blog"
   },
   "Categories": {
     "software": {
@@ -62,7 +61,7 @@
   "Hero": {
     "title": "Software hecho por talento emergente",
     "lead": "GZ Group es una comunidad de desarrolladores que publica sus proyectos, investigaciones y experimentos de software, explicados por quienes los construyeron.",
-    "primaryCta": "Explorar proyectos",
+    "primaryCta": "Explorar el blog",
     "secondaryCta": "Contáctanos"
   },
   "Home": {
@@ -81,11 +80,10 @@
       "githubCta": "Ver GZ Group en GitHub"
     },
     "members": {
-      "title": "Quiénes escriben",
-      "body": "Los artículos los firman integrantes de GZ Group. Cada autor puede vincular su cuenta de GitHub, y su firma lo muestra.",
-      "exampleCaption": "Así se ve una firma verificada",
-      "exampleName": "Tu nombre",
-      "empty": "Los perfiles de los integrantes se publicarán junto con los primeros artículos."
+      "title": "Conoce a quienes hacen GZ Group",
+      "body": "Detrás de cada proyecto hay una persona con nombre y perfil propio. Conoce a los miembros de GZ Group y lo que cada uno ha publicado.",
+      "cta": "Conocer a los miembros",
+      "mascotAlt": "La mascota de GZ Group, un dragón azul con sudadera negra, junto a dos personas frente a una laptop."
     },
     "cta": {
       "title": "Revisa lo que construimos",
@@ -346,9 +344,6 @@
     "metaTitle": "Blog",
     "title": "Blog",
     "lead": "Artículos, tutoriales y proyectos de la comunidad, escritos por quienes los construyeron.",
-    "projectsMetaTitle": "Proyectos",
-    "projectsTitle": "Proyectos",
-    "projectsLead": "Software, investigación y experimentos construidos por integrantes de GZ Group.",
     "filters": "Filtros",
     "search": "Buscar",
     "searchPlaceholder": "Título, tema o tecnología",
