@@ -157,4 +157,8 @@ Work on a branch, use [Conventional Commits](https://www.conventionalcommits.org
 
 ## License
 
-Not decided yet. All rights reserved until a license is added.
+Copyright (C) 2026 GZ Group.
+
+The source code is licensed under the [GNU Affero General Public License, version 3](LICENSE) (`AGPL-3.0-only`).
+
+The GZ Group name, logo and mascot artwork are not covered by that license and may not be reused without written permission. This includes the files in [`public/brand`](public/brand), [`app/icon.svg`](app/icon.svg) and the logo drawn in [`components/brand/logo.tsx`](components/brand/logo.tsx). All rights reserved.
