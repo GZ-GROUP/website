@@ -36,7 +36,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cn": "^0.5.2",
-    "dotenv": "^17.4.2",
+    "dotenv": "^18.0.9",
     "hast-util-to-jsx-runtime": "^2.3.7",
     "lowlight": "^3.3.0",
     "lucide-react": "^1.31.0",
