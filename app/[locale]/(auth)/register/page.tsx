@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import { AuthShell } from "@/components/auth/auth-shell";
+import mascot from "@/public/brand/mascot-coding.png";
 import { RegisterForm } from "@/components/auth/register-form";
 import { redirect } from "@/i18n/navigation";
 import { isGithubEnabled } from "@/lib/auth/providers";
@@ -16,7 +17,7 @@ export default async function RegisterPage() {
   const t = await getTranslations("Auth.register");
 
   return (
-    <AuthShell title={t("title")} lead={t("lead")}>
+    <AuthShell title={t("title")} lead={t("lead")} illustration={mascot}>
       <RegisterForm githubEnabled={isGithubEnabled()} />
     </AuthShell>
   );

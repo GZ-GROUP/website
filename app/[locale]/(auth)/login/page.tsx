@@ -3,6 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { AuthShell } from "@/components/auth/auth-shell";
 import { LoginForm } from "@/components/auth/login-form";
 import { redirect } from "@/i18n/navigation";
+import mascot from "@/public/brand/mascot-tech.png";
 import { safeNextPath } from "@/lib/auth/next-path";
 import { isGithubEnabled } from "@/lib/auth/providers";
 import { getSession } from "@/lib/auth/session";
@@ -18,7 +19,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/[locale]/l
   const t = await getTranslations("Auth.login");
 
   return (
-    <AuthShell title={t("title")}>
+    <AuthShell title={t("title")} illustration={mascot}>
       <LoginForm githubEnabled={isGithubEnabled()} next={next} />
     </AuthShell>
   );
