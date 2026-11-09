@@ -2,7 +2,8 @@ import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import type { Prisma } from "@/lib/generated/prisma/client";
 import { prisma } from "@/lib/db";
-import { contentMediaSources, EMPTY_DOCUMENT, validateContent, type ContentError } from "@/lib/editor/content";
+import type { JSONContent } from "@tiptap/core";
+import { contentMediaSources, EMPTY_DOCUMENT, hasImageWithoutAlt, validateContent, type ContentError } from "@/lib/editor/content";
 import { mediaKeyFromUrl } from "@/lib/editor/links";
 import { normalizeTag, uniqueSlug } from "@/lib/articles/slug";
 import { articleMetaSchema, publishProblems } from "@/lib/articles/validation";
@@ -47,6 +48,7 @@ const accessSelect = {
   contentText: true,
   coverImageKey: true,
   coverAlt: true,
+  content: true,
   coAuthors: { select: { userId: true } },
 } satisfies Prisma.ArticleSelect;
 
@@ -164,6 +166,7 @@ export async function publishArticle(actor: Actor, id: string): Promise<Mutation
   if (!canPublish(actor, loaded.access)) return { ok: false, error: "FORBIDDEN" };
 
   const problems = publishProblems(loaded.row);
+  if (hasImageWithoutAlt(loaded.row.content as JSONContent)) problems.push("IMAGE_ALT_REQUIRED");
   if (problems.length) return { ok: false, error: "NOT_READY", problems };
 
   // The slug is derived on first publication and frozen afterwards (stable links).

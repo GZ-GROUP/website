@@ -61,6 +61,12 @@ export function validateContent(input: unknown): ContentResult {
 }
 
 /** Media keys referenced by images in a (validated) document. */
+/** Images a screen reader or a search engine would have no description for. */
+export function hasImageWithoutAlt(doc: JSONContent): boolean {
+  if (doc.type === "image" && !(typeof doc.attrs?.alt === "string" && doc.attrs.alt.trim())) return true;
+  return doc.content?.some(hasImageWithoutAlt) ?? false;
+}
+
 export function contentMediaSources(doc: JSONContent): string[] {
   const out: string[] = [];
   const walk = (node: JSONContent) => {
