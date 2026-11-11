@@ -1,6 +1,9 @@
 # syntax=docker/dockerfile:1
 # Production image. Local development runs Next.js natively (`npm run dev`)
 # with only PostgreSQL in Docker Compose — this file is NOT used for dev.
+#
+# On every container start, `prisma migrate deploy` is applied before the
+# server boots (idempotent: only pending migrations run).
 
 # ---- deps: install exact dependencies from the lockfile ----
 FROM node:24-alpine AS deps
@@ -31,13 +34,44 @@ WORKDIR /app
 ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
     PORT=3000 \
-    HOSTNAME=0.0.0.0
-RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -u 1001 -G nodejs
+    HOSTNAME=0.0.0.0 \
+    HOME=/home/nextjs
+
+# openssl: required by the Prisma schema engine on Alpine.
+RUN apk add --no-cache openssl \
+    && addgroup -g 1001 -S nodejs \
+    && adduser -S nextjs -u 1001 -G nodejs \
+    && mkdir -p /home/nextjs /migrate \
+    && chown -R nextjs:nodejs /home/nextjs /migrate
+
+# App (standalone server)
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+# Migration toolkit, kept in /migrate so it never mixes with the standalone
+# node_modules. Uses the full dependency set so prisma.config.ts resolves
+# any import it needs (prisma/config, dotenv, ...).
+COPY --from=deps    --chown=nextjs:nodejs /app/node_modules /migrate/node_modules
+COPY --from=builder --chown=nextjs:nodejs /app/package.json /migrate/package.json
+COPY --from=builder --chown=nextjs:nodejs /app/prisma /migrate/prisma
+COPY --from=builder --chown=nextjs:nodejs /app/prisma.config.ts /migrate/prisma.config.ts
+
+# Entrypoint: migrate, then start the server. If the migration fails the
+# container exits, so the problem is visible in the Dokploy logs.
+RUN cat > /app/docker-entrypoint.sh <<'EOF' && chmod +x /app/docker-entrypoint.sh
+#!/bin/sh
+set -e
+echo "[entrypoint] Applying database migrations..."
+cd /migrate
+node node_modules/prisma/build/index.js migrate deploy
+echo "[entrypoint] Migrations done. Starting server..."
+cd /app
+exec node server.js
+EOF
+
 USER nextjs
 EXPOSE 3000
-HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
   CMD wget -q -O /dev/null "http://127.0.0.1:${PORT}/api/health" || exit 1
-CMD ["node", "server.js"]
+CMD ["/app/docker-entrypoint.sh"]
