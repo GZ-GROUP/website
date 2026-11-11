@@ -6,13 +6,13 @@
 # server boots (idempotent: only pending migrations run).
 
 # ---- deps: install exact dependencies from the lockfile ----
-FROM node:24-alpine AS deps
+FROM node:26-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
 # ---- builder: generate Prisma client and build the standalone server ----
-FROM node:24-alpine AS builder
+FROM node:26-alpine AS builder
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY --from=deps /app/node_modules ./node_modules
@@ -29,7 +29,7 @@ RUN DATABASE_URL="$BUILD_DATABASE_URL" npx prisma generate
 RUN DATABASE_URL="$BUILD_DATABASE_URL" BETTER_AUTH_SECRET="build-only-placeholder-not-used-at-runtime" npm run build
 
 # ---- runner: minimal runtime, non-root ----
-FROM node:24-alpine AS runner
+FROM node:26-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
